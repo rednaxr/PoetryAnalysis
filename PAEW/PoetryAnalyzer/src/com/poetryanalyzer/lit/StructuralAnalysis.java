@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StructuralAnalysis {
-<<<<<<< HEAD
+
     public ArrayList<Word> wordList = new ArrayList<Word> ();
 	public StructuralAnalysis(ArrayList<String> poem) {
 		for(String line:poem) {
@@ -30,14 +30,11 @@ public class StructuralAnalysis {
 		    //TODO word counts
 		}
 	}
-=======
+
 
 	private ArrayList<String> poem;
 	
-	public StructuralAnalysis(ArrayList<String> inPoem) {
-		poem = inPoem;
-		
-	}
+	
 	
 	public int wordCount() {
 		int words = 0;
@@ -50,6 +47,6 @@ public class StructuralAnalysis {
 	public void wordFrequency() {
 		
 	}
->>>>>>> 8b8a357cfd34fddf86c88286742d40a59bb8833b
+
 	
 }
