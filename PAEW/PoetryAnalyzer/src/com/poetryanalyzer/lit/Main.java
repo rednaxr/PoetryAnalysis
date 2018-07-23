@@ -46,6 +46,7 @@ public class Main implements ActionListener {
 		window.add(statusLbl);
 		statusLbl.setHorizontalAlignment(JLabel.CENTER);
 		window.add(runBtn);
+		runBtn.addActionListener(this);
 		
 	}
 	
@@ -53,8 +54,19 @@ public class Main implements ActionListener {
 		new Main();
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		
+	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource().equals(runBtn)) {
+			
+		}
 	}
 
+	public String readInput(String fileName) {
+		String poem = "";
+		return poem;
+	}
+	
+	public void writeOutput(String fileName) {
+		
+	}
+	
 }
