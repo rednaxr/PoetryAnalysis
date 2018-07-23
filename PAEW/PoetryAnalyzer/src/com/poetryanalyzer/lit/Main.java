@@ -23,18 +23,19 @@ import javax.swing.JTextField;
 
 public class Main implements ActionListener {
 
+	
+	//Global Variables
+	ArrayList<String> poem;
+	ArrayList<String> analysis;	
+	
+	//Graphical Components
 	JFrame window = new JFrame("Poetry Analyzer");
-
 	JLabel inputLbl = new JLabel("Input: ");
 	JLabel outputLbl = new JLabel("Output: ");
 	JLabel statusLbl = new JLabel("Status: ");
 	JTextField inputTF = new JTextField("");
 	JTextField outputTF = new JTextField("");
 	JButton runBtn = new JButton("Run");
-	
-	
-	ArrayList<String> poem;
-	ArrayList<String> analysis;	
 	
 	public Main() {
 		//Set up window
@@ -95,8 +96,9 @@ public class Main implements ActionListener {
 	public void writeFile(String filePath, ArrayList<String> output) {
 		String out = "";
 		for(int i = 0; i < output.size(); i++) {
-			
+			out += output.get(i) + "\n\n";
 		}
+		
 	}
 	
 }
