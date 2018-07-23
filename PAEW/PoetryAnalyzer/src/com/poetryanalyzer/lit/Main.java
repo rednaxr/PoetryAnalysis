@@ -8,10 +8,15 @@ package com.poetryanalyzer.lit;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+=======
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+>>>>>>> 398521806fb6da06b6c58313d5c5588696868bbf
 =======
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,6 +85,10 @@ public class Main implements ActionListener {
 		}
 		
 		fileReader.close();
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
