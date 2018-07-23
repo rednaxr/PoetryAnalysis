@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 public class Main {
 
 	JFrame window = new JFrame("Poetry Analyzer");
+
 	JLabel inputLbl = new JLabel("Input: ");
 	JLabel outputLbl = new JLabel("Output: ");
 	JLabel statusLbl = new JLabel("Status: ");
