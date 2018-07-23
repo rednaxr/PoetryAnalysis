@@ -64,6 +64,15 @@ public class Main implements ActionListener {
 		new Main();
 	}
 	
+
+	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource().equals(runBtn)) {
+			readFile(inputTF.getText());
+			
+			
+		}
+	}
+	
 	//reads in text from a file
 	public void readFile (String filePath) {
 		File file = new File (filePath);
@@ -80,14 +89,6 @@ public class Main implements ActionListener {
 		}
 		
 		fileReader.close();
-	}
-
-	public void actionPerformed(ActionEvent ae) {
-		if(ae.getSource().equals(runBtn)) {
-			readFile(inputTF.getText());
-			
-			
-		}
 	}
 	
 }
