@@ -33,7 +33,7 @@ public class Main implements ActionListener {
 	JButton runBtn = new JButton("Run");
 	
 	
-	ArrayList<String> poetryLines;
+	ArrayList<String> poem;
 	
 	
 	public Main() {
@@ -64,6 +64,7 @@ public class Main implements ActionListener {
 		new Main();
 	}
 	
+	//reads in text from a file
 	public void readFile (String filePath) {
 		File file = new File (filePath);
 		Scanner fileReader = null;
@@ -75,7 +76,7 @@ public class Main implements ActionListener {
 		}
 		
 		while (fileReader.hasNextLine()) {
-			poetryLines.add(fileReader.nextLine());
+			poem.add(fileReader.nextLine());
 		}
 		
 		fileReader.close();
@@ -83,6 +84,8 @@ public class Main implements ActionListener {
 
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource().equals(runBtn)) {
+			readFile(inputTF.getText());
+			
 			
 		}
 	}
