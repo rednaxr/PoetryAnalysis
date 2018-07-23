@@ -1,6 +1,6 @@
 package com.poetryanalyzer.lit;
 
-public class Lexeme {
+public class Lexeme extends Word {
 	private String lexText;
 	private int count;
 	
