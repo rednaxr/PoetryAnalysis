@@ -70,15 +70,15 @@ public class Main implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource().equals(runBtn)) {
 			time = System.currentTimeMillis();
-			readFile(inputTF.getText());
+			poem = readFile(inputTF.getText());
 			StructuralAnalysis structure = new StructuralAnalysis(poem);
-			
 			time = System.currentTimeMillis() - time;
+			writeFile(outputTF.getText(), processOutput(analysis));
 		}
 	}
 	
 	//reads in text from a file
-	public void readFile (String filePath) {
+	public ArrayList<String> readFile (String filePath) {
 		ArrayList<String> input = new ArrayList<String>();
 		File file = new File (filePath);
 		Scanner fileReader = null;
@@ -90,20 +90,23 @@ public class Main implements ActionListener {
 		}
 		
 		while (fileReader.hasNextLine()) {
-			poem.add(fileReader.nextLine());
+			input.add(fileReader.nextLine());
 		}
-		
 		fileReader.close();
+		return input;
+	}
+	
+	public String processOutput(ArrayList<String> input) {
+		String output = "";
+		for(int i = 0; i < input.size(); i++) {
+			output += input.get(i) + "\n\n";
+		}
+		output += "Processing Time:  " + time + " ms";
+		return output;
 	}
 	
 	//writes output to a string
-	public void writeFile(String filePath, ArrayList<String> output) {
-		String out = "";
-		for(int i = 0; i < output.size(); i++) {
-			out += output.get(i) + "\n\n";
-		}
-		out += "Time:  " + time + " ms";
-		
+	public void writeFile(String filePath, String output) {
 		
 	}
 	
