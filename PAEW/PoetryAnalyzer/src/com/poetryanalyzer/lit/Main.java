@@ -71,7 +71,6 @@ public class Main implements ActionListener {
 		try {
 			fileReader = new Scanner(file);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -82,23 +81,10 @@ public class Main implements ActionListener {
 		fileReader.close();
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		
-	}
-
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource().equals(runBtn)) {
 			
 		}
-	}
-
-	public String readInput(String fileName) {
-		String poem = "";
-		return poem;
-	}
-	
-	public void writeOutput(String fileName) {
-		
 	}
 	
 }
