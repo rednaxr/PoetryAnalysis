@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StructuralAnalysis {
-
+    public Poem poem;
     public ArrayList<Word> wordList = new ArrayList<Word> ();
 	public StructuralAnalysis(ArrayList<String> poem) {
 		for(String line:poem) {
@@ -15,8 +15,11 @@ public class StructuralAnalysis {
 	public void AnalyzeLine(String line) {
 		String currentWord ="";
 		ArrayList<Word> lineList = new ArrayList();
-		for (int i = 0; i < line.length(); i++){
-		    char c = line.charAt(i);        
+		int startIndex = 0;
+		for (int endIndex = 0; endIndex < line.length(); endIndex++){
+			
+		    char c = line.charAt(i);
+		    //TODO find common words, rhymes, alliteration
 		    if(c == ' ') {
 		    	//TODO: search lexical database
 		    	var word = new Word(currentWord);
@@ -25,7 +28,7 @@ public class StructuralAnalysis {
 		    	currentWord = "";
 		    }
 		    else {
-		    	
+		    	 
 		    }
 		    //TODO word counts
 		}
