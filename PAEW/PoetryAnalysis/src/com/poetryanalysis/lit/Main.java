@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class Main {
 	
-	JFrame window = JFrame("Poetry Analysis");
+	JFrame window;
 	
 	public Main() {
 		
