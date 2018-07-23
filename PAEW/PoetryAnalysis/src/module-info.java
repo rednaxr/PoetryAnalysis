@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author aksdyall
- *
- */
-module PoetryAnalysis {
-}
