@@ -8,6 +8,7 @@ public class StructuralAnalysis {
 	
 	public StructuralAnalysis(ArrayList<String> inPoem) {
 		poem = inPoem;
+		
 	}
 	
 	public int wordCount() {
