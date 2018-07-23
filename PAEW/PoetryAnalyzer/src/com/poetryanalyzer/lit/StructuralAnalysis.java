@@ -14,7 +14,6 @@ public class StructuralAnalysis {
 		}
 	}
 	public void AnalyzeLine(String line) {
-		String currentWord ="";
 		ArrayList<Word> lineList = new ArrayList();
 		int startIndex = 0;
 		for (int endIndex = 0; endIndex < line.length(); endIndex++){
@@ -23,6 +22,7 @@ public class StructuralAnalysis {
 		    //TODO find common words, rhymes, alliteration
 		    if(c == ' ') {
 		    	//TODO: search lexical database
+		    	String currentWord ="";
 		    	var word = new Word(currentWord);
 		    	
 		    	wordList.add(word);
