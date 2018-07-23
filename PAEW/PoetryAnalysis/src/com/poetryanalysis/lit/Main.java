@@ -1,11 +1,17 @@
 package com.poetryanalysis.lit;
 
-public class Main {
+import javax.swing.JFrame;
 
+public class Main {
+	
+	JFrame window = JFrame("Poetry Analysis");
+	
+	public Main() {
+		
+	}
+	
 	public static void main(String[] args) {
-		
-		
-		
+		new Main();
 	}
 
 }
