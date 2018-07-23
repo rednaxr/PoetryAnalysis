@@ -34,6 +34,7 @@ public class Main implements ActionListener {
 	
 	
 	ArrayList<String> poem;
+	ArrayList<String> analysis;
 	
 	
 	public Main() {
@@ -68,7 +69,7 @@ public class Main implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource().equals(runBtn)) {
 			readFile(inputTF.getText());
-			
+			StructuralAnalysis structure = new StructuralAnalysis(poem);
 			
 		}
 	}
@@ -89,6 +90,11 @@ public class Main implements ActionListener {
 		}
 		
 		fileReader.close();
+	}
+	
+	//writes output to a string
+	public void writeFile(String filePath, ArrayList<String> output) {
+		
 	}
 	
 }
