@@ -1,12 +1,18 @@
 //Main Class of Poetry Analyzer
 //GUI and Central Control
-//by: Alexander Dyall, Alex Gitteau, & Sidney Von Arx
+//by: Alexander Dyall, Alex Gitteau, & Sydney Von Arx
 //23 July 2018
 
 package com.poetryanalyzer.lit;
 
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,6 +31,10 @@ public class Main implements ActionListener {
 	JTextField inputTF = new JTextField("");
 	JTextField outputTF = new JTextField("");
 	JButton runBtn = new JButton("Run");
+	
+	
+	ArrayList<String> poetryLines;
+	
 	
 	public Main() {
 		//Set up window
@@ -52,6 +62,28 @@ public class Main implements ActionListener {
 	
 	public static void main(String[] args) {
 		new Main();
+	}
+	
+	public void readFile (String filePath) {
+		File file = new File (filePath);
+		Scanner fileReader = null;
+		
+		try {
+			fileReader = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		while (fileReader.hasNextLine()) {
+			poetryLines.add(fileReader.nextLine());
+		}
+		
+		fileReader.close();
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		
 	}
 
 	public void actionPerformed(ActionEvent ae) {
