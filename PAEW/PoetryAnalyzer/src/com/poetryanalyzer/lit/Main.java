@@ -9,6 +9,9 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
@@ -107,7 +110,12 @@ public class Main implements ActionListener {
 	
 	//writes output to a string
 	public void writeFile(String filePath, String output) {
-		
+		try {
+			PrintWriter print = new PrintWriter(new FileWriter(new File(outputTF.getText())));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//TODO: FINISH THING
 	}
 	
 }
