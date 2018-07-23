@@ -7,13 +7,15 @@ package com.poetryanalyzer.lit;
 
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Main {
+public class Main implements ActionListener {
 
 	JFrame window = new JFrame("Poetry Analyzer");
 
@@ -49,6 +51,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		new Main();
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		
 	}
 
 }
