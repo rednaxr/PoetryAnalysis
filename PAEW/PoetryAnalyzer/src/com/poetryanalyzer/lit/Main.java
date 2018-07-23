@@ -12,8 +12,7 @@ import javax.swing.JFrame;
 public class Main {
 
 	JFrame window = new JFrame("Poetry Analyzer");
-	
-	
+
 	public Main() {
 		double screenWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 		double screenHeight = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
