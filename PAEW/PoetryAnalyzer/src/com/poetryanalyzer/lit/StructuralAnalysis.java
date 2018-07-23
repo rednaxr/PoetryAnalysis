@@ -6,6 +6,7 @@ import java.util.List;
 
 public class StructuralAnalysis {
     public Poem poem;
+
     public ArrayList<Word> wordList = new ArrayList<Word> ();
 	public StructuralAnalysis(ArrayList<String> poem) {
 		for(String line:poem) {
@@ -33,5 +34,4 @@ public class StructuralAnalysis {
 		    //TODO word counts
 		}
 	}
-	
 }
