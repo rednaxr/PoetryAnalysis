@@ -16,9 +16,7 @@ import javax.swing.JTextField;
 public class Main {
 
 	JFrame window = new JFrame("Poetry Analyzer");
-<<<<<<< HEAD
 
-=======
 	JLabel inputLbl = new JLabel("Input: ");
 	JLabel outputLbl = new JLabel("Output: ");
 	JLabel statusLbl = new JLabel("Status: ");
@@ -26,7 +24,6 @@ public class Main {
 	JTextField outputTF = new JTextField("");
 	JButton runBtn = new JButton("Run");
 	
->>>>>>> 9dc688aded5ced45539d6131f62341c3e45abcf7
 	public Main() {
 		//Set up window
 		double screenWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
