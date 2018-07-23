@@ -28,7 +28,7 @@ public class Main {
 		double screenWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 		double screenHeight = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 		window.setLocation((int)Math.round(screenWidth/4), (int)Math.round(screenHeight/4));
-		window.setSize(500, 250);
+		window.setSize(400, 150);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 		window.setLayout(new GridLayout(3, 2));
