@@ -34,8 +34,7 @@ public class Main implements ActionListener {
 	
 	
 	ArrayList<String> poem;
-	ArrayList<String> analysis;
-	
+	ArrayList<String> analysis;	
 	
 	public Main() {
 		//Set up window
@@ -94,7 +93,10 @@ public class Main implements ActionListener {
 	
 	//writes output to a string
 	public void writeFile(String filePath, ArrayList<String> output) {
-		
+		String out = "";
+		for(int i = 0; i < output.size(); i++) {
+			
+		}
 	}
 	
 }
