@@ -82,10 +82,6 @@ public class Main implements ActionListener {
 		fileReader.close();
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		
-	}
-
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource().equals(runBtn)) {
 			
