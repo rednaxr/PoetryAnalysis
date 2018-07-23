@@ -23,18 +23,20 @@ import javax.swing.JTextField;
 
 public class Main implements ActionListener {
 
+	
+	//Global Variables
+	ArrayList<String> poem;				//Stores poem line by line
+	ArrayList<String> analysis;			//stores analysis of poem section by section
+	double time;						//stores time taken by system to complete analysis
+	
+	//Graphical Components
 	JFrame window = new JFrame("Poetry Analyzer");
-
 	JLabel inputLbl = new JLabel("Input: ");
 	JLabel outputLbl = new JLabel("Output: ");
 	JLabel statusLbl = new JLabel("Status: ");
 	JTextField inputTF = new JTextField("");
 	JTextField outputTF = new JTextField("");
 	JButton runBtn = new JButton("Run");
-	
-	
-	ArrayList<String> poem;
-	
 	
 	public Main() {
 		//Set up window
@@ -67,14 +69,17 @@ public class Main implements ActionListener {
 
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource().equals(runBtn)) {
+			time = System.currentTimeMillis();
 			readFile(inputTF.getText());
+			StructuralAnalysis structure = new StructuralAnalysis(poem);
 			
-			
+			time = System.currentTimeMillis() - time;
 		}
 	}
 	
 	//reads in text from a file
 	public void readFile (String filePath) {
+		ArrayList<String> input = new ArrayList<String>();
 		File file = new File (filePath);
 		Scanner fileReader = null;
 		
@@ -89,6 +94,17 @@ public class Main implements ActionListener {
 		}
 		
 		fileReader.close();
+	}
+	
+	//writes output to a string
+	public void writeFile(String filePath, ArrayList<String> output) {
+		String out = "";
+		for(int i = 0; i < output.size(); i++) {
+			out += output.get(i) + "\n\n";
+		}
+		out += "Time:  " + time + " ms";
+		
+		
 	}
 	
 }
