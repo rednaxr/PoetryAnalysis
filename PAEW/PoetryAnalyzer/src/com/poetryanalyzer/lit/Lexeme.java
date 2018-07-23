@@ -1,10 +1,11 @@
 package com.poetryanalyzer.lit;
 
 public class Lexeme extends Word {
-	private String lexText;
-	private int count;
-	
-	public Lexeme () { //default constructor
-		
+
+	Lexeme(String str) {
+		super(str);
+	}
+	Lexeme(String str, int wordCount) {
+		super(str, wordCount);
 	}
 }
