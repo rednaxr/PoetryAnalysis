@@ -83,15 +83,12 @@ public class Main implements ActionListener {
 	//reads in text from a file
 	public ArrayList<String> readFile (String filePath) {
 		ArrayList<String> input = new ArrayList<String>();
-		File file = new File (filePath);
 		Scanner fileReader = null;
-		
 		try {
-			fileReader = new Scanner(file);
+			fileReader = new Scanner(new File(filePath));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 		while (fileReader.hasNextLine()) {
 			input.add(fileReader.nextLine());
 		}
@@ -113,7 +110,7 @@ public class Main implements ActionListener {
 	public void writeFile(String filePath, String output) {
 		PrintWriter printer = null;
 		try {
-			printer = new PrintWriter(new FileWriter(new File(outputTF.getText())));
+			printer = new PrintWriter(new FileWriter(new File(filePath)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
