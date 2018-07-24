@@ -25,7 +25,7 @@ public class MainTest {
 			System.out.print("> ");
 			input = sysIn.nextLine();
 			lines = readFile(input);
-			lines.add("kinoushita");
+			lines.add("owari");
 			output = "";
 			for(int i = 0; i < lines.size(); i++) {
 				output += lines.get(i) + "\n";
