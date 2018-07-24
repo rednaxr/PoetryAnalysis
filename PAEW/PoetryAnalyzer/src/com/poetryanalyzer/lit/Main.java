@@ -42,6 +42,7 @@ public class Main implements ActionListener {
 	JButton runBtn = new JButton("Run");
 	
 	public Main() {
+		
 		//Set up window
 		double screenWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 		double screenHeight = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
@@ -69,16 +70,15 @@ public class Main implements ActionListener {
 		new Main();
 	}
 	
-
 	public void actionPerformed(ActionEvent ae) {
-		if(ae.getSource().equals(runBtn)) {
-			statusLbl.setText("Working...");
+		if(ae.getSource().equals(runBtn)) {											//If run button is pushed
+			statusLbl.setText("Working...");										//report Working, start recording times
 			time = System.currentTimeMillis();
 			poemLines = readFile(inputTF.getText());
-			StructuralAnalysis structure = new StructuralAnalysis(poemLines);
-			time = System.currentTimeMillis() - time;
+			StructuralAnalysis structure = new StructuralAnalysis(poemLines);		//initiate structural analysis of poem
+			time = System.currentTimeMillis() - time;								//record time taken
 			writeFile(outputTF.getText(), poemLines.get(0));
-			statusLbl.setText("Status: Ready");
+			statusLbl.setText("Status: Ready");										//report ready for new inputs
 		}
 	}
 	
