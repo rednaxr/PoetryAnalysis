@@ -14,7 +14,7 @@ public class StructuralAnalysis {
 			AnalyzeLine(rawLine);
 		}
 	}
-	public void AnalyzeLine(String line) {
+	public Line AnalyzeLine(String line) {
 		ArrayList<Word> lineList = new ArrayList();
 		int startIndex = 0;
 		var startOfWord = true;
@@ -36,11 +36,11 @@ public class StructuralAnalysis {
 		    }
 		    else {
 		    	 if(alliterating) {
-		    		 if (line.al)
+		    		 //if (line)
 		    	 }
 		    }
 		    //TODO word counts
 		}
-		return new Line(Words);
+		return new Line(lineList);
 	}
 }
