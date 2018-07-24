@@ -34,9 +34,9 @@ public class Main implements ActionListener {
 	
 	//Graphical Components
 	JFrame window = new JFrame("Poetry Analyzer");
-	JLabel inputLbl = new JLabel("Input: ");
-	JLabel outputLbl = new JLabel("Output: ");
-	JLabel statusLbl = new JLabel("Status: ");
+	JLabel inputLbl = new JLabel("Input:");
+	JLabel outputLbl = new JLabel("Output:");
+	JLabel statusLbl = new JLabel("Status: Ready");
 	JTextField inputTF = new JTextField("");
 	JTextField outputTF = new JTextField("");
 	JButton runBtn = new JButton("Run");
@@ -72,11 +72,13 @@ public class Main implements ActionListener {
 
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource().equals(runBtn)) {
+			statusLbl.setText("Working...");
 			time = System.currentTimeMillis();
 			poem = readFile(inputTF.getText());
 			StructuralAnalysis structure = new StructuralAnalysis(poem);
 			time = System.currentTimeMillis() - time;
 			writeFile(outputTF.getText(), "PLACEHOLDER");
+			statusLbl.setText("Status: Ready");
 		}
 	}
 	
@@ -84,7 +86,7 @@ public class Main implements ActionListener {
 	public ArrayList<String> readFile (String filePath) {
 		ArrayList<String> input = new ArrayList<String>();
 		Scanner fileReader = null;
-		File file = new File("filePath");
+		File file = new File(filePath);
 		if(file.exists() && !file.isDirectory()) {
 			try {
 				fileReader = new Scanner(new File(filePath));
