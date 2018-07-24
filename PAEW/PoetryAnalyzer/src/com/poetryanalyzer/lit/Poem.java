@@ -6,6 +6,7 @@ public class Poem {
 	
 	static final int ALLITERATION = 1;
 	
+	
 	private ArrayList<String> text;
 	private int[] rhymeScheme;
 	private int wordCount;
