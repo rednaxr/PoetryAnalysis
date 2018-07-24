@@ -76,7 +76,7 @@ public class Main implements ActionListener {
 			poem = readFile(inputTF.getText());
 			StructuralAnalysis structure = new StructuralAnalysis(poem);
 			time = System.currentTimeMillis() - time;
-			writeFile(outputTF.getText(), processOutput(analysis));
+			writeFile(outputTF.getText(), "PLACEHOLDER");
 		}
 	}
 	
@@ -84,26 +84,22 @@ public class Main implements ActionListener {
 	public ArrayList<String> readFile (String filePath) {
 		ArrayList<String> input = new ArrayList<String>();
 		Scanner fileReader = null;
-		try {
-			fileReader = new Scanner(new File(filePath));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		File file = new File("filePath");
+		if(file.exists() && !file.isDirectory()) {
+			try {
+				fileReader = new Scanner(new File(filePath));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			while (fileReader.hasNextLine()) {
+				input.add(fileReader.nextLine());
+			}
+			fileReader.close();
 		}
-		while (fileReader.hasNextLine()) {
-			input.add(fileReader.nextLine());
+		else {
+			statusLbl.setText("Status: Error - Invalid Input File");
 		}
-		fileReader.close();
 		return input;
-	}
-	
-	//Converts OutputArray to string, with Processing time at end
-	public String processOutput(ArrayList<String> input) {
-		String output = "";
-		for(int i = 0; i < input.size(); i++) {
-			output += input.get(i) + "\n\n";
-		}
-		output += "Processing Time:  " + time + " ms";
-		return output;
 	}
 	
 	//writes output to a string
