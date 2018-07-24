@@ -37,4 +37,5 @@ public class Poem {
 	public void setWordCount(int wordCount) {
 		this.wordCount = wordCount;
 	}
+	
 }

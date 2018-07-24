@@ -30,7 +30,7 @@ public class Main implements ActionListener {
 	//Global Variables
 	ArrayList<String> poem;				//Stores poem line by line
 	ArrayList<String> analysis;			//stores analysis of poem section by section
-	double time;						//stores time taken by system to complete analysis
+	long time;							//stores time taken by system to complete analysis
 	
 	//Graphical Components
 	JFrame window = new JFrame("Poetry Analyzer");
@@ -83,15 +83,12 @@ public class Main implements ActionListener {
 	//reads in text from a file
 	public ArrayList<String> readFile (String filePath) {
 		ArrayList<String> input = new ArrayList<String>();
-		File file = new File (filePath);
 		Scanner fileReader = null;
-		
 		try {
-			fileReader = new Scanner(file);
+			fileReader = new Scanner(new File(filePath));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 		while (fileReader.hasNextLine()) {
 			input.add(fileReader.nextLine());
 		}
@@ -99,6 +96,7 @@ public class Main implements ActionListener {
 		return input;
 	}
 	
+	//Converts OutputArray to string, with Processing time at end
 	public String processOutput(ArrayList<String> input) {
 		String output = "";
 		for(int i = 0; i < input.size(); i++) {
@@ -112,7 +110,7 @@ public class Main implements ActionListener {
 	public void writeFile(String filePath, String output) {
 		PrintWriter printer = null;
 		try {
-			printer = new PrintWriter(new FileWriter(new File(outputTF.getText())));
+			printer = new PrintWriter(new FileWriter(new File(filePath)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
