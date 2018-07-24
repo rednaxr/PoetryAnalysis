@@ -118,7 +118,6 @@ public class Main implements ActionListener {
 		}
 		printer.write(output);
 		printer.close();
-		//TODO: FINISH THING
 	}
 	
 }
