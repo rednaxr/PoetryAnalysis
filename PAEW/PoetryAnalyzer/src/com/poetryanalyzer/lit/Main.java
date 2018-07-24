@@ -110,12 +110,14 @@ public class Main implements ActionListener {
 	
 	//writes output to a string
 	public void writeFile(String filePath, String output) {
+		PrintWriter printer = null;
 		try {
-			PrintWriter print = new PrintWriter(new FileWriter(new File(outputTF.getText())));
+			printer = new PrintWriter(new FileWriter(new File(outputTF.getText())));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		printer.write(output);
+		printer.close();
 		//TODO: FINISH THING
 	}
 	
