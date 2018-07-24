@@ -28,7 +28,7 @@ public class Main implements ActionListener {
 
 	
 	//Global Variables
-	ArrayList<String> poem;				//Stores poem line by line
+	ArrayList<String> poemLines;				//Stores poem line by line
 	ArrayList<String> analysis;			//stores analysis of poem section by section
 	long time;							//stores time taken by system to complete analysis
 	
@@ -74,10 +74,10 @@ public class Main implements ActionListener {
 		if(ae.getSource().equals(runBtn)) {
 			statusLbl.setText("Working...");
 			time = System.currentTimeMillis();
-			poem = readFile(inputTF.getText());
-			StructuralAnalysis structure = new StructuralAnalysis(poem);
+			poemLines = readFile(inputTF.getText());
+			StructuralAnalysis structure = new StructuralAnalysis(poemLines);
 			time = System.currentTimeMillis() - time;
-			writeFile(outputTF.getText(), "PLACEHOLDER");
+			writeFile(outputTF.getText(), poemLines.get(0));
 			statusLbl.setText("Status: Ready");
 		}
 	}
