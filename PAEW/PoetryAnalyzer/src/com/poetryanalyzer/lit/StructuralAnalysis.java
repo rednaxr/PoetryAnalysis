@@ -15,7 +15,7 @@ public class StructuralAnalysis {
 		}
 	}
 	public Line AnalyzeLine(String line) {
-		ArrayList<Word> lineList = new ArrayList();
+		ArrayList<Word> lineList = new ArrayList<Word>();
 		int startIndex = 0;
 		var startOfWord = true;
 		var alliterating = true;
@@ -35,8 +35,18 @@ public class StructuralAnalysis {
 		    	startIndex = endIndex+1;
 		    }
 		    else {
+		    	
+		    	//This checks for alliteration. It ain't pretty but it's efficient.
 		    	 if(alliterating) {
-		    		 //if (line)
+	    			 var currentText = line.substring(startIndex, endIndex);
+	    			 var foundMatch = false;
+		    		 for(Word word:lineList ) {
+		    			 var wordText = word.getText().substring(startIndex, endIndex);
+		    			 if(wordText.equals(currentText)) {
+		    				 foundMatch = true;
+		    			 }
+		    		 }
+		    		 alliterationEnd = endIndex;
 		    	 }
 		    }
 		    //TODO word counts
