@@ -10,6 +10,8 @@ public class MainTest {
 	
 	public MainTest() {
 		while(proceed == true) {
+			
+			
 			String[] QnA = {"Repeat?",
 					"y",
 					"n"};
@@ -54,5 +56,7 @@ public class MainTest {
 		}
 		return reint;
 		}
+	
+	
 	
 }
