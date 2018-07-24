@@ -30,7 +30,7 @@ public class Main implements ActionListener {
 	//Global Variables
 	ArrayList<String> poem;				//Stores poem line by line
 	ArrayList<String> analysis;			//stores analysis of poem section by section
-	double time;						//stores time taken by system to complete analysis
+	long time;							//stores time taken by system to complete analysis
 	
 	//Graphical Components
 	JFrame window = new JFrame("Poetry Analyzer");
