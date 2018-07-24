@@ -19,7 +19,7 @@ public class StructuralAnalysis {
 		int startIndex = 0;
 		var startOfWord = true;
 		var alliterating = true;
-		int alliterationEnd;
+		ArrayList<WordDevice> alliterationLocations = new ArrayList<WordDevice>();
 		for (int endIndex = 0; endIndex < line.length(); endIndex++){
 			
 		    char c = line.charAt(endIndex);
@@ -35,7 +35,6 @@ public class StructuralAnalysis {
 		    	startIndex = endIndex+1;
 		    }
 		    else {
-		    	
 		    	//This checks for alliteration. It ain't pretty but it's efficient.
 		    	 if(alliterating) {
 	    			 var currentText = line.substring(startIndex, endIndex);
@@ -46,11 +45,14 @@ public class StructuralAnalysis {
 		    				 foundMatch = true;
 		    			 }
 		    		 }
-		    		 alliterationEnd = endIndex;
+		    		 alliterating = foundMatch;
+		    		 //alliterationEnd = endIndex;
 		    	 }
 		    }
 		    //TODO word counts
 		}
-		return new Line(lineList);
+		var ProcessedLine = new Line(lineList);
+		ProcessedLine.Immediate.Alliteration = alliteration;
+		return ProcessedLine;
 	}
 }
