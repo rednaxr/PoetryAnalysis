@@ -1,17 +1,37 @@
 package com.test.util;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainTest {
 
 	Scanner sysIn = new Scanner(System.in);
+	Scanner fileIn = null;
 	boolean proceed;
 	String input;
+	String output;
+	ArrayList<String> lines;
 	
 	public MainTest() {
+		proceed = true;
 		while(proceed == true) {
-			
-			
+			System.out.println("Input File:");
+			System.out.print("> ");
+			input = sysIn.nextLine();
+			lines = readFile(input);
+			lines.add("kinoushita");
+			output = "";
+			for(int i = 0; i < lines.size(); i++) {
+				output += lines.get(i) + "\n";
+			}
+			System.out.println(output);
+			writeFile("output.txt", output);
 			String[] QnA = {"Repeat?",
 					"y",
 					"n"};
@@ -19,6 +39,7 @@ public class MainTest {
 				proceed = false;
 			}
 		}
+		System.out.println("Goodbye!");
 	}
 	
 	public static void main(String[] args) {
@@ -57,6 +78,34 @@ public class MainTest {
 		return reint;
 		}
 	
+	//reads in text from a file
+	public ArrayList<String> readFile (String filePath) {
+		ArrayList<String> input = new ArrayList<String>();
+		Scanner fileReader = null;
+		try {
+			fileReader = new Scanner(new File(filePath));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		while (fileReader.hasNextLine()) {
+			input.add(fileReader.nextLine());
+		}
+		fileReader.close();
+		return input;
+	}
 	
+	
+	//writes output to a string
+	public void writeFile(String filePath, String output) {
+		PrintWriter printer = null;
+		try {
+			printer = new PrintWriter(new FileWriter(new File(filePath)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		printer.write(output);
+		printer.close();
+	}
+
 	
 }

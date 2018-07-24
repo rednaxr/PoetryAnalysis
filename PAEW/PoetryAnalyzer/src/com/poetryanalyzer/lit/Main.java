@@ -99,6 +99,7 @@ public class Main implements ActionListener {
 		return input;
 	}
 	
+	//Converts OutputArray to string, with Processing time at end
 	public String processOutput(ArrayList<String> input) {
 		String output = "";
 		for(int i = 0; i < input.size(); i++) {
