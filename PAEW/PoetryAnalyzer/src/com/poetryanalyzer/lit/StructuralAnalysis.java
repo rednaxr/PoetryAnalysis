@@ -52,7 +52,7 @@ public class StructuralAnalysis {
 		    //TODO word counts
 		}
 		var ProcessedLine = new Line(lineList);
-		ProcessedLine.Immediate.Alliteration = alliteration;
+		//ProcessedLine.Immediate.Alliteration = alliteration;
 		return ProcessedLine;
 	}
 }
