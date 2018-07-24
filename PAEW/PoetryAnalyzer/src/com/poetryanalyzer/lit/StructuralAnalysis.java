@@ -7,9 +7,10 @@ import java.util.List;
 public class StructuralAnalysis {
     public Poem poem;
 
-    public ArrayList<Word> wordList = new ArrayList<Word> ();
+    public ArrayList<Word> wordList = new ArrayList<Word>();
+    
 	public StructuralAnalysis(ArrayList<String> poem) {
-		for(String rawLine:poem) {
+		for(String rawLine : poem) {
 			AnalyzeLine(rawLine);
 		}
 	}
