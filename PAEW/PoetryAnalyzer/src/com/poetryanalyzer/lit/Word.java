@@ -23,4 +23,5 @@ public class Word {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
 }
