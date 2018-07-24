@@ -22,11 +22,11 @@ public class StructuralAnalysis {
 		    //TODO find common words, rhymes, alliteration
 		    if(c == ' ') {
 		    	//TODO: search lexical database
-		    	String currentWord ="";
+		    	String currentWord = line.substring(startIndex, endIndex);
+		    	startIndex = endIndex;
 		    	var word = new Word(currentWord);
 		    	
 		    	wordList.add(word);
-		    	currentWord = "";
 		    }
 		    else {
 		    	 
