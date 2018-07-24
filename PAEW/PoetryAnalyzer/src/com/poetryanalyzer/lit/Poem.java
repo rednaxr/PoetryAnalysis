@@ -10,7 +10,6 @@ public class Poem {
 	private int[] rhymeScheme;
 	private int wordCount;
 	
-	
 	public Poem(ArrayList<String> text) {
 		this.text = text;
 	}
