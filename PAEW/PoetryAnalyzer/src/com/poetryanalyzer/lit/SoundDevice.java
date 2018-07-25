@@ -7,34 +7,67 @@ import java.util.ArrayList;
 
 public class SoundDevice {
 	
+	//NON-STATIC----------------------------------------------
+	
+	//Attributes
 	private String sound;
 	private int depth;
-	private int[] indecies;
+	private ArrayList<Integer> indecies;
 	
 	
-	public SoundDevice(){
+	public SoundDevice(String sound){
+		this.sound = sound;
+	}
+
+	public String getSound() {
+		return sound;
+	}
+
+	public void setSound(String sound) {
+		this.sound = sound;
+	}
+
+	public int getDepth() {
+		return depth;
+	}
+
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+
+	public ArrayList<Integer> getIndecies() {
+		return indecies;
+	}
+
+	public void setIndecies(ArrayList<Integer> indecies) {
+		this.indecies = indecies;
 	}
 	
-	public static SoundDevice[] checkAlliteration(ArrayList<Word> words) {
-		SoundDevice[] output = null;
-		
-		ArrayList<String> startSounds = new ArrayList<String>();
-		ArrayList<Integer> soundCounts = new ArrayList<Integer>();
+	//STATIC---------------------------------------------------------------------------
+	
+	public static ArrayList<SoundDevice> checkAlliteration(ArrayList<Word> words) {
+		ArrayList<SoundDevice> alliterations = new ArrayList<SoundDevice>();
 		String sound;
-		int numberOfSounds = 0;
-		for(int a = 0; a < words.size(); a++) {
+		boolean contains = false;
+		for(int a = 0; a < words.size(); a++) {											//Record each starting sound and their indecies in WordDevice Objects
 			sound = words.get(a).getSound()[0];
-			if(!startSounds.contains(sound)) {
-				startSounds.add(sound);
-				soundCounts.add(0);
-				numberOfSounds++;
-			}
-			else {
-				soundCounts.set(numberOfSounds, soundCounts.get(numberOfSounds) + 1);
+			for(int b = 0; b < alliterations.size(); b++) {
+				if(!alliterations.get(b).getSound().equals(sound)){
+					alliterations.add(new SoundDevice(sound));
+					alliterations.get(alliterations.size() - 1).getIndecies().add(a);
+				}
+				else {
+					alliterations.get(b).getIndecies().add(a);
+				}
 			}
 		}
-		ArrayList<String> alliterativeSounds = new ArrayList<String>();
-		return output;
+		for(int a = 0; a < alliterations.size(); a++) {									//Remove each sound/WordDevice with only one index
+			if(alliterations.get(a).getIndecies().size() == 1) {
+				alliterations.remove(a);
+			}
+		}
+		
+		return alliterations;
 	}
 	
 	public static SoundDevice[] checkAssonance(ArrayList<Word> words) {
