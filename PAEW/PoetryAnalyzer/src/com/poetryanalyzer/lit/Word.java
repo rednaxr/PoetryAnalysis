@@ -13,7 +13,7 @@ public class Word {
 	public static final byte PRIMARY_STRESS = 1;
 	public static final byte SECONDARY_STRESS = 2;
 	
-	Word(String str){
+	Word (String str) {
 		text = str;
 		//TODO: access word in CMU, with lexical stress
 		String cmu = "PLACEHOLDER";
