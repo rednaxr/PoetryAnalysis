@@ -49,7 +49,11 @@ public class SoundDevice {
 	public static ArrayList<SoundDevice> checkAlliteration(ArrayList<Word> words) {
 		ArrayList<SoundDevice> alliterations = new ArrayList<SoundDevice>();
 		String sound;
-		//boolean contains = false;
+		
+		for(int i = 0; i < 7; i++) {
+			
+		}
+		
 		for(int a = 0; a < words.size(); a++) {											//Record each starting sound and their indecies in WordDevice Objects
 			sound = words.get(a).getSound()[0];
 			for(int b = 0; b < alliterations.size(); b++) {
@@ -67,7 +71,11 @@ public class SoundDevice {
 				alliterations.remove(a);
 			}
 		}
+		for(int a = 0; a < alliterations.size(); a++) {
+			
+		}
 		return alliterations;
+		
 	}
 	
 	public static SoundDevice[] checkAssonance(ArrayList<Word> words) {
