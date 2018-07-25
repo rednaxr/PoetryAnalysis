@@ -1,19 +1,26 @@
 package com.poetryanalyzer.lit;
 
 public class Word {
+	
+	//Word Attributes
 	private String text;
 	private int count;
 	private String[] sound, vowels, consonants;
 	private byte[] stress;
 	
+	//Word Static Variables
+	public static final byte NO_STRESS = 0;
+	public static final byte PRIMARY_STRESS = 1;
+	public static final byte SECONDARY_STRESS = 2;
+	
 	Word(String str){
 		text = str;
 		//TODO: access word in CMU, with lexical stress
 		String cmu = "PLACEHOLDER";
-		sound = cmu.split(" ");
+		sound = cmu.split(" ");						//Split string from CMU into vowel and consonant sounds
 		int vowelCount = 0;
 		int consonantCount = 0;
-		for(int a = 0; a < sound.length; a++) {
+		for(int a = 0; a < sound.length; a++) {		//Count number of vowel and consonant sounds in word
 			if(sound[a].length() == 3) {
 				vowelCount++;
 			}
@@ -21,15 +28,16 @@ public class Word {
 				consonantCount++;
 			}
 		}
-		stress = new byte[vowelCount];
+		stress = new byte[vowelCount];				//initialize arrays of stresses, vowels, and consonants
 		vowels = new String[vowelCount];
 		consonants = new String[consonantCount];
 		vowelCount = 0;
 		consonantCount = 0;
-		for(int a = 0; a < sound.length; a++) {
+		for(int a = 0; a < sound.length; a++) {		//populate arrays with relevant parts of CMU output
 			if(sound[a].length() == 3) {
 				stress[vowelCount] = (byte)(sound[a].charAt(2) - 48);
 				vowels[vowelCount] = sound[a].charAt(0) + sound[a].charAt(1) + "";
+				sound[a] = vowels[vowelCount];
 				vowelCount++;
 			}
 			else {
@@ -37,7 +45,6 @@ public class Word {
 				consonantCount++;
 			}
 		}
-		
 	}
 
 	public String getText() {
@@ -83,6 +90,5 @@ public class Word {
 	public void setStress(byte[] stress) {
 		this.stress = stress;
 	}
-	
 	
 }
