@@ -2,11 +2,9 @@ package com.poetryanalyzer.lit;
 
 public class Word {
 	private String text;
-	private String[] sound;
-	private String[] vowels;
-	private String[] consonants;
-	private byte[] stress;
 	private int count;
+	private String[] sound, vowels, consonants;
+	private byte[] stress;
 	
 	Word(String str){
 		text = str;
@@ -45,7 +43,7 @@ public class Word {
 	public String getText() {
 		return text;
 	}
-
+	
 	public int getCount() {
 		return count;
 	}
@@ -53,5 +51,38 @@ public class Word {
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+	public String[] getSound() {
+		return sound;
+	}
+
+	public void setSound(String[] sound) {
+		this.sound = sound;
+	}
+
+	public String[] getVowels() {
+		return vowels;
+	}
+
+	public void setVowels(String[] vowels) {
+		this.vowels = vowels;
+	}
+
+	public String[] getConsonants() {
+		return consonants;
+	}
+
+	public void setConsonants(String[] consonants) {
+		this.consonants = consonants;
+	}
+
+	public byte[] getStress() {
+		return stress;
+	}
+
+	public void setStress(byte[] stress) {
+		this.stress = stress;
+	}
+	
 	
 }
