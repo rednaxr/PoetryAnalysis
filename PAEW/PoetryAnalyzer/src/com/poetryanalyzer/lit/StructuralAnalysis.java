@@ -20,9 +20,10 @@ public class StructuralAnalysis {
     
 	public StructuralAnalysis(ArrayList<String> poem) {
 		for(String line : poem) {
-			AnalyzeLine(line);
+			AnalyzeLine(line); 
 		}
 	}
+	
 	public Line AnalyzeLine(String line) {
 		ArrayList<Word> lineList = new ArrayList<Word>();
 		int startIndex = 0;
@@ -64,8 +65,6 @@ public class StructuralAnalysis {
 		//ProcessedLine.Immediate.Alliteration = alliteration;
 		return ProcessedLine;
 	}
-	
-	
 	
 	public void runExample(){
 // construct the URL to the Wordnet dictionary directory
