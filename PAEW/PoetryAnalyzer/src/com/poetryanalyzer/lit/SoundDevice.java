@@ -10,9 +10,9 @@ public class SoundDevice {
 	//NON-STATIC----------------------------------------------
 	
 	//Attributes
-	private String sound;
-	private int depth;
-	private ArrayList<Integer> indecies;
+	private String sound;						//sound(s) being repeated in Sound Device
+	private int depth;							//number of sounds repeated
+	private ArrayList<Integer> indecies;		//locations of those sounds (which word)
 	
 	
 	public SoundDevice(String sound){
@@ -45,10 +45,11 @@ public class SoundDevice {
 	
 	//STATIC---------------------------------------------------------------------------
 	
+	//finds all instances of alliteration in list of words, reporting  sound, indecies, and depth of alliteration
 	public static ArrayList<SoundDevice> checkAlliteration(ArrayList<Word> words) {
 		ArrayList<SoundDevice> alliterations = new ArrayList<SoundDevice>();
 		String sound;
-		boolean contains = false;
+		//boolean contains = false;
 		for(int a = 0; a < words.size(); a++) {											//Record each starting sound and their indecies in WordDevice Objects
 			sound = words.get(a).getSound()[0];
 			for(int b = 0; b < alliterations.size(); b++) {
@@ -66,7 +67,6 @@ public class SoundDevice {
 				alliterations.remove(a);
 			}
 		}
-		
 		return alliterations;
 	}
 	
