@@ -2,7 +2,6 @@ package namedpackage;
 public class SimileTester {
 	private String[] var;
 	
-	
 	public SimileTester (String sentence) {
 		
 		var = sentence.split(" ");
