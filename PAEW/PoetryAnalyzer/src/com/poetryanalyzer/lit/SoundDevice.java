@@ -13,6 +13,7 @@ public class SoundDevice {
 	private String sound;						//sound(s) being repeated in Sound Device
 	private int depth;							//number of sounds repeated
 	private ArrayList<Integer> indecies;		//locations of those sounds (which word)
+	private int strength;						//strength of the device (1-100)
 	
 	
 	public SoundDevice(String sound){
@@ -48,6 +49,8 @@ public class SoundDevice {
 	//finds all instances of alliteration in list of words, reporting  sound, indecies, and depth of alliteration
 	public static ArrayList<SoundDevice> checkAlliteration(ArrayList<Word> words) {
 		ArrayList<SoundDevice> alliterations = new ArrayList<SoundDevice>();
+		ArrayList<SoundDevice> homophones = new ArrayList<SoundDevice>();
+		ArrayList<SoundDevice> originals = new ArrayList<SoundDevice>();
 		String sound;
 		
 		for(int i = 0; i < 7; i++) {
@@ -71,8 +74,11 @@ public class SoundDevice {
 				alliterations.remove(a);
 			}
 		}
+		//TODO: use while loop because for loop won't update alliterations.size
 		for(int a = 0; a < alliterations.size(); a++) {
-			
+			for(int b = 0; b < alliterations.get(a).getIndecies().size(); a++) {
+				
+			}
 		}
 		return alliterations;
 		
