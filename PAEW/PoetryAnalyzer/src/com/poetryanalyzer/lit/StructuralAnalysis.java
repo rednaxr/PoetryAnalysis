@@ -28,7 +28,7 @@ public class StructuralAnalysis {
 		int startIndex = 0;
 		var startOfWord = true;
 		var alliterating = true;
-		ArrayList<WordDevice> alliterationLocations = new ArrayList<WordDevice>();
+		ArrayList<SoundDevice> alliterationLocations = new ArrayList<SoundDevice>();
 		for (int endIndex = 0; endIndex < line.length(); endIndex++){
 			
 		    char c = line.charAt(endIndex);
