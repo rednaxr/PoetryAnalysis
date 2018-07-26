@@ -11,25 +11,47 @@ public class Line {
 	public Line(String line) {
 		text = line;
 		ArrayList<Word> wordList = new ArrayList<Word>();
-				int startIndex = 0;
-				var startOfWord = true;
-				for (int endIndex = 0; endIndex < line.length(); endIndex++){
-					char c = line.charAt(endIndex);
-					//Just as easy as a regex and faster
-				    if( (c >= 'A' && c <= 'Z') || (c == '\'')) {
+		int startIndex = 0;
+		var startOfWord = true;
+		for (int endIndex = 0; endIndex < line.length(); endIndex++){
+			char c = line.charAt(endIndex);
+			//Just as easy as a regex and faster
+		    if( (c >= 'A' && c <= 'Z') || (c == '\'')) {
 
-					    if(!startOfWord) {
-					    	String currentWord = line.substring(startIndex, endIndex);
-					    	var word = new Word(currentWord);
-					    	wordList.add(word);
-					    }
-				    	startIndex = endIndex+1;
-				    }
-				}
-				var array = new Word[wordList.size()];
-			    words = wordList.toArray(array);
+			    if(!startOfWord) {
+			    	String currentWord = line.substring(startIndex, endIndex);
+			    	var word = new Word(currentWord);
+			    	wordList.add(word);
+			    }
+		    	startIndex = endIndex+1;
+		    }
+		}
+		var array = new Word[wordList.size()];
+	    words = wordList.toArray(array);
 	}
-
+	
+	/*
+	public Line(String line, boolean itsadifferentcontructornow) {
+		text = line;
+		ArrayList<String> wordStrings = new ArrayList<String>();
+		int startIndex;
+		boolean startOfWord = true;
+		for (int endIndex = 0; endIndex < line.length(); endIndex++){
+			char c = line.charAt(endIndex);
+			//Just as easy as a regex and faster
+		    if( (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c == '\'')) {
+			    if(!startOfWord) {
+			    	String currentWord = line.substring(startIndex, endIndex);
+			    	var word = new Word(currentWord);
+			    	wordList.add(word);
+			    }
+		    	startIndex = endIndex+1;
+		    }
+		}
+		var array = new Word[wordList.size()];
+	    words = wordList.toArray(array);
+	}
+	*/
 	public Word[] getWords() {
 		return words;
 	}
