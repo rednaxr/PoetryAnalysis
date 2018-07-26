@@ -85,16 +85,12 @@ public class Line {
 		boolean found2 = false;											//Stores whether or not a secondary stress has been found yet
 		Word w = words[words.length-1];									//Stores last word of line
 		for(int i = w.getStress().length; i > -1; i++) {				//Check each vowel sound:
-			if(w.getStress()[i] == 1) {										//if it's the primary stress, it starts the rhyme (record)
+			if(w.getStress()[i] != 0) {										//if it's the primary stress, it starts the rhyme (record)
 				startIndex = i;
 				i = -1;
 			}
-			else if(w.getStress()[i] == 2 && found2 == false) {
-				startIndex = i;
-				found2 = true;
-			}
 		}
-		
+		for()
 		return output;
 	}
 
