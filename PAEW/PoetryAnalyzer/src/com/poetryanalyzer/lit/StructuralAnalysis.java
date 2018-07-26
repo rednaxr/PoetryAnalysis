@@ -23,7 +23,7 @@ public class StructuralAnalysis {
 	}
 	
 	/*
-	public Line AnalyzeLine(String line) {
+	public Line AnalyzeLine (String line) {
 		
 		ArrayList<Word> lineList = new ArrayList<Word>();
 		int startIndex = 0;
