@@ -79,28 +79,28 @@ public class Line {
 		this.devices = devices;
 	}
 	
+	//finds the rhyming portion of the last line
 	public String getEndRhyme() {
-		String output = "";												//Stores String of sounds for end rhyme
+		String endRhyme = "";											//Stores String of sounds for end rhyme
 		int startIndex = 0;												//Stores the index of the vowel that begins the rhyme-relevant portion of the word
 		Word w = words[words.length-1];									//Stores last word of line
-		for(int i = w.getStress().length - 1; i > -1; i--) {				//Check each vowel sound:
-			if(w.getStress()[i] != 0) {										//if it's the primary stress, it starts the rhyme (record)
+		for(int i = w.getStress().length - 1; i > -1; i--) {			//find and record the index (in vowels[]) of the last stressed vowel sound
+			if(w.getStress()[i] != 0) {										//(it starts the last stressed vowel sound of the word)
 				startIndex = i;
 				i = -1;
 			}
 		}
-		String startVowel = w.getVowels()[startIndex];
-		for(int i = w.getSound().length - 1; i > -1; i--) {
+		String startVowel = w.getVowels()[startIndex];					//store the stressed vowel sound
+		for(int i = w.getSound().length - 1; i > -1; i--) {				//find it's index in the word array
 			if(w.getSound()[i].equals(startVowel)) {
 				startIndex = i;
 				i = -1;
 			}
 		}
-		for(int i = startIndex; i < w.getSound().length; i++) {
-			
+		for(int i = startIndex; i < w.getSound().length; i++) {			//add that vowel sound and all following sound to the end rhyme
+			endRhyme += w.getSound()[i];
 		}
-		
-		return output;
+		return endRhyme;
 	}
 
 	
