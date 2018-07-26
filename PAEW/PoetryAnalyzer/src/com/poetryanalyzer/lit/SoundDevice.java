@@ -132,15 +132,11 @@ public class SoundDevice extends Device {
 		
 	}
 	
-	
-	
 	public static SoundDevice[] checkAssonance(ArrayList<Word> words) {
 		SoundDevice[] output = null;
 		return output;
 	}
-	
-	
-	
+		
 	public static SoundDevice[] checkConsonance(ArrayList<Word> words) {
 		SoundDevice[] output = null;
 		return output;
