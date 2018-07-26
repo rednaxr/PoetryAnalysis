@@ -70,7 +70,10 @@ public class Line {
 	
 	public String getEndRhyme() {
 		String output = "";
-		
+		Word w = words[words.length-1];
+		for(int i = w.getStress().length; i > -1; i++) {
+			
+		}
 		return output;
 	}
 	
