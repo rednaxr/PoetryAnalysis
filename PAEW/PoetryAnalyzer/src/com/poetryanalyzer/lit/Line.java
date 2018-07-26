@@ -97,10 +97,10 @@ public class Line {
 				i = -1;
 			}
 		}
-<<<<<<< HEAD
+
 		return output;
 	}
-=======
+
 		for(int i = startIndex; i < w.getSound().length; i++) {			//add that vowel sound and all following sound to the end rhyme
 			endRhyme += w.getSound()[i];
 		}
@@ -108,5 +108,4 @@ public class Line {
 	}
 
 	
->>>>>>> 056de7f1e99c355c357052ed71a59a76b5e1b53b
 }
