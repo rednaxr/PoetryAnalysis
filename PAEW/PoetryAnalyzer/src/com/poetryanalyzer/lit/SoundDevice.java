@@ -5,7 +5,7 @@ package com.poetryanalyzer.lit;
 
 import java.util.ArrayList;
 
-public class SoundDevice {
+public class SoundDevice extends Device {
 	
 	//NON-STATIC----------------------------------------------
 	

@@ -1,9 +1,9 @@
 package com.poetryanalyzer.lit;
 
-public abstract class LiteraryDevice {
+public abstract class Device {
 	private int intensity; //rate of occurrence of literary device in poem
 	
-	public LiteraryDevice () {
+	public Device () {
 		
 	}
 	
