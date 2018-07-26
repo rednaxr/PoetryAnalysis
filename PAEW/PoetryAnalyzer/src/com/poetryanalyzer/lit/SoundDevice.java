@@ -47,9 +47,9 @@ public class SoundDevice {
 	
 	//STATIC---------------------------------------------------------------------------
 	
-	//TODO: combine alliterations of 1st sound and alliterations including >1 sound into one block of code? (all in while loop)
 	//finds all instances of alliteration in list of words, reporting  sound, indecies, and depth of alliteration
-	public static ArrayList<SoundDevice> checkAlliteration(ArrayList<Word> words) {
+	public static ArrayList<ArrayList<SoundDevice>> checkAlliteration(ArrayList<Word> words) {
+		ArrayList<ArrayList<SoundDevice>> output = new ArrayList<ArrayList<SoundDevice>>();
 		ArrayList<SoundDevice> alliterations = new ArrayList<SoundDevice>();			//Stores instances of alliteration
 		ArrayList<SoundDevice> homophones = new ArrayList<SoundDevice>();				//Stores homophones (sound of entire word is the same)
 		ArrayList<SoundDevice> potential = new ArrayList<SoundDevice>();				//Stores potential alliterations longer than first sound
@@ -136,7 +136,9 @@ public class SoundDevice {
 			n = alliterations.size();		//update the size of the ArrayList
 			i++;							//proceed to the next alliteration
 		}
-		return alliterations;
+		output.add(alliterations);
+		output.add(homophones);
+		return output;
 		
 	}
 	

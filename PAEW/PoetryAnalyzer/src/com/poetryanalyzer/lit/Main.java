@@ -28,7 +28,8 @@ public class Main implements ActionListener {
 
 	
 	//Global Variables
-	ArrayList<String> poemLines;				//Stores poem line by line
+	ArrayList<String> poemLines;		//Stores lines of poem
+	Poem poem;							//Stores poem being analyzed
 	ArrayList<String> analysis;			//stores analysis of poem section by section
 	long time;							//stores time taken by system to complete analysis
 	
