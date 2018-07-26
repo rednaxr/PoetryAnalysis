@@ -8,13 +8,26 @@ public class Line {
 	//TODO: Create class SingleLineDevice;
 	//public SingleLineDevice Immediate = new SingleLineDevice();
 	
-	public Line(String text) {
-		this.text = text;
-		String[] wordStrings = text.split(" ");
-		words = new Word[wordStrings.length];
-		for(int i = 0; i < words.length; i++) {
-			words[i] = new Word(wordStrings[i]);
-		}
+	public Line(String line) {
+		text = line;
+		ArrayList<Word> wordList = new ArrayList<Word>();
+				int startIndex = 0;
+				var startOfWord = true;
+				for (int endIndex = 0; endIndex < line.length(); endIndex++){
+					char c = line.charAt(endIndex);
+					//Just as easy as a regex and faster
+				    if( (c >= 'A' && c <= 'Z') || (c == '\'')) {
+
+					    if(!startOfWord) {
+					    	String currentWord = line.substring(startIndex, endIndex);
+					    	var word = new Word(currentWord);
+					    	wordList.add(word);
+					    }
+				    	startIndex = endIndex+1;
+				    }
+				}
+				var array = new Word[wordList.size()];
+			    words = wordList.toArray(array);
 	}
 
 	public Word[] getWords() {
