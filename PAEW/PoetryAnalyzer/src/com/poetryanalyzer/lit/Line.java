@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Line {
 	private Word[] words;
 	private String text;
+	private Devices devices;
 	//TODO: Create class SingleLineDevice;
 	//public SingleLineDevice Immediate = new SingleLineDevice();
 	
@@ -75,6 +76,14 @@ public class Line {
 		String output = "";
 		
 		return output;
+	}
+
+	public Devices getDevices() {
+		return devices;
+	}
+
+	public void setDevices(Devices devices) {
+		this.devices = devices;
 	}
 	
 }
