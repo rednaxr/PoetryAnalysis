@@ -14,8 +14,8 @@ import edu.mit.jwi.item.IWordID;
 import edu.mit.jwi.item.POS;
 
 public class StructuralAnalysis {
-    public Poem poem;
-
+    private Poem poem;
+    private ArrayList<Line> lines = new ArrayList();
     public ArrayList<Word> wordList = new ArrayList<Word>();
     
 	public StructuralAnalysis(ArrayList<String> poem) {
@@ -93,4 +93,12 @@ String path = wnhome + File.separator + "dict";
 		    System.out.println("Gloss = " + word.getSynset().getGloss());
 		
 		  }
+
+	public Poem getPoem() {
+		return poem;
+	}
+
+	public void setPoem(Poem poem) {
+		this.poem = poem;
+	}
 }
