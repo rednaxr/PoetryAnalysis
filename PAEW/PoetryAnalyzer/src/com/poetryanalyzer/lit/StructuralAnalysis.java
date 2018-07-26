@@ -19,12 +19,18 @@ public class StructuralAnalysis {
     
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		poem = new Poem(poemLines);
-		for(String line : poemLines) {
-			AnalyzeLine(line); 
+		ArrayList<ArrayList<SoundDevice>> alliterations = new ArrayList<ArrayList<SoundDevice>>();		//stores sound devices from line by line of poem
+		ArrayList<ArrayList<SoundDevice>> homophones = new ArrayList<ArrayList<SoundDevice>>();			//stores sound devices from line by line of poem
+		ArrayList<ArrayList<SoundDevice>> intermediarySD = new ArrayList<ArrayList<SoundDevice>>();		//stores sound devices between method and final
+		for(int i = 0; i < poem.getLines().length; i++) {
+			intermediarySD = SoundDevice.checkAlliteration(poem.getLines()[i].getWords());
+				alliterations.add(intermediarySD.get(0));
+				homophones.add(intermediarySD.get(1));
 		}
 	}
 	
-	public Line AnalyzeLine(String line) {
+	/*
+	public Line AnalyzeLine (String line) {
 		
 		ArrayList<Word> lineList = new ArrayList<Word>();
 		int startIndex = 0;
@@ -66,6 +72,7 @@ public class StructuralAnalysis {
 		//ProcessedLine.Immediate.Alliteration = alliteration;
 		return ProcessedLine;
 	}
+	*/
 	
 	public void runExample(){
 // construct the URL to the Wordnet dictionary directory

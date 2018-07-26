@@ -1,4 +1,4 @@
-package com.poetryanalyzer.lit;
+/*package com.poetryanalyzer.lit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,7 +31,7 @@ class MyTest {
 	}
 	public void runExample(){
 		// construct the URL to the Wordnet dictionary directory
-		String path = +File.Separator+;
+		String path = +File.Seperator+;
 				URL url = null;
 				     try{ url = new URL("file", null, path); } 
 				     catch(MalformedURLException e){ e.printStackTrace(); }
@@ -56,4 +56,4 @@ class MyTest {
 				
 				  }
 
-}
+}*/

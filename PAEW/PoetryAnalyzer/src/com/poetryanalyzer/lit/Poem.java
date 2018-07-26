@@ -11,8 +11,6 @@ public class Poem {
 	static final int METAPHOR = 5;
 	static final int SIMILE = 6;
 	
-	
-	private ArrayList<String> text;
 	private Line[] lines;
 	private int[] rhymeScheme;
 	private int wordCount;
@@ -22,17 +20,16 @@ public class Poem {
 		for(int i = 0; i < lines.length; i++) {
 			lines[i] = new Line(text.get(i));
 		}
-		this.text = text;
 	}
 
-	public ArrayList<String> getText() {
-		return text;
+	public Line[] getLines() {
+		return lines;
 	}
-
-	public void setText(ArrayList<String> text) {
-		this.text = text;
+	
+	public void setLines(Line[] lines) {
+		this.lines = lines;
 	}
-
+	
 	public int[] getRhymeScheme() {
 		return rhymeScheme;
 	}
