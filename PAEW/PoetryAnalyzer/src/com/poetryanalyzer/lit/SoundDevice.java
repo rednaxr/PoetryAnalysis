@@ -12,11 +12,9 @@ public class SoundDevice extends Device {
 	//Attributes
 	private String sound;						//sound(s) being repeated in Sound Device
 	private int depth;							//number of vowel and/or consonant sounds repeated
-	private ArrayList<Integer> indices;		    //locations of those sounds (which word)
-	private int strength;						//strength of the device (1-100)
-	
 	
 	public SoundDevice(String sound){
+		super();
 		this.sound = sound;
 		ArrayList<Integer> indices = new ArrayList<Integer>();
 	}
@@ -28,21 +26,13 @@ public class SoundDevice extends Device {
 	public void setSound(String sound) {
 		this.sound = sound;
 	}
-
+	
 	public int getDepth() {
 		return depth;
 	}
 
 	public void setDepth(int depth) {
 		this.depth = depth;
-	}
-
-	public ArrayList<Integer> getIndices() {
-		return indices;
-	}
-
-	public void setIndecies(ArrayList<Integer> indices) {
-		this.indices = indices;
 	}
 	
 	//STATIC---------------------------------------------------------------------------

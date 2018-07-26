@@ -19,10 +19,13 @@ public class StructuralAnalysis {
     
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		poem = new Poem(poemLines);
-		ArrayList<ArrayList<SoundDevice>> soundDevices = new ArrayList<ArrayList<SoundDevice>>();
-		ArrayList<ArrayList<Device>> devices = new ArrayList<ArrayList<Device>>();
+		ArrayList<ArrayList<SoundDevice>> alliterations = new ArrayList<ArrayList<SoundDevice>>();		//stores sound devices from line by line of poem
+		ArrayList<ArrayList<SoundDevice>> homophones = new ArrayList<ArrayList<SoundDevice>>();			//stores sound devices from line by line of poem
+		ArrayList<ArrayList<SoundDevice>> intermediarySD = new ArrayList<ArrayList<SoundDevice>>();		//stores sound devices between method and final
 		for(int i = 0; i < poem.getLines().length; i++) {
-			soundDevices = SoundDevice.checkAlliteration(poem.getLines()[i].getWords());
+			intermediarySD = SoundDevice.checkAlliteration(poem.getLines()[i].getWords());
+				alliterations.add(intermediarySD.get(0));
+				homophones.add(intermediarySD.get(1));
 		}
 	}
 	
