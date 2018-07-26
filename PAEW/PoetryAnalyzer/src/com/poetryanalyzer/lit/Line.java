@@ -31,7 +31,7 @@ public class Line {
 	}
 	
 	/*
-	public Line(String line, boolean itsadifferentcontructornow) {
+	public Line (String line, boolean its a different contructor now) {
 		text = line;
 		ArrayList<String> wordStrings = new ArrayList<String>();
 		int startIndex;
