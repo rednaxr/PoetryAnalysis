@@ -18,11 +18,11 @@ public class Poem {
 	private int wordCount;
 	
 	public Poem(ArrayList<String> text) {
+		this.text = text;
 		lines = new Line[text.size()];
 		for(int i = 0; i < lines.length; i++) {
 			lines[i] = new Line(text.get(i));
 		}
-		this.text = text;
 	}
 
 	public ArrayList<String> getText() {

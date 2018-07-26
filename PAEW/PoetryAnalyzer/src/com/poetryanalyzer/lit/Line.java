@@ -3,21 +3,26 @@ package com.poetryanalyzer.lit;
 import java.util.ArrayList;
 
 public class Line {
-	private ArrayList<Word> WordList;
+	private Word[] words;
 	private String text;
 	//TODO: Create class SingleLineDevice;
 	//public SingleLineDevice Immediate = new SingleLineDevice();
 	
-	public Line(ArrayList<Word> wordList) {
-		WordList = wordList;
+	public Line(String text) {
+		this.text = text;
+		String[] wordStrings = text.split(" ");
+		words = new Word[wordStrings.length];
+		for(int i = 0; i < words.length; i++) {
+			words[i] = new Word(wordStrings[i]);
+		}
 	}
 
-	public ArrayList<Word> getWordList() {
-		return WordList;
+	public Word[] getWords() {
+		return words;
 	}
 
-	public void setWordList(ArrayList<Word> wordList) {
-		WordList = wordList;
+	public void setWords(Word[] words) {
+		this.words = words;
 	}
 
 	public String getText() {
