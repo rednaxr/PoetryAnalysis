@@ -19,6 +19,11 @@ public class StructuralAnalysis {
     
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		poem = new Poem(poemLines);
+		String[] endRhymes = new String[poem.getLines().length];
+		int[] rhymeScheme = new int[poem.getLines().length];
+		for(int i = 0; i < poem.getLines().length; i++) {
+			endRhymes[i] = poem.getLines()[i].getEndRhyme();	//TODO: develop this method in Lines.java
+		}
 		
 		
 	}
