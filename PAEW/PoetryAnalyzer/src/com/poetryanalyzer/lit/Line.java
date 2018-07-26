@@ -12,16 +12,19 @@ public class Line {
 		text = line;
 		ArrayList<Word> wordList = new ArrayList<Word>();
 		int startIndex = 0;
+		
 		var startOfWord = true;
+		//look at each character.
 		for (int endIndex = 0; endIndex < line.length(); endIndex++){
 			char c = line.charAt(endIndex);
-			//Just as easy as a regex and faster
-		    if( (c >= 'A' && c <= 'Z') || (c == '\'')) {
-
+			//If it isn't a-z or '
+		    if( (c < 'A' || c > 'Z') && (c != '\'')) {
+		    	//If it is not the start of a wor, then it must be the end of the word!
 			    if(!startOfWord) {
 			    	String currentWord = line.substring(startIndex, endIndex);
 			    	var word = new Word(currentWord);
 			    	wordList.add(word);
+			    	startOfWord = true;
 			    }
 		    	startIndex = endIndex+1;
 		    }
