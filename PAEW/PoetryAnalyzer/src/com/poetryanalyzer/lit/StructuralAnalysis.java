@@ -19,7 +19,7 @@ public class StructuralAnalysis {
     
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		poem = new Poem(poemLines);
-		
+		//for(int i = 0;)
 	}
 	
 	/*
