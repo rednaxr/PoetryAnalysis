@@ -73,11 +73,11 @@ public class Line {
 	
 	public String getEndRhyme() {
 		String output = "";												//Stores String of sounds for end rhyme
-		int startIndex = 0;												//Stores the starting
-		boolean found2 = false;
-		Word w = words[words.length-1];
-		for(int i = w.getStress().length; i > -1; i++) {
-			if(w.getStress()[i] == 1) {
+		int startIndex = 0;												//Stores the index of the vowel that begins the rhyme-relevant portion of the word
+		boolean found2 = false;											//Stores whether or not a secondary stress has been found yet
+		Word w = words[words.length-1];									//Stores last word of line
+		for(int i = w.getStress().length; i > -1; i++) {				//Check each vowel sound:
+			if(w.getStress()[i] == 1) {										//if it's the primary stress, it starts the rhyme (record)
 				startIndex = i;
 				i = -1;
 			}
@@ -86,6 +86,7 @@ public class Line {
 				found2 = true;
 			}
 		}
+		
 		
 		return output;
 	}
