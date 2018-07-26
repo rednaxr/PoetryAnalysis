@@ -45,4 +45,11 @@ public class Line {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
+	public String getEndRhyme() {
+		String output = "";
+		
+		return output;
+	}
+	
 }

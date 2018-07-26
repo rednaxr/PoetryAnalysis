@@ -76,7 +76,8 @@ public class Main implements ActionListener {
 			statusLbl.setText("Working...");										//report Working, start recording times
 			time = System.currentTimeMillis();
 			poemLines = readFile(inputTF.getText());
-			StructuralAnalysis structure = new StructuralAnalysis(poemLines);		//initiate structural analysis of poem
+			StructuralAnalysis structural = new StructuralAnalysis(poemLines);		//initiate structural analysis of poem
+			poem = structural.getPoem();
 			time = System.currentTimeMillis() - time;								//record time taken
 			writeFile(outputTF.getText(), poemLines.get(0));
 			statusLbl.setText("Status: Ready");										//report ready for new inputs

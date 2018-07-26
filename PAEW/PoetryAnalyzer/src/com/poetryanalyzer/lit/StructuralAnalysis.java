@@ -16,23 +16,24 @@ import edu.mit.jwi.item.POS;
 public class StructuralAnalysis {
     private Poem poem;
     public ArrayList<Word> wordList = new ArrayList<Word>();
-    public ArrayList devices = new ArrayList();
     
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		poem = new Poem(poemLines);
-		
-		//TODO: Temporary placement for 1st Sprint. Should only be called when requested by user in final version
-		ArrayList<ArrayList<SoundDevice>> alliterations = new ArrayList<ArrayList<SoundDevice>>();		//stores sound devices from line by line of poem
-		ArrayList<ArrayList<SoundDevice>> homophones = new ArrayList<ArrayList<SoundDevice>>();			//stores sound devices from line by line of poem
-		ArrayList<ArrayList<SoundDevice>> intermediarySD = new ArrayList<ArrayList<SoundDevice>>();		//stores sound devices between method and final
-		for(int i = 0; i < poem.getLines().length; i++) {												//find alliteration (and homophones) in each line	
-			intermediarySD = SoundDevice.checkAlliteration(poem.getLines()[i].getWords());
-				alliterations.add(intermediarySD.get(0));
-				homophones.add(intermediarySD.get(1));
+		String[] endRhymes = new String[poem.getLines().length];
+		int[] rhymeScheme = new int[poem.getLines().length];
+		for(int i = 0; i < poem.getLines().length; i++) {
+			endRhymes[i] = poem.getLines()[i].getEndRhyme();	//TODO: develop this method in Lines.java
 		}
-		devices.add(alliterations);
-		devices.add(homophones);
 		
+		
+	}
+	
+	public Poem getPoem() {
+		return poem;
+	}
+
+	public void setPoem(Poem poem) {
+		this.poem = poem;
 	}
 	
 	/*
@@ -108,11 +109,5 @@ String path = wnhome + File.separator + "dict";
 		
 		  }
 
-	public Poem getPoem() {
-		return poem;
-	}
 
-	public void setPoem(Poem poem) {
-		this.poem = poem;
-	}
 }
