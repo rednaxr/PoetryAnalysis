@@ -58,12 +58,15 @@ public class TesterMain {
 		// construct the URL to the Wordnet dictionary directory
 		String wnhome = System.getenv("WNHOME");
 		String path = wnhome + File.separator + "dict";
-				URL url = null;
-				     try{ url = new URL("file", null, path); } 
-				     catch(MalformedURLException e){ e.printStackTrace(); }
-				     if(url == null) return;
+		URL url = null;
+		try { 
+			url = new URL("file", null, path); 
+		} catch (MalformedURLException e) { 
+			e.printStackTrace(); 
+		}
+		if(url == null) return;
 				    
-				    // construct the dictionary object and open it
+	    // construct the dictionary object and open it
 				    IDictionary dict = new Dictionary(url);
 				    try {
 						dict.open();
@@ -79,6 +82,5 @@ public class TesterMain {
 				    System.out.println("Id = " + wordID);
 				    System.out.println("Lemma = " + word.getLemma());
 				    System.out.println("Gloss = " + word.getSynset().getGloss());
-				
 				  }
 }

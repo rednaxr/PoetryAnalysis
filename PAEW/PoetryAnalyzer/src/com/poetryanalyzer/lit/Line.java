@@ -35,7 +35,7 @@ public class Line {
 	}
 	
 	/*
-	public Line(String line, boolean itsadifferentcontructornow) {
+	public Line (String line, boolean its a different contructor now) {
 		text = line;
 		ArrayList<String> wordStrings = new ArrayList<String>();
 		int startIndex;
@@ -73,7 +73,20 @@ public class Line {
 	}
 	
 	public String getEndRhyme() {
-		String output = "";
+		String output = "";												//Stores String of sounds for end rhyme
+		int startIndex = 0;												//Stores the starting
+		boolean found2 = false;
+		Word w = words[words.length-1];
+		for(int i = w.getStress().length; i > -1; i++) {
+			if(w.getStress()[i] == 1) {
+				startIndex = i;
+				i = -1;
+			}
+			else if(w.getStress()[i] == 2 && found2 == false) {
+				startIndex = i;
+				found2 = true;
+			}
+		}
 		
 		return output;
 	}
