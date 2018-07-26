@@ -3,8 +3,8 @@ package com.poetryanalyzer.lit;
 import java.util.ArrayList;
 
 public abstract class Device {
-	private ArrayList<Integer> indices; //the indices of a specific literary device within the poem
-	private int intensity; //rate of occurrence of literary device in poem
+	private ArrayList<Integer> indices; 	//the indices of a specific literary device within the poem
+	private int intensity; 					//strength literary device in poem, based on occurrence rate and other factors
 	
 	public Device () {
 		

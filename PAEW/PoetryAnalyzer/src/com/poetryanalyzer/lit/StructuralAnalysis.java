@@ -19,7 +19,11 @@ public class StructuralAnalysis {
     
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		poem = new Poem(poemLines);
-		//for(int i = 0;)
+		ArrayList<ArrayList<SoundDevice>> soundDevices = new ArrayList<ArrayList<SoundDevice>>();
+		ArrayList<ArrayList<Device>> devices = new ArrayList<ArrayList<Device>>();
+		for(int i = 0; i < poem.getLines().length; i++) {
+			soundDevices = SoundDevice.checkAlliteration(poem.getLines()[i].getWords());
+		}
 	}
 	
 	/*
