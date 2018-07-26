@@ -13,10 +13,15 @@ public class Poem {
 	
 	
 	private ArrayList<String> text;
+	private Line[] lines;
 	private int[] rhymeScheme;
 	private int wordCount;
 	
 	public Poem(ArrayList<String> text) {
+		lines = new Line[text.size()];
+		for(int i = 0; i < lines.length; i++) {
+			lines[i] = new Line(text.get(i));
+		}
 		this.text = text;
 	}
 

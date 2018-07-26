@@ -15,16 +15,17 @@ import edu.mit.jwi.item.POS;
 
 public class StructuralAnalysis {
     private Poem poem;
-    private ArrayList<Line> lines = new ArrayList();
     public ArrayList<Word> wordList = new ArrayList<Word>();
     
-	public StructuralAnalysis(ArrayList<String> poem) {
-		for(String line : poem) {
+	public StructuralAnalysis(ArrayList<String> poemLines) {
+		poem = new Poem(poemLines);
+		for(String line : poemLines) {
 			AnalyzeLine(line); 
 		}
 	}
 	
 	public Line AnalyzeLine(String line) {
+		
 		ArrayList<Word> lineList = new ArrayList<Word>();
 		int startIndex = 0;
 		var startOfWord = true;
