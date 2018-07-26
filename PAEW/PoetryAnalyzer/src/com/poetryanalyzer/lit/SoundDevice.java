@@ -48,7 +48,7 @@ public class SoundDevice extends Device {
 	//STATIC---------------------------------------------------------------------------
 	
 	//finds all instances of alliteration in list of words, reporting  sound, indices, and depth of alliteration
-	public static ArrayList<ArrayList<SoundDevice>> checkAlliteration(ArrayList<Word> words) {
+	public static ArrayList<ArrayList<SoundDevice>> checkAlliteration(Word[] words) {
 		ArrayList<ArrayList<SoundDevice>> output = new ArrayList<ArrayList<SoundDevice>>();
 		ArrayList<SoundDevice> alliterations = new ArrayList<SoundDevice>();			//Stores instances of alliteration
 		ArrayList<SoundDevice> homophones = new ArrayList<SoundDevice>();				//Stores homophones (sound of entire word is the same)
@@ -58,8 +58,8 @@ public class SoundDevice extends Device {
 		
 		//**Alliterations of 1st Sound**
 		//Record each starting sound and their indices as instances of alliteration (aka alliterations)
-		for(int a = 0; a < words.size(); a++) {
-			sound = words.get(a).getSound()[0];												//take first sound from each word
+		for(int a = 0; a < words.length; a++) {
+			sound = words[a].getSound()[0];												//take first sound from each word
 			contains = false;
 			for(int b = 0; b < alliterations.size(); b++) {									//check if that sound matches any in an existing instance of alliteration
 				if(alliterations.get(b).getSound().equals(sound)) {
@@ -89,8 +89,8 @@ public class SoundDevice extends Device {
 			//for an alliteration, create an ArrayList of each sound combo (1 sound longer than the sound of the alliteration) with frequencies
 			for(int a = 0; a < alliterations.get(i).getIndices().size(); a++) {				//for each index of the alliterations:
 				index = alliterations.get(i).getIndices().get(a);									//find the index of the word in which the alliteration occurs
-				if(words.get(index).getSound().length > alliterations.get(i).getDepth()) {			//if we are not at the end of the word
-					sound = alliterations.get(i).getSound() + words.get(index).getSound()[alliterations.get(i).getDepth()];  //add in the next sound of the word
+				if(words[index].getSound().length > alliterations.get(i).getDepth()) {			//if we are not at the end of the word
+					sound = alliterations.get(i).getSound() + words[index].getSound()[alliterations.get(i).getDepth()];  //add in the next sound of the word
 					contains = false;
 					for(int b = 0; b < potential.size(); b++) {						//if the combined sound is contained among potential new alliterations
 						if(potential.get(b).getSound().equals(sound)) {
@@ -114,7 +114,7 @@ public class SoundDevice extends Device {
 					//check if instance of alliteration is actually merely homophones
 					boolean AllHomophones = true;
 					for(int b = 0; b < potential.get(a).getIndices().size(); b++) {		//for each index of the word
-						String[] wordSounds = words.get(potential.get(a).getIndices().get(b)).getSound();
+						String[] wordSounds = words[potential.get(a).getIndices().get(b)].getSound();
 						sound = "";
 						for(int c = 0; c < wordSounds.length; c++) {		//store the sound of the word as a string
 							sound += wordSounds[c];
