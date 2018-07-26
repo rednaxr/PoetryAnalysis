@@ -14,10 +14,10 @@ public class Line {
 		
 		var startOfWord = true;
 		//look at each character.
-		for (int endIndex = 0; endIndex < line.length(); endIndex++){
+		for (int endIndex = 0; endIndex < line.length(); endIndex++) {
 			char c = line.charAt(endIndex);
 			//If it isn't a-z or '
-		    if( (c < 'A' || c > 'Z') && (c != '\'')) {
+		    if ((c < 'A' || c > 'Z') && (c != '\'')) {
 		    	//If it is not the start of a wor, then it must be the end of the word!
 			    if(!startOfWord) {
 			    	String currentWord = line.substring(startIndex, endIndex);
@@ -97,6 +97,10 @@ public class Line {
 				i = -1;
 			}
 		}
+
+		return output;
+	}
+
 		for(int i = startIndex; i < w.getSound().length; i++) {			//add that vowel sound and all following sound to the end rhyme
 			endRhyme += w.getSound()[i];
 		}
