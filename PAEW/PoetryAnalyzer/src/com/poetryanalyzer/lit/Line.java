@@ -70,6 +70,15 @@ public class Line {
 		this.text = text;
 	}
 	
+
+	public Devices getDevices() {
+		return devices;
+	}
+
+	public void setDevices(Devices devices) {
+		this.devices = devices;
+	}
+	
 	public String getEndRhyme() {
 		String output = "";												//Stores String of sounds for end rhyme
 		int startIndex = 0;												//Stores the index of the vowel that begins the rhyme-relevant portion of the word
@@ -89,12 +98,5 @@ public class Line {
 		return output;
 	}
 
-	public Devices getDevices() {
-		return devices;
-	}
-
-	public void setDevices(Devices devices) {
-		this.devices = devices;
-	}
 	
 }
