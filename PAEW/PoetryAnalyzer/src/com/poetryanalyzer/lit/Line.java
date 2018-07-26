@@ -6,8 +6,6 @@ public class Line {
 	private Word[] words;
 	private String text;
 	private Devices devices;
-	//TODO: Create class SingleLineDevice;
-	//public SingleLineDevice Immediate = new SingleLineDevice();
 	
 	public Line(String line) {
 		text = line;
@@ -87,7 +85,6 @@ public class Line {
 				found2 = true;
 			}
 		}
-		
 		
 		return output;
 	}
