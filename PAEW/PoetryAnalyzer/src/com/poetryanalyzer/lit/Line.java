@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Line {
 	private Word[] words;
 	private String text;
+	private Devices devices;
 	//TODO: Create class SingleLineDevice;
 	//public SingleLineDevice Immediate = new SingleLineDevice();
 	
@@ -34,7 +35,7 @@ public class Line {
 	}
 	
 	/*
-	public Line(String line, boolean itsadifferentcontructornow) {
+	public Line (String line, boolean its a different contructor now) {
 		text = line;
 		ArrayList<String> wordStrings = new ArrayList<String>();
 		int startIndex;
@@ -89,6 +90,14 @@ public class Line {
 		
 		
 		return output;
+	}
+
+	public Devices getDevices() {
+		return devices;
+	}
+
+	public void setDevices(Devices devices) {
+		this.devices = devices;
 	}
 	
 }

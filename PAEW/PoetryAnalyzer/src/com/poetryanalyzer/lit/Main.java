@@ -25,7 +25,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Main implements ActionListener {
-
 	
 	//Global Variables
 	ArrayList<String> poemLines;		//Stores lines of poem
