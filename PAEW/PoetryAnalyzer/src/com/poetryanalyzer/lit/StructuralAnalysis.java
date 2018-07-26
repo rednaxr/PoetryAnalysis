@@ -19,13 +19,27 @@ public class StructuralAnalysis {
     
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		poem = new Poem(poemLines);
-		String[] endRhymes = new String[poem.getLines().length];
-		int[] rhymeScheme = new int[poem.getLines().length];
+		ArrayList<String> endRhymeses = new ArrayList<String>();
+		String current;
+		String[] endRhymes = new String[poem.getLines().length];		//stores rhyme relevant part of each rhyme
+		int[] rhymeScheme = new int[poem.getLines().length];			//stores numbers corresponding to each unique rhyme, in order
+		int n = 1;														//Stores number of rhymes found so far
+		boolean match;													//stores whether another rhyme of the same kind has been found
 		for(int i = 0; i < poem.getLines().length; i++) {
-			endRhymes[i] = poem.getLines()[i].getEndRhyme();	//TODO: develop this method in Lines.java
+			endRhymes[i] = poem.getLines()[i].getEndRhyme();
+			match = false;
+			for(int j = 0; j < i; j++) {
+				if(endRhymes[j] == endRhymes[i]) {
+					rhymeScheme[i] = rhymeScheme[j];
+					match = true;
+					j = i;
+				}
+			}
+			if(match == false) {
+				rhymeScheme[i] = n;
+				n++;
+			}
 		}
-		
-		
 	}
 	
 	public Poem getPoem() {
