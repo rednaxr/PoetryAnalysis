@@ -16,14 +16,23 @@ import edu.mit.jwi.item.POS;
 public class StructuralAnalysis {
     private Poem poem;
     public ArrayList<Word> wordList = new ArrayList<Word>();
+    public ArrayList devices = new ArrayList();
     
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		poem = new Poem(poemLines);
-		ArrayList<ArrayList<SoundDevice>> soundDevices = new ArrayList<ArrayList<SoundDevice>>();
-		ArrayList<ArrayList<Device>> devices = new ArrayList<ArrayList<Device>>();
-		for(int i = 0; i < poem.getLines().length; i++) {
-			soundDevices = SoundDevice.checkAlliteration(poem.getLines()[i].getWords());
+		
+		//TODO: Temporary placement for 1st Sprint. Should only be called when requested by user in final version
+		ArrayList<ArrayList<SoundDevice>> alliterations = new ArrayList<ArrayList<SoundDevice>>();		//stores sound devices from line by line of poem
+		ArrayList<ArrayList<SoundDevice>> homophones = new ArrayList<ArrayList<SoundDevice>>();			//stores sound devices from line by line of poem
+		ArrayList<ArrayList<SoundDevice>> intermediarySD = new ArrayList<ArrayList<SoundDevice>>();		//stores sound devices between method and final
+		for(int i = 0; i < poem.getLines().length; i++) {												//find alliteration (and homophones) in each line	
+			intermediarySD = SoundDevice.checkAlliteration(poem.getLines()[i].getWords());
+				alliterations.add(intermediarySD.get(0));
+				homophones.add(intermediarySD.get(1));
 		}
+		devices.add(alliterations);
+		devices.add(homophones);
+		
 	}
 	
 	/*
