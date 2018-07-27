@@ -1,50 +1,80 @@
 package com.poetryanalyzer.lit;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import com.mysql.cj.xdevapi.Collection;
-import com.mysql.cj.xdevapi.DbDoc;
-import com.mysql.cj.xdevapi.DbDocImpl;
-import com.mysql.cj.xdevapi.DocResult;
-import com.mysql.cj.xdevapi.JsonNumber;
-import com.mysql.cj.xdevapi.JsonString;
-import com.mysql.cj.xdevapi.Schema;
-import com.mysql.cj.xdevapi.Session;
-import com.mysql.cj.xdevapi.SessionFactory;
+import java.sql.Statement;
+import java.sql.ResultSet;
 
 public class Queries {
 	private Connection conn = null;
-	private Schema schema;
 	public Queries() {
+		try {
+		    conn =
+		       DriverManager.getConnection("jdbc:mysql://localhost/dictionary?" +
+		                                   "user=S&password=123abcSyd");
 
-			Session session = new SessionFactory().getSession("mysqlx://localhost:33060/test?user=user&password=123abcSyd");
-	        System.err.println("Connected!");
-	        schema = session.getDefaultSchema();
-	        System.err.println("Default schema is: " + schema);
-	        /*
-		    setConn(DriverManager.getConnection("jdbc:mysql://localhost/test?" +
-		                                   "user=minty&password=greatsqldb"));
+		    // Do something with the Connection
 
-		    // Do something with the Connection*/
-
+		} catch (SQLException ex) {
+		    // handle any errors
+		    System.out.println("SQLException: " + ex.getMessage());
+		    System.out.println("SQLState: " + ex.getSQLState());
+		    System.out.println("VendorError: " + ex.getErrorCode());
+		}
 
 	}
 	public String Stress(String word) {
-		// document walthrough
-		Collection coll = schema.getCollection('stress);
-		DocResult results = coll.find("$.title = "+word);
-		DbDoc result = result.next();
-		JsonString stress = result.get("Stress");
-		return (String) stress.getString();
-		
-        
-	}
-	public Connection getConn() {
-		return conn;
-	}
-	public void setConn(Connection conn) {
-		this.conn = conn;
+		// assume that conn is an already created JDBC connection (see previous examples)
+		var stress = "";
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+		    stmt = conn.createStatement();
+		    //get the stress of the word!
+		    rs = stmt.executeQuery("SELECT Stress FROM stress WHERE Word="+word+";");
+
+		    // or alternatively, if you don't know ahead of time that
+		    // the query will be a SELECT...
+
+		    if (stmt.execute("SELECT column1, column2, ...\r\n" + 
+		    		"FROM table_name\r\n" + 
+		    		"WHERE condition;")) {
+		        rs = stmt.getResultSet();
+		    }
+
+		    return rs.getString("Stress");
+		}
+		catch (SQLException ex){
+		    // handle any errors
+		    System.out.println("SQLException: " + ex.getMessage());
+		    System.out.println("SQLState: " + ex.getSQLState());
+		    System.out.println("VendorError: " + ex.getErrorCode());
+		}
+		finally {
+		    // it is a good idea to release
+		    // resources in a finally{} block
+		    // in reverse-order of their creation
+		    // if they are no-longer needed
+
+		    if (rs != null) {
+		        try {
+		            rs.close();
+		        } catch (SQLException sqlEx) { } // ignore
+
+		        rs = null;
+		    }
+
+		    if (stmt != null) {
+		        try {
+		            stmt.close();
+		        } catch (SQLException sqlEx) { } // ignore
+
+		        stmt = null;
+		    }
+		}
+		return stress;
 	}
 }
