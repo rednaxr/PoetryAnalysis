@@ -72,14 +72,29 @@ public class Main implements ActionListener {
 	
 	public void actionPerformed(ActionEvent ae) {
 		if(ae.getSource().equals(runBtn)) {											//If run button is pushed
-			statusLbl.setText("Working...");										//report Working, start recording times
+			statusLbl.setText("Status: Working...");									//report Working, start recording times
 			time = System.currentTimeMillis();
 			poemLines = readFile(inputTF.getText());
-			StructuralAnalysis structural = new StructuralAnalysis(poemLines);		//initiate structural analysis of poem
-			poem = structural.getPoem();
-			time = System.currentTimeMillis() - time;								//record time taken
-			writeFile(outputTF.getText(), poemLines.get(0));
-			statusLbl.setText("Status: Ready");										//report ready for new inputs
+			if(poemLines != null) {
+				StructuralAnalysis structural = new StructuralAnalysis(poemLines);		//initiate structural analysis of poem
+				poem = structural.getPoem();
+				time = System.currentTimeMillis() - time;								//record time taken
+				
+				//TODO: Debug Code - reports rhyme scheme as string[] and prints to a txt file
+				String[] output = new String[poem.getLines().length + 1];
+				for(int i = 0; i < poem.getLines().length; i++) {
+					output[i] = poem.getLines()[i].getText();
+					if(poem.getRhymeScheme()[i] > 0) {
+						output[i] += "\t" + poem.getRhymeScheme()[i];
+					}
+				}
+				output[output.length - 1] = "Time:  " + time + "ms";
+				outputTF.setText("out.txt");
+				
+				writeFile(outputTF.getText(), output);
+				statusLbl.setText("Status: Ready");										//report ready for new inputs
+			}
+			
 		}
 	}
 	
@@ -90,7 +105,7 @@ public class Main implements ActionListener {
 		File file = new File(filePath);
 		if(file.exists() && !file.isDirectory()) {
 			try {
-				fileReader = new Scanner(new File(filePath));
+				fileReader = new Scanner(file);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -100,20 +115,23 @@ public class Main implements ActionListener {
 			fileReader.close();
 		}
 		else {
-			statusLbl.setText("Status: Error - Invalid Input File");
+			statusLbl.setText("Error: Invalid Input File");
+			input = null;
 		}
 		return input;
 	}
 	
 	//writes output to a string
-	public void writeFile(String filePath, String output) {
+	public void writeFile(String filePath, String[] output) {
 		PrintWriter printer = null;
 		try {
 			printer = new PrintWriter(new FileWriter(new File(filePath)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		printer.write(output);
+		for(int i = 0; i < output.length; i++) {
+			printer.println(output[i]);
+		}
 		printer.close();
 	}
 	

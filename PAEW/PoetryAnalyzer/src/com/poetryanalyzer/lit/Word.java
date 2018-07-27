@@ -15,8 +15,10 @@ public class Word {
 	
 	Word (String str) {
 		text = str;
+		//String cmu = Queries.getPronunciation(str);
+		String cmu = "";	//TODO: DEBUG
 		//TODO: access word in CMU, with lexical stress
-		String cmu = "PLACEHOLDER";
+		
 		sound = cmu.split(" ");						//Split string from CMU into vowel and consonant sounds
 		int vowelCount = 0;
 		int consonantCount = 0;
@@ -36,7 +38,7 @@ public class Word {
 		for(int a = 0; a < sound.length; a++) {		//populate arrays with relevant parts of CMU output
 			if(sound[a].length() == 3) {
 				stress[vowelCount] = (byte)(sound[a].charAt(2) - 48);
-				vowels[vowelCount] = sound[a].charAt(0) + sound[a].charAt(1) + "";
+				vowels[vowelCount] = sound[a].charAt(0) + "" + sound[a].charAt(1);
 				sound[a] = vowels[vowelCount];
 				vowelCount++;
 			}
