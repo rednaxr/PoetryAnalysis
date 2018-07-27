@@ -36,14 +36,12 @@ public class StructuralAnalysis {
 					if(endRhymes[i].equals(endRhymes[j])) {
 						rhymeScheme[i] = rhymeScheme[j];					//if it does, give it the same rhyme number as the one it matches
 						match = true;
-						System.out.println("!");	//TODO: Debug
 						j = i;
 					}
 				}
 				if(match == false) {										//if it doesn't, give it it's own rhyme number
 					rhymeScheme[i] = n;											//(and increase the rhyme number for the next one)
 					n++;
-					System.out.println("?");		//TODO: Debug
 				}
 			}
 		}

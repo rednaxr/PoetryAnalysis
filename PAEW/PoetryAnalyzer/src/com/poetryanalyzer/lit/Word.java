@@ -2,9 +2,6 @@ package com.poetryanalyzer.lit;
 
 public class Word {
 	
-	//TODO: Debug
-	public static int WordCount = 0;
-	
 	//Word Attributes
 	private String text;
 	private int count;
@@ -21,15 +18,6 @@ public class Word {
 		String cmu = "";
 		
 		//TODO: access word in CMU, with lexical stress
-		
-		//TODO: Debug - Replace this with actually getting string from array
-		if(WordCount > 4) {
-			cmu = "B AH0 N AE1 N AH0";
-		}
-		else {
-			cmu = "S EH1 K AH0 N D EH2 R IY0";	
-		}
-		WordCount++;
 		
 		sound = cmu.split(" ");						//Split string from CMU into vowel and consonant sounds
 		int vowelCount = 0;

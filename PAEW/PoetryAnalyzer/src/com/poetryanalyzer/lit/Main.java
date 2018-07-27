@@ -84,7 +84,9 @@ public class Main implements ActionListener {
 				String[] output = new String[poem.getLines().length + 1];
 				for(int i = 0; i < poem.getLines().length; i++) {
 					output[i] = poem.getLines()[i].getText();
-					output[i] += "\t" + poem.getRhymeScheme()[i];
+					if(poem.getRhymeScheme()[i] > 0) {
+						output[i] += "\t" + poem.getRhymeScheme()[i];
+					}
 				}
 				output[output.length - 1] = "Time:  " + time + "ms";
 				outputTF.setText("out.txt");
