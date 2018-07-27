@@ -25,13 +25,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Main implements ActionListener {
-	private static Queries db; //the instace of the database
 	
 	//Global Variables
 	ArrayList<String> poemLines;		//Stores lines of poem
 	Poem poem;							//Stores poem being analyzed
 	ArrayList<String> analysis;			//stores analysis of poem section by section
 	long time;							//stores time taken by system to complete analysis
+	private static Queries db; 			//the instance of the database
 	
 	//Graphical Components
 	JFrame window = new JFrame("Poetry Analyzer");
