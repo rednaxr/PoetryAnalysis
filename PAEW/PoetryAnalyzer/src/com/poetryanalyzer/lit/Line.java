@@ -32,30 +32,30 @@ public class Line {
 	    words = wordList.toArray(array);
 	}
 	
-	
+	/*
 	public Line (String line, boolean itsadifferentcontructornow) {
 		text = line;
 		ArrayList<String> wordStrings = new ArrayList<String>();
 		int startIndex = 0;
 		boolean startOfWord = true;
 		//look at each character.
-		for (int endIndex = 0; endIndex < line.length(); endIndex++) {
+		for(int endIndex = 0; endIndex < line.length(); endIndex++) {
 			char c = line.charAt(endIndex);
 			//If it isn't a-z or '
-		    if ((c < 'A' || c > 'Z') && (c != '\'')) {
-		    	//If it is not the start of a wor, then it must be the end of the word!
+		    if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z') && (c != '\'')) {
+		    	//and If it is not the start of a word, then it must be the end of the word!
 			    if(!startOfWord) {
-			    	String currentWord = line.substring(startIndex, endIndex);
-			    	var word = new Word(currentWord);
-			    	wordList.add(word);
-			    	startOfWord = true;
+			    	wordStrings.add(line.substring(startIndex, endIndex));
 			    }
 		    	startIndex = endIndex+1;
 		    }
 		}
-		var array = new Word[wordList.size()];
-	    words = wordList.toArray(array);
+	    words = new Word[wordStrings.size()];
+	    for(int i = 0; i < words.length; i++) {
+	    	words[i] = new Word(wordStrings.get(i));
+	    }
 	}
+	*/
 	
 	public Word[] getWords() {
 		return words;
@@ -88,7 +88,7 @@ public class Line {
 		int startIndex = 0;												//Stores the index of the vowel that begins the rhyme-relevant portion of the word
 		Word w = words[words.length-1];									//Stores last word of line
 		for(int i = w.getStress().length - 1; i > -1; i--) {			//find and record the index (in vowels[]) of the last stressed vowel sound
-			if(w.getStress()[i] != 0) {										//(it starts the last stressed vowel sound of the word)
+			if(w.getStress()[i] != Word.NO_STRESS) {						//(it starts the last stressed vowel sound of the word)
 				startIndex = i;
 				i = -1;
 			}

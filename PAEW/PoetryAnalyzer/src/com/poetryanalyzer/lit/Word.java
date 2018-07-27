@@ -16,7 +16,7 @@ public class Word {
 	Word (String str) {
 		text = str;
 		//TODO: access word in CMU, with lexical stress
-		String cmu = "PLACEHOLDER";
+		String cmu = "S EH1 K AH0 N D EH2 R IY0";	//TODO: Debug - Replace this with actually getting string from array
 		sound = cmu.split(" ");						//Split string from CMU into vowel and consonant sounds
 		int vowelCount = 0;
 		int consonantCount = 0;

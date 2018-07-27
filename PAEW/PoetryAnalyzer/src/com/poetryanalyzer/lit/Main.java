@@ -79,7 +79,14 @@ public class Main implements ActionListener {
 			poem = structural.getPoem();
 			time = System.currentTimeMillis() - time;								//record time taken
 			
-			writeFile(outputTF.getText(), poemLines.get(0));
+			//TODO: Debug Code - reports rhyme scheme as string[] and prints to a txt file
+			String[] output = new String[poem.getLines().length + 1];
+			for(int i = 0; i < poem.getLines().length; i++) {
+				output[i] += poem.getRhymeScheme()[i] + ".";
+			}
+			output[output.length - 1] = "Time:  " + time + "ms";
+			
+			writeFile(outputTF.getText(), output);
 			statusLbl.setText("Status: Ready");										//report ready for new inputs
 		}
 	}
@@ -107,14 +114,16 @@ public class Main implements ActionListener {
 	}
 	
 	//writes output to a string
-	public void writeFile(String filePath, String output) {
+	public void writeFile(String filePath, String[] output) {
 		PrintWriter printer = null;
 		try {
 			printer = new PrintWriter(new FileWriter(new File(filePath)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		printer.write(output);
+		for(int i = 0; i < output.length; i++) {
+			printer.println(output[i]);
+		}
 		printer.close();
 	}
 	
