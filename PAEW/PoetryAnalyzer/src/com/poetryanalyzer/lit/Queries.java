@@ -12,7 +12,7 @@ public class Queries {
 	public Queries() {
 		try {
 		    conn =
-		       DriverManager.getConnection("jdbc:mysql://localhost/test?" +
+		       DriverManager.getConnection("jdbc:mysql://localhost/dictionary?" +
 		                                   "user=S&password=123abcSyd");
 
 		    // Do something with the Connection
@@ -27,7 +27,7 @@ public class Queries {
 	}
 	public String Stress(String word) {
 		// assume that conn is an already created JDBC connection (see previous examples)
-
+		var stress = "";
 		Statement stmt = null;
 		ResultSet rs = null;
 
@@ -45,7 +45,7 @@ public class Queries {
 		        rs = stmt.getResultSet();
 		    }
 
-		    return rs.getString(arg0);
+		    return rs.getString("Stress");
 		}
 		catch (SQLException ex){
 		    // handle any errors
@@ -75,4 +75,6 @@ public class Queries {
 		        stmt = null;
 		    }
 		}
+		return stress;
+	}
 }
