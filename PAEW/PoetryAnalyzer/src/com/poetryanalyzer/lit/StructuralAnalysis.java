@@ -43,7 +43,7 @@ public class StructuralAnalysis {
 				if(match == false) {										//if it doesn't, give it it's own rhyme number
 					rhymeScheme[i] = n;											//(and increase the rhyme number for the next one)
 					n++;
-					System.out.println("?");
+					System.out.println("?");		//TODO: Debug
 				}
 			}
 		}
@@ -105,17 +105,17 @@ public class StructuralAnalysis {
 	*/
 	
 	public void runExample(){
-// construct the URL to the Wordnet dictionary directory
-String wnhome = System.getenv("WNHOME");
-String path = wnhome + File.separator + "dict";
+		// construct the URL to the Wordnet dictionary directory
+		String wnhome = System.getenv("WNHOME");
+		String path = wnhome + File.separator + "dict";
 		URL url = null;
-		     try{ url = new URL("file", null, path); } 
-		     catch(MalformedURLException e){ e.printStackTrace(); }
-		     if(url == null) return;
+	    try{ url = new URL("file", null, path); } 
+	    catch(MalformedURLException e){ e.printStackTrace(); }
+	    if(url == null) return;
 		    
-		    // construct the dictionary object and open it
-		    IDictionary dict = new Dictionary(url);
-		    try {
+	    // construct the dictionary object and open it
+		IDictionary dict = new Dictionary(url);
+		try {
 				dict.open();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
