@@ -25,7 +25,7 @@ public class Queries {
 		}
 
 	}
-	public String Stress(String word) {
+	public String Pronunciation(String word) {
 		// assume that conn is an already created JDBC connection (see previous examples)
 		var stress = "";
 		Statement stmt = null;
