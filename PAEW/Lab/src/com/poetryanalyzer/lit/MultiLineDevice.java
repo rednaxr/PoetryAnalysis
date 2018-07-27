@@ -24,16 +24,24 @@ public class MultiLineDevice extends Device {
 			} else {
 				anaphoraInstances.get(anaphoricWords.indexOf(firstWord)).getIndices().add(i);
 			}
-		  
 		}
 		
-		for (MultiLineDevice a : anaphoraInstances) {
+		for (int p = anaphoraInstances.size() - 1; p >= 0; p--) {	//removes anaphora instances with only 
+			if (anaphoraInstances.get(p).getIndices().size() == 1)	//_one index, i.e., non-anaphoras
+				anaphoraInstances.remove(p);
+		}
+		
+		for (int u = 0; u < anaphoraInstances.size(); u++) {
+			
+		}
+		
+		/*for (MultiLineDevice a : anaphoraInstances) {
 			System.out.println("Text" + a.getText());
 			for (int i : a.getIndices()) {
 				System.out.println("Index: " + i);
 			}
 			System.out.println();
-		}
+		}*/
 		
 		return anaphoraInstances;
 	}

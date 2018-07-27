@@ -23,10 +23,8 @@ public class AnaphoraTester {
 			poemLines[x] = new Line (poem.get(x));
 		}
 		
-		for (Line x : poemLines) {
-			x.displayLine();
-			System.out.println();
-		}
+		for (Line x : poemLines) { System.out.println(x.getText()); } //TESTING
+		System.out.println(); //TESTING
 		
 		AnaphoraTester anaphoraTester = new AnaphoraTester (poemLines);
 	}

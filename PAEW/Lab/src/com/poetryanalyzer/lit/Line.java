@@ -13,13 +13,6 @@ public class Line {
 		}
 	}
 	
-	//TEMP
-	public void displayLine () {
-		for (Word w : words) {
-			System.out.println(w.getText());
-		}
-	}
-	
 	public Word[] getWords () {
 		return words;
 	}
