@@ -15,8 +15,8 @@ public class Word {
 	
 	Word (String str) {
 		text = str;
-		String cmu = "";
-		
+		//String cmu = Queries.getPronunciation(str);
+		String cmu = "";	//TODO: DEBUG
 		//TODO: access word in CMU, with lexical stress
 		
 		sound = cmu.split(" ");						//Split string from CMU into vowel and consonant sounds
