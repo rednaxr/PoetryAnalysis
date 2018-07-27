@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Main implements ActionListener {
+	private static Queries db; //the instace of the database
 	
 	//Global Variables
 	ArrayList<String> poemLines;		//Stores lines of poem
@@ -42,6 +43,7 @@ public class Main implements ActionListener {
 	JButton runBtn = new JButton("Run");
 	
 	public Main() {
+		setDb(new Queries());
 		//SQL says to add this 
 		try {
             // The newInstance() call is a work around for some
@@ -144,6 +146,14 @@ public class Main implements ActionListener {
 			printer.println(output[i]);
 		}
 		printer.close();
+	}
+
+	public static Queries getDb() {
+		return db;
+	}
+
+	public static void setDb(Queries db) {
+		Main.db = db;
 	}
 	
 }
