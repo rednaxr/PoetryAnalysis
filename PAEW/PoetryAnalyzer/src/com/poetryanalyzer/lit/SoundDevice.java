@@ -148,21 +148,46 @@ public class SoundDevice extends Device {
 			}
 		}
 		for(int a = vowelSounds.size() - 1; a > -1; a++) {									//remove all vowel sounds that only occur once
-			if(indices.get(a).size() < 2) {
+			if(indices.get(a).size() < 2) {														//(remaining vowel sounds are cases of assonance)
 				indices.remove(a);
 				vowelSounds.remove(a);
 			}
 		}
-		output = new SoundDevice[vowelSounds.size()];
+		output = new SoundDevice[vowelSounds.size()];										//create a SoundDevice[] of te assonance cases...
 		for(int a = 0; a < output.length; a++) {
-			output[a] = new SoundDevice(vowelSounds.get(a));
+			output[a] = new SoundDevice(vowelSounds.get(a));								//...by feeding in the sound and indecies of each repeated vowel sound
 			output[a].setIndices(indices.get(a));
 		}
 		return output;
 	}
 		
-	public static SoundDevice[] checkConsonance(ArrayList<Word> words) {
-		SoundDevice[] output = null;
+	public static SoundDevice[] checkConsonance(Word[] words) {
+		SoundDevice[] output = null;														//(stores final output: Array of SoundDevices)
+		ArrayList<String> consonantSounds = new ArrayList<String>();						//(stores consonant sounds found in Word[])
+		ArrayList<ArrayList<Integer>> indices = new ArrayList<ArrayList<Integer>>();		//(stores indices of consonant sounds found)
+		for(int a = 0; a < words.length; a++) {												//go through each consonant sound in Word[]
+			for(int b = 0; b < words[a].getConsonants().length; b++) {
+				if(!consonantSounds.contains(words[a].getConsonants()[b])) {						//If it's not yet in the list of vowel sounds...
+					consonantSounds.add(words[a].getConsonants()[b]);								//...add it to the list and record its index
+					indices.add(new ArrayList<Integer>());
+					indices.get(indices.size()-1).add(a);
+				}
+				else {																				//If it is already in the list...
+					indices.get(consonantSounds.indexOf(words[a].getConsonants()[b])).add(a);		//...record another index for the vowel sound
+				}
+			}
+		}
+		for(int a = consonantSounds.size() - 1; a > -1; a++) {									//remove all consonant sounds that only occur once
+			if(indices.get(a).size() < 2) {														//(remaining consonant sounds are cases of assonance)
+				indices.remove(a);
+				consonantSounds.remove(a);
+			}
+		}
+		output = new SoundDevice[consonantSounds.size()];										//create a SoundDevice[] of te assonance cases...
+		for(int a = 0; a < output.length; a++) {
+			output[a] = new SoundDevice(consonantSounds.get(a));								//...by feeding in the sound and indices of each repeated vowel sound
+			output[a].setIndices(indices.get(a));
+		}
 		return output;
 	}
 	
