@@ -18,7 +18,7 @@ public class Line {
 			char c = line.charAt(endIndex);
 			//If it isn't a-z or '
 		    if ((c < 'A' || c > 'Z') && (c != '\'')) {
-		    	//If it is not the start of a wor, then it must be the end of the word!
+		    	//If it is not the start of a word, then it must be the end of the word!
 			    if(!startOfWord) {
 			    	String currentWord = line.substring(startIndex, endIndex);
 			    	var word = new Word(currentWord);
