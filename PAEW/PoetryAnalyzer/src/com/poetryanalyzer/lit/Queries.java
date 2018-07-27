@@ -34,17 +34,10 @@ public class Queries {
 		try {
 		    stmt = conn.createStatement();
 		    //get the stress of the word!
-		    rs = stmt.executeQuery("SELECT * FROM stress;");
+		    rs = stmt.executeQuery("SELECT stress FROM pronounce;");
 
-		    // or alternatively, if you don't know ahead of time that
-		    // the query will be a SELECT...
-
-		    if (stmt.execute("SELECT column1, column2, ...\r\n" + 
-		    		"FROM table_name\r\n" + 
-		    		"WHERE condition;")) {
-		        rs = stmt.getResultSet();
-		    }
-
+		    rs.first();
+		    System.out.println(rs.getString("Stress"));
 		    return rs.getString("Stress");
 		}
 		catch (SQLException ex){
