@@ -18,8 +18,12 @@ public class StructuralAnalysis {
     public ArrayList<Word> wordList = new ArrayList<Word>();
     
 	public StructuralAnalysis(ArrayList<String> poemLines) {
+		//Initialize poem, parsing it into lines and words and finding pronunciation of each word
 		poem = new Poem(poemLines);
-		//String current;
+		
+		//TODO: Calculate Scantion of poem
+		
+		//find Rhyme Scheme of Poem
 		String[] endRhymes = new String[poem.getLines().length];		//stores rhyme relevant part of each line (last stressed vowel onward)
 		int[] rhymeScheme = new int[poem.getLines().length];			//stores numbers corresponding to each unique rhyme, in order
 		int n = 1;														//Stores number of rhymes found so far (serves as rhyme number to identify rhyming lines)
@@ -29,15 +33,17 @@ public class StructuralAnalysis {
 				endRhymes[i] = poem.getLines()[i].getEndRhyme();		//get the rhyme-relevant sound at the end of each line
 				match = false;
 				for(int j = 0; j < i; j++) {								//check if it matches any others
-					if(endRhymes[j] == endRhymes[i]) {
+					if(endRhymes[i].equals(endRhymes[j])) {
 						rhymeScheme[i] = rhymeScheme[j];					//if it does, give it the same rhyme number as the one it matches
 						match = true;
+						System.out.println("!");	//TODO: Debug
 						j = i;
 					}
 				}
 				if(match == false) {										//if it doesn't, give it it's own rhyme number
 					rhymeScheme[i] = n;											//(and increase the rhyme number for the next one)
 					n++;
+					System.out.println("?");
 				}
 			}
 		}

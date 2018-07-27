@@ -81,13 +81,13 @@ public class Main implements ActionListener {
 				time = System.currentTimeMillis() - time;								//record time taken
 				
 				//TODO: Debug Code - reports rhyme scheme as string[] and prints to a txt file
-				
 				String[] output = new String[poem.getLines().length + 1];
 				for(int i = 0; i < poem.getLines().length; i++) {
 					output[i] = poem.getLines()[i].getText();
 					output[i] += "\t" + poem.getRhymeScheme()[i];
 				}
 				output[output.length - 1] = "Time:  " + time + "ms";
+				outputTF.setText("out.txt");
 				
 				writeFile(outputTF.getText(), output);
 				statusLbl.setText("Status: Ready");										//report ready for new inputs
