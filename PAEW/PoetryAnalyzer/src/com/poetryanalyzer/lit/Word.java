@@ -28,6 +28,8 @@ public class Word {
 				consonantCount++;
 			}
 		}
+		System.out.println(vowelCount);		//TODO: Debug
+		System.out.println(consonantCount);
 		stress = new byte[vowelCount];				//initialize arrays of stresses, vowels, and consonants
 		vowels = new String[vowelCount];
 		consonants = new String[consonantCount];

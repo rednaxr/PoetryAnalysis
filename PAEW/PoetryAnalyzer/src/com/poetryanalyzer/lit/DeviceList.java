@@ -3,7 +3,7 @@ package com.poetryanalyzer.lit;
 import java.util.ArrayList;
 
 //A list of devices within a section
-public class Devices {
+public class DeviceList {
 	private ArrayList<Device> AlliterationSound;
 	private ArrayList<Device> AlliterationVisual;
 	private ArrayList<Device> Rhyme;

@@ -24,19 +24,21 @@ public class StructuralAnalysis {
 		int[] rhymeScheme = new int[poem.getLines().length];			//stores numbers corresponding to each unique rhyme, in order
 		int n = 1;														//Stores number of rhymes found so far (serves as rhyme number to identify rhyming lines)
 		boolean match;													//stores whether another rhyme of the same kind has been found
-		for(int i = 0; i < poem.getLines().length; i++) {				//get the rhyme-relevant sound at the end of each line
-			endRhymes[i] = poem.getLines()[i].getEndRhyme();
-			match = false;
-			for(int j = 0; j < i; j++) {								//check if it matches any others
-				if(endRhymes[j] == endRhymes[i]) {
-					rhymeScheme[i] = rhymeScheme[j];					//if it does, give it the same rhyme number as the one it matches
-					match = true;
-					j = i;
+		for(int i = 0; i < poem.getLines().length; i++) {
+			if(poem.getLines()[i].getWords().length > 0) {					//(ignoring blank lines)
+				endRhymes[i] = poem.getLines()[i].getEndRhyme();		//get the rhyme-relevant sound at the end of each line
+				match = false;
+				for(int j = 0; j < i; j++) {								//check if it matches any others
+					if(endRhymes[j] == endRhymes[i]) {
+						rhymeScheme[i] = rhymeScheme[j];					//if it does, give it the same rhyme number as the one it matches
+						match = true;
+						j = i;
+					}
 				}
-			}
-			if(match == false) {										//if it doesn't, give it it's own rhyme number
-				rhymeScheme[i] = n;											//(and increase the rhyme number for the next one)
-				n++;
+				if(match == false) {										//if it doesn't, give it it's own rhyme number
+					rhymeScheme[i] = n;											//(and increase the rhyme number for the next one)
+					n++;
+				}
 			}
 		}
 		poem.setRhymeScheme(rhymeScheme);								//store the acquired rhymescheme in the poem

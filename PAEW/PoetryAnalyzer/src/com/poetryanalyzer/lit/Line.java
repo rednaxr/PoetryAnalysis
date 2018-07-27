@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class Line {
 	private Word[] words;
 	private String text;
-	private Devices devices;
+	private DeviceList devices;
 	
+	/*
 	public Line(String line) {
 		text = line;
 		ArrayList<Word> wordList = new ArrayList<Word>();
@@ -31,23 +32,27 @@ public class Line {
 		var array = new Word[wordList.size()];
 	    words = wordList.toArray(array);
 	}
+	*/
 	
-	/*
-	public Line (String line, boolean itsadifferentcontructornow) {
-		text = line;
+	public Line (String lineText) {
+		text = lineText;
 		ArrayList<String> wordStrings = new ArrayList<String>();
 		int startIndex = 0;
 		boolean startOfWord = true;
 		//look at each character.
-		for(int endIndex = 0; endIndex < line.length(); endIndex++) {
-			char c = line.charAt(endIndex);
+		for(int endIndex = 0; endIndex < lineText.length(); endIndex++) {
+			char c = lineText.charAt(endIndex);
 			//If it isn't a-z or '
 		    if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z') && (c != '\'')) {
-		    	//and If it is not the start of a word, then it must be the end of the word!
+		    	//and If it is not the start of a word, then it must be off the end of the word!
 			    if(!startOfWord) {
-			    	wordStrings.add(line.substring(startIndex, endIndex));
+			    	wordStrings.add(lineText.substring(startIndex, endIndex));
+			    	startOfWord = true;
 			    }
-		    	startIndex = endIndex+1;
+		    	startIndex = endIndex + 1;
+		    }
+		    else {
+		    	startOfWord = false;
 		    }
 		}
 	    words = new Word[wordStrings.size()];
@@ -55,7 +60,7 @@ public class Line {
 	    	words[i] = new Word(wordStrings.get(i));
 	    }
 	}
-	*/
+	
 	
 	public Word[] getWords() {
 		return words;
@@ -74,11 +79,11 @@ public class Line {
 	}
 	
 
-	public Devices getDevices() {
+	public DeviceList getDevices() {
 		return devices;
 	}
 
-	public void setDevices(Devices devices) {
+	public void setDevices(DeviceList devices) {
 		this.devices = devices;
 	}
 	
