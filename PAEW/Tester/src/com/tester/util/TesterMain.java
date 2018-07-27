@@ -33,54 +33,13 @@ public class TesterMain {
 	String output = "";
 	
 	public TesterMain() {
-		System.out.println("File Name:");
-		System.out.print("> ");
-		input = sysIn.nextLine();
-		PrintWriter printer = null;
-		try {
-			printer = new PrintWriter(new File(input));
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		System.out.println("File Contents:");
-		System.out.print("> ");
-		input = sysIn.nextLine();
-		printer.write(input);
-		printer.close();
-		System.out.println("Goodbye!");
+		
+		
+		
 	}
 	
 	public static void main(String[] args) {
-		runExample();
+		new TesterMain();
 	}
-	public static void runExample(){
-		// construct the URL to the Wordnet dictionary directory
-		String wnhome = System.getenv("WNHOME");
-		String path = wnhome + File.separator + "dict";
-		URL url = null;
-		try { 
-			url = new URL("file", null, path); 
-		} catch (MalformedURLException e) { 
-			e.printStackTrace(); 
-		}
-		if(url == null) return;
-				    
-	    // construct the dictionary object and open it
-				    IDictionary dict = new Dictionary(url);
-				    try {
-						dict.open();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				
-				    // look up first sense of the word "dog"
-				    IIndexWord idxWord = dict.getIndexWord("dog", POS.NOUN);
-				    IWordID wordID = idxWord.getWordIDs().get(0);
-				    IWord word = dict.getWord(wordID);
-				    System.out.println("Id = " + wordID);
-				    System.out.println("Lemma = " + word.getLemma());
-				    System.out.println("Gloss = " + word.getSynset().getGloss());
-				  }
+	
 }

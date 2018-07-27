@@ -16,7 +16,6 @@ public class SoundDevice extends Device {
 	public SoundDevice(String sound){
 		super();
 		this.sound = sound;
-		ArrayList<Integer> indices = new ArrayList<Integer>();
 	}
 
 	public String getSound() {
@@ -47,7 +46,7 @@ public class SoundDevice extends Device {
 		boolean contains;																//Stores whether ArrayList contains SoundDevice in question
 		
 		//**Alliterations of 1st Sound**
-		//Record each starting sound and their indices as instances of alliteration (aka alliterations)
+		//Record the starting sound of each word and their indices as instances of alliteration (aka alliterations)
 		for(int a = 0; a < words.length; a++) {
 			sound = words[a].getSound()[0];												//take first sound from each word
 			contains = false;
@@ -64,7 +63,7 @@ public class SoundDevice extends Device {
 			}
 		}
 		
-		//Remove each alliteration with only one index
+		//Remove each alliteration that only occurs once (b/c its not really alliteration)
 		for(int a = 0; a < alliterations.size(); a++) {
 			if(alliterations.get(a).getIndices().size() == 1) {
 				alliterations.remove(a);
@@ -132,8 +131,33 @@ public class SoundDevice extends Device {
 		
 	}
 	
-	public static SoundDevice[] checkAssonance(ArrayList<Word> words) {
-		SoundDevice[] output = null;
+	public static SoundDevice[] checkAssonance(Word[] words) {
+		SoundDevice[] output = null;														//(stores final output: Array of SoundDevices)
+		ArrayList<String> vowelSounds = new ArrayList<String>();							//(stores vowel sounds found in Word[])
+		ArrayList<ArrayList<Integer>> indices = new ArrayList<ArrayList<Integer>>();		//(stores indecies of vowel sounds found)
+		for(int a = 0; a < words.length; a++) {												//go through each vowel sound in Word[]
+			for(int b = 0; b < words[a].getVowels().length; b++) {
+				if(!vowelSounds.contains(words[a].getVowels()[b])) {						//If it's not yet in the list of vowel sounds...
+					vowelSounds.add(words[a].getVowels()[b]);								//...add it to the list and record its index
+					indices.add(new ArrayList<Integer>());
+					indices.get(indices.size()-1).add(a);
+				}
+				else {																		//If it is already in the list...
+					indices.get(vowelSounds.indexOf(words[a].getVowels()[b])).add(a);		//...record another index for the vowel sound
+				}
+			}
+		}
+		for(int a = vowelSounds.size() - 1; a > -1; a++) {									//remove all vowel sounds that only occur once
+			if(indices.get(a).size() < 2) {
+				indices.remove(a);
+				vowelSounds.remove(a);
+			}
+		}
+		output = new SoundDevice[vowelSounds.size()];
+		for(int a = 0; a < output.length; a++) {
+			output[a] = new SoundDevice(vowelSounds.get(a));
+			output[a].setIndices(indices.get(a));
+		}
 		return output;
 	}
 		

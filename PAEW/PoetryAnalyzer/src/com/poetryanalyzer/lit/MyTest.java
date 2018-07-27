@@ -31,7 +31,7 @@ class MyTest {
 	}
 	public void runExample(){
 		// construct the URL to the Wordnet dictionary directory
-		String path = File.Separator;
+		String path = ""+File.separator;
 				URL url = null;
 				     try{ url = new URL("file", null, path); } 
 				     catch(MalformedURLException e){ e.printStackTrace(); }
