@@ -8,11 +8,10 @@ public class MultiLineDevice extends Device {
 		
 	}
 	
-	public static void checkAnaphora (Line[] lines) {
+	public static ArrayList<MultiLineDevice> checkAnaphora (Line[] lines) {
 		
-		/*ArrayList<MultiLineDevice> AnaphoraInstances = new ArrayList<MultiLineDevice>();
+		ArrayList<MultiLineDevice> AnaphoraInstances = new ArrayList<MultiLineDevice>();
 		
-		return AnaphoraInstances;*/
-		System.out.println("We got here!");
+		return AnaphoraInstances;
 	}
 }

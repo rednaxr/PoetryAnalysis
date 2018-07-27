@@ -5,9 +5,7 @@ import java.util.ArrayList;
 public class AnaphoraTester {
 
 	public AnaphoraTester (Line[] poemLines) {
-		ArrayList<MultiLineDevice> multiLineDevices = new ArrayList<MultiLineDevice>();
-		multiLineDevices.add(new MultiLineDevice());
-		multiLineDevices.get(0).checkAnaphora(poemLines);
+		MultiLineDevice.checkAnaphora(poemLines);
 	}
 
 	public static void main (String[] args) {
