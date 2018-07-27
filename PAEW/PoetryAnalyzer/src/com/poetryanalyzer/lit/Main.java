@@ -42,6 +42,17 @@ public class Main implements ActionListener {
 	JButton runBtn = new JButton("Run");
 	
 	public Main() {
+		//SQL says to add this 
+		try {
+            // The newInstance() call is a work around for some
+            // broken Java implementations
+
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+        } catch (Exception ex) {
+            // handle the error
+        }
+		
+		
 		
 		//Set up window
 		double screenWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
