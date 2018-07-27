@@ -21,4 +21,4 @@ That such a brook ran water. But I wonder	1
 If from its being kept forever under	1
 The thoughts may not have risen that so keep	1
 This new-built city from both work and sleep.	1
-Time:  15ms
+Time:  28ms

@@ -12,8 +12,8 @@ public class Queries {
 	public Queries() {
 		try {
 		    conn =
-		       DriverManager.getConnection("jdbc:mysql://localhost/dictionary?" +
-		                                   "user=S&password=123abcSyd");
+		       DriverManager.getConnection("jdbc:mysql://localhost/words?" +
+		                                   "user=root&password=123abcSyd");
 
 		    // Do something with the Connection
 
@@ -34,7 +34,7 @@ public class Queries {
 		try {
 		    stmt = conn.createStatement();
 		    //get the stress of the word!
-		    rs = stmt.executeQuery("SELECT Stress FROM stress WHERE Word="+word+";");
+		    rs = stmt.executeQuery("SELECT * FROM stress;");
 
 		    // or alternatively, if you don't know ahead of time that
 		    // the query will be a SELECT...

@@ -15,8 +15,8 @@ public class Word {
 	
 	Word (String str) {
 		text = str;
-		//TODO: access word in CMU, with lexical stress
-		String cmu = Main.getDb().pronunciation(str);
+		String cmu = Main.getDb().Pronunciation(str);
+		//String cmu = "S EH1 K AH0 N D EH2 R IY0";
 		sound = cmu.split(" ");						//Split string from CMU into vowel and consonant sounds
 		int vowelCount = 0;
 		int consonantCount = 0;
