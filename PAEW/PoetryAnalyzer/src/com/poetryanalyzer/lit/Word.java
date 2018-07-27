@@ -28,8 +28,6 @@ public class Word {
 				consonantCount++;
 			}
 		}
-		System.out.println(vowelCount);		//TODO: Debug
-		System.out.println(consonantCount);
 		stress = new byte[vowelCount];				//initialize arrays of stresses, vowels, and consonants
 		vowels = new String[vowelCount];
 		consonants = new String[consonantCount];
@@ -38,7 +36,7 @@ public class Word {
 		for(int a = 0; a < sound.length; a++) {		//populate arrays with relevant parts of CMU output
 			if(sound[a].length() == 3) {
 				stress[vowelCount] = (byte)(sound[a].charAt(2) - 48);
-				vowels[vowelCount] = sound[a].charAt(0) + sound[a].charAt(1) + "";
+				vowels[vowelCount] = sound[a].charAt(0) + "" + sound[a].charAt(1);
 				sound[a] = vowels[vowelCount];
 				vowelCount++;
 			}
