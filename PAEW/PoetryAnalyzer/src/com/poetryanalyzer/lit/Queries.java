@@ -1,11 +1,11 @@
 package com.poetryanalyzer.lit;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 
 public class Queries {
 	private Connection conn = null;
@@ -27,6 +27,18 @@ public class Queries {
 	}
 	public String Pronunciation(String word) {
 		// assume that conn is an already created JDBC connection (see previous examples)
+		
+		/*ResultSetMetaData metaData = resultSet.getMetaData();
+		int count = metaData.getColumnCount(); //number of column
+		String columnName[] = new String[count]; 
+
+		for (int i = 1; i <= count; i++)
+		{
+		   columnName[i-1] = metaData.getColumnLabel(i);
+		   System.out.println(columnName[i-1]);
+		} */
+		/////////////////////////////////////////////
+		
 		var stress = "";
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -34,11 +46,11 @@ public class Queries {
 		try {
 		    stmt = conn.createStatement();
 		    //get the stress of the word!
-		    rs = stmt.executeQuery("SELECT stress FROM pronounce;");
-
+		    rs = stmt.executeQuery("SELECT word, stress FROM pronounce WHERE word='"+word+"';");
+		    
 		    rs.first();
-		    System.out.println(rs.getString("Stress"));
-		    return rs.getString("Stress");
+		    System.out.println(rs.getString("stress"));
+		    return rs.getString("stress");
 		}
 		catch (SQLException ex){
 		    // handle any errors
