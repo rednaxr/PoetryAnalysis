@@ -16,6 +16,10 @@ public class Scantion {
 		}
 	}
 
+	public byte[][] getStress(){
+		return stress;
+	}
+	
 	public int getScore() {
 		int score = 0;
 		return score;

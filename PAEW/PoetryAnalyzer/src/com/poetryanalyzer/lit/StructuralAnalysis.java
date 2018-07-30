@@ -21,22 +21,38 @@ public class StructuralAnalysis {
 		//Initialize poem, parsing it into lines and words and finding pronunciation of each word
 		poem = new Poem(poemLines);
 		
-		//TODO: Calculate Scantion of poem
-		ArrayList<ArrayList<Byte>> base = new ArrayList<ArrayList<Byte>>();
-		for(int a = 0; a < poem.getLines().length; a++) {
+		//TODO: Calculate Scantion
+		ArrayList<Scantion> scantion = new ArrayList<Scantion>();				//(stores possible scantions)
+		ArrayList<ArrayList<Byte>> base = new ArrayList<ArrayList<Byte>>();		//(stores known pieces of scantion (from polysyllabic words)
+		int unknownCount = 0;													//(stores number of syllables with unknown scantion)
+		byte[] unknowns;														//(stores current stress values to be tested)
+		for(int a = 0; a < poem.getLines().length; a++) {						//go through each word of each line
 			for(int b = 0; b < poem.getLines()[a].getWords().length; b++) {
-				if(poem.getLines()[a].getWords()[b].getStress().length > 1) {
-					for(int c = 0; c < poem.getLines()[a].getWords()[b].getStress().length; c++) {
+				if(poem.getLines()[a].getWords()[b].getStress().length > 1) {	//if it's polysyllabic, add it's scantion to that of the line
+					for(int c = 0; c < poem.getLines()[a].getWords()[b].getStress().length; c++) {		//(0 == stressed, 1 == unstressed)
 						base.get(a).add((byte)(poem.getLines()[a].getWords()[b].getStress()[c]/poem.getLines()[a].getWords()[b].getStress()[c]));
 					}
 				}
-				else {
+				else {															//if it's monosyllabic, mark syllable as unknown scantion (-1)
 					base.get(a).add((byte)-1);
+					unknownCount++;
 				}
 				
 			}
 		}
+		scantion.add(new Scantion(base));
+		unknowns = new byte[unknownCount];
+		for(int a = 0; a < Math.pow(unknowns.length, 2); a++) {
+			for(int b = 0; b < unknowns.length; b++) {
+				unknowns[b] = 0;
+			}
+		}
 		
+		int score = 10;
+		for(int i = 1; score > 0; i++) {
+			
+		}
+
 		
 		//find Rhyme Scheme of Poem
 		String[] endRhymes = new String[poem.getLines().length];		//stores rhyme relevant part of each line (last stressed vowel onward)
