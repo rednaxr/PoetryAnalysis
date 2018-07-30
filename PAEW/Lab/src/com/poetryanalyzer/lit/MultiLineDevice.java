@@ -31,17 +31,31 @@ public class MultiLineDevice extends Device {
 				anaphoraInstances.remove(p);
 		}
 		
-		for (int u = 0; u < anaphoraInstances.size(); u++) {
+		for (MultiLineDevice a : anaphoraInstances) {
+			int minWords = Integer.MAX_VALUE;
 			
+			for (int i : a.getIndices())
+				if (lines[i].getWords().length < minWords)
+					minWords = lines[i].getWords().length;
+			
+			for (int w = 1; w < minWords; w++) {
+				String nextWord = lines[a.getIndices().get(0)].getWords()[w].getText();
+				for (int i : a.getIndices()) {
+					if (!lines[i].getWords()[w].getText().equals(nextWord)) {
+						break;
+					}
+				}
+				a.setText(a.getText() + " " + nextWord);
+			}
 		}
 		
-		/*for (MultiLineDevice a : anaphoraInstances) {
-			System.out.println("Text" + a.getText());
+		for (MultiLineDevice a : anaphoraInstances) {
+			System.out.println("Text: " + a.getText());
 			for (int i : a.getIndices()) {
 				System.out.println("Index: " + i);
 			}
 			System.out.println();
-		}*/
+		}
 		
 		return anaphoraInstances;
 	}
