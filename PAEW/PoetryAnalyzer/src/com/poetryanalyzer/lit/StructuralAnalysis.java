@@ -22,6 +22,10 @@ public class StructuralAnalysis {
 		poem = new Poem(poemLines);
 		
 		//TODO: Calculate Scantion of poem
+		for(int a = 0; a < poem.getLines().length; a++) {
+			ArrayList<boolean[]> b = new ArrayList<boolean[]>();
+		}
+		
 		
 		//find Rhyme Scheme of Poem
 		String[] endRhymes = new String[poem.getLines().length];		//stores rhyme relevant part of each line (last stressed vowel onward)

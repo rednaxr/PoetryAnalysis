@@ -37,10 +37,9 @@ public class SoundDevice extends Device {
 	//STATIC---------------------------------------------------------------------------
 	
 	//finds all instances of alliteration in list of words, reporting  sound, indices, and depth of alliteration
-	public static ArrayList<ArrayList<SoundDevice>> checkAlliteration(Word[] words) {
-		ArrayList<ArrayList<SoundDevice>> output = new ArrayList<ArrayList<SoundDevice>>();
+	public static ArrayList<SoundDevice> checkAlliteration(Word[] words) {
 		ArrayList<SoundDevice> alliterations = new ArrayList<SoundDevice>();			//Stores instances of alliteration
-		ArrayList<SoundDevice> homophones = new ArrayList<SoundDevice>();				//Stores homophones (sound of entire word is the same)
+		//ArrayList<SoundDevice> homophones = new ArrayList<SoundDevice>();				//Stores homophones (sound of entire word is the same)
 		ArrayList<SoundDevice> potential = new ArrayList<SoundDevice>();				//Stores potential alliterations longer than first sound
 		String sound;																	//Stores sound in question
 		boolean contains;																//Stores whether ArrayList contains SoundDevice in question
@@ -48,7 +47,7 @@ public class SoundDevice extends Device {
 		//**Alliterations of 1st Sound**
 		//Record the starting sound of each word and their indices as instances of alliteration (aka alliterations)
 		for(int a = 0; a < words.length; a++) {
-			sound = words[a].getSound()[0];												//take first sound from each word
+			sound = words[a].getSound()[0];													//take first sound from each word
 			contains = false;
 			for(int b = 0; b < alliterations.size(); b++) {									//check if that sound matches any in an existing instance of alliteration
 				if(alliterations.get(b).getSound().equals(sound)) {
@@ -64,7 +63,7 @@ public class SoundDevice extends Device {
 		}
 		
 		//Remove each alliteration that only occurs once (b/c its not really alliteration)
-		for(int a = 0; a < alliterations.size(); a++) {
+		for(int a = alliterations.size() - 1; a > -1; a--) {
 			if(alliterations.get(a).getIndices().size() == 1) {
 				alliterations.remove(a);
 			}
@@ -118,19 +117,20 @@ public class SoundDevice extends Device {
 					}
 					//if all homophones, add potential alliteration to the homophones list
 					else {
-						homophones.add(potential.get(a));
+						//homophones.add(potential.get(a));
 					}
 				}
 			}
 			n = alliterations.size();		//update the size of the ArrayList
 			i++;							//proceed to the next alliteration
 		}
-		output.add(alliterations);
-		output.add(homophones);
-		return output;
+		//output.add(alliterations);
+		//output.add(homophones);
+		return alliterations;
 		
 	}
 	
+	//finds instances of assonance in a Word[]
 	public static SoundDevice[] checkAssonance(Word[] words) {
 		SoundDevice[] output = null;														//(stores final output: Array of SoundDevices)
 		ArrayList<String> vowelSounds = new ArrayList<String>();							//(stores vowel sounds found in Word[])
@@ -160,7 +160,8 @@ public class SoundDevice extends Device {
 		}
 		return output;
 	}
-		
+	
+	//finds instances of consonance in a given Word[]
 	public static SoundDevice[] checkConsonance(Word[] words) {
 		SoundDevice[] output = null;														//(stores final output: Array of SoundDevices)
 		ArrayList<String> consonantSounds = new ArrayList<String>();						//(stores consonant sounds found in Word[])
