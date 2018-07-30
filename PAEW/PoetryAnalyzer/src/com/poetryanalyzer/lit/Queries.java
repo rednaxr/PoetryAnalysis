@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.util.*;
 
 public class Queries {
 	private Connection conn = null;
@@ -25,32 +26,18 @@ public class Queries {
 		}
 
 	}
-	public String Pronunciation(String word) {
-		// assume that conn is an already created JDBC connection (see previous examples)
-		
-		/*ResultSetMetaData metaData = resultSet.getMetaData();
-		int count = metaData.getColumnCount(); //number of column
-		String columnName[] = new String[count]; 
+	public ArrayList<String> Pronunciation(String word) {
 
-		for (int i = 1; i <= count; i++)
-		{
-		   columnName[i-1] = metaData.getColumnLabel(i);
-		   System.out.println(columnName[i-1]);
-		} */
-		/////////////////////////////////////////////
-		
-		var stress = "";
 		Statement stmt = null;
 		ResultSet rs = null;
-
+		ArrayList<String> matches = new ArrayList<String>();
 		try {
 		    stmt = conn.createStatement();
 		    //get the stress of the word!
-		    rs = stmt.executeQuery("SELECT word, stress FROM pronounce WHERE word='"+word+"';");
-		    
-		    rs.first();
-		    System.out.println(rs.getString("stress"));
-		    return rs.getString("stress");
+		    rs = stmt.executeQuery("SELECT word, stress FROM pronounce WHERE word REGEXP'"+word+"(?*';");
+		    while ( rs.next() ) { 
+                matches.add(rs.getString("stress"));
+            }
 		}
 		catch (SQLException ex){
 		    // handle any errors
@@ -80,6 +67,6 @@ public class Queries {
 		        stmt = null;
 		    }
 		}
-		return stress;
+		return matches;
 	}
 }
