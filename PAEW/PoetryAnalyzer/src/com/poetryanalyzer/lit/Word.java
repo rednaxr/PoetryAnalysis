@@ -15,35 +15,39 @@ public class Word {
 	
 	Word (String str) {
 		text = str;
-		String cmu = Main.getDb().Pronunciation(str);
-		//String cmu = "S EH1 K AH0 N D EH2 R IY0";
-		sound = cmu.split(" ");						//Split string from CMU into vowel and consonant sounds
-		int vowelCount = 0;
-		int consonantCount = 0;
-		for(int a = 0; a < sound.length; a++) {		//Count number of vowel and consonant sounds in word
-			if(sound[a].length() == 3) {
-				vowelCount++;
+		var cmuList = Main.getDb().Pronunciation(str);
+		if(!cmuList.isEmpty()) {//did we get anything from the DB?
+			//String cmu = "S EH1 K AH0 N D EH2 R IY0";
+			var cmu = cmuList.get(0);
+			sound = cmu.split(" ");						//Split string from CMU into vowel and consonant sounds
+			int vowelCount = 0;
+			int consonantCount = 0;
+			for(int a = 0; a < sound.length; a++) {		//Count number of vowel and consonant sounds in word
+				if(sound[a].length() == 3) {
+					vowelCount++;
+				}
+				else {
+					consonantCount++;
+				}
 			}
-			else {
-				consonantCount++;
+			stress = new byte[vowelCount];				//initialize arrays of stresses, vowels, and consonants
+			vowels = new String[vowelCount];
+			consonants = new String[consonantCount];
+			vowelCount = 0;
+			consonantCount = 0;
+			for(int a = 0; a < sound.length; a++) {		//populate arrays with relevant parts of CMU output
+				if(sound[a].length() == 3) {
+					stress[vowelCount] = (byte)(sound[a].charAt(2) - 48);
+					vowels[vowelCount] = sound[a].charAt(0) + "" + sound[a].charAt(1);
+					sound[a] = vowels[vowelCount];
+					vowelCount++;
+				}
+				else {
+					consonants[consonantCount] = sound[a];
+					consonantCount++;
+				}
 			}
-		}
-		stress = new byte[vowelCount];				//initialize arrays of stresses, vowels, and consonants
-		vowels = new String[vowelCount];
-		consonants = new String[consonantCount];
-		vowelCount = 0;
-		consonantCount = 0;
-		for(int a = 0; a < sound.length; a++) {		//populate arrays with relevant parts of CMU output
-			if(sound[a].length() == 3) {
-				stress[vowelCount] = (byte)(sound[a].charAt(2) - 48);
-				vowels[vowelCount] = sound[a].charAt(0) + "" + sound[a].charAt(1);
-				sound[a] = vowels[vowelCount];
-				vowelCount++;
-			}
-			else {
-				consonants[consonantCount] = sound[a];
-				consonantCount++;
-			}
+		
 		}
 	}
 
