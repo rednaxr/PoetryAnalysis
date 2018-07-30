@@ -8,8 +8,8 @@ public class MultiLineDevice extends Device {
 		
 	}
 	
-	public static ArrayList<MultiLineDevice> checkAnaphora (Line[] lines) {		//looks for anaphora, or words/phrases repeated at the beginning of each line
-																																//>for poetic effect
+	public static ArrayList<MultiLineDevice> checkAnaphora (Line[] lines) {		//looks for anaphora (words/phrases repeated at the beginning of each line for poetic effect)
+																																//>for poetic effect)
 		ArrayList<MultiLineDevice> anaphoraInstances = new ArrayList<MultiLineDevice>(); //stores instances
 		ArrayList<String> anaphoricWords = new ArrayList<String>(); 					 //stores first words of instances
 		
@@ -18,7 +18,7 @@ public class MultiLineDevice extends Device {
 			
 			if (!anaphoricWords.contains(firstWord)) {				//is the first word unique?
 				anaphoricWords.add(firstWord);						//the word is uniuqe, add it as a potential anaphora
-				anaphoraInstances.add(new MultiLineDevice());								 //create an new anaphora instance
+				anaphoraInstances.add(new MultiLineDevice());						      		 //create an new anaphora instance
 				anaphoraInstances.get(anaphoraInstances.size() - 1).setText(firstWord);		 //assign it its text
 				anaphoraInstances.get(anaphoraInstances.size() - 1).getIndices().add(i);;	 //assign it its index
 			} else {	//the word isn't unique
