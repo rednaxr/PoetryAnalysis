@@ -23,7 +23,7 @@ public class StructuralAnalysis {
 		
 		//TODO: Calculate Scantion of poem
 		for(int a = 0; a < poem.getLines().length; a++) {
-			
+			ArrayList<boolean[]> b = new ArrayList<boolean[]>();
 		}
 		
 		
