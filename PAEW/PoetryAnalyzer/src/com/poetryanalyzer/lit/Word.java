@@ -17,7 +17,7 @@ public class Word {
 	public static final byte SECONDARY_STRESS = 2;
 	
 	Word (String str) {
-		text = str;
+		setText(str);
 		ArrayList<String> cmuList = Main.getDb().Pronunciation(str);
 		if(!cmuList.isEmpty()) {//did we get anything from the DB?
 			//String cmu = "S EH1 K AH0 N D EH2 R IY0";
@@ -56,6 +56,10 @@ public class Word {
 
 	public String getText() {
 		return text;
+	}
+	
+	public void setText(String txt) {
+		text = txt.toLowerCase();
 	}
 	
 	public int getCount() {

@@ -34,7 +34,7 @@ public class Queries {
 		try {
 		    stmt = conn.createStatement();
 		    //get the stress of the word!
-		    rs = stmt.executeQuery("SELECT word, stress FROM pronounce WHERE word REGEXP'"+word+"(?*';");
+		    rs = stmt.executeQuery("SELECT word, stress FROM pronounce WHERE word REGEXP '"+word+"(?*';")'';
 		    while ( rs.next() ) { 
                 matches.add(rs.getString("stress"));
             }
