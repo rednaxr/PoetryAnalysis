@@ -1,11 +1,12 @@
 package com.poetryanalyzer.lit;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.*;
 
 public class Queries {
 	private Connection conn = null;
@@ -25,20 +26,18 @@ public class Queries {
 		}
 
 	}
-	public String Pronunciation(String word) {
-		// assume that conn is an already created JDBC connection (see previous examples)
-		var stress = "";
+	public ArrayList<String> Pronunciation(String word) {
+
 		Statement stmt = null;
 		ResultSet rs = null;
-
+		ArrayList<String> matches = new ArrayList<String>();
 		try {
 		    stmt = conn.createStatement();
 		    //get the stress of the word!
-		    rs = stmt.executeQuery("SELECT stress FROM pronounce;");
-
-		    rs.first();
-		    System.out.println(rs.getString("Stress"));
-		    return rs.getString("Stress");
+		    rs = stmt.executeQuery("SELECT word, stress FROM pronounce WHERE word REGEXP'"+word+"(?*';");
+		    while ( rs.next() ) { 
+                matches.add(rs.getString("stress"));
+            }
 		}
 		catch (SQLException ex){
 		    // handle any errors
@@ -68,6 +67,6 @@ public class Queries {
 		        stmt = null;
 		    }
 		}
-		return stress;
+		return matches;
 	}
 }
