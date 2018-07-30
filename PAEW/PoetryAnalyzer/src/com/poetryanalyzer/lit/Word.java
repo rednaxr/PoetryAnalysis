@@ -52,6 +52,9 @@ public class Word {
 			}
 		
 		}
+		else {
+			sound = null;
+		}
 	}
 
 	public String getText() {
