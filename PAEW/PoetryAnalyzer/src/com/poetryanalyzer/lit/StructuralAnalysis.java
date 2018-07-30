@@ -22,7 +22,7 @@ public class StructuralAnalysis {
 		poem = new Poem(poemLines);
 		
 		//TODO: Calculate Scantion
-		ArrayList<Scantion> scantion = new ArrayList<Scantion>();				//(stores possible scantions)
+		ArrayList<Scansion> scantion = new ArrayList<Scansion>();				//(stores possible scantions)
 		ArrayList<ArrayList<Byte>> base = new ArrayList<ArrayList<Byte>>();		//(stores known pieces of scantion (from polysyllabic words)
 		int unknownCount = 0;													//(stores number of syllables with unknown scantion)
 		byte[] unknowns;														//(stores current stress values to be tested)
@@ -42,7 +42,7 @@ public class StructuralAnalysis {
 		}
 		
 		//Produces every possible scantion of person:
-		scantion.add(new Scantion(base));
+		scantion.add(new Scansion(base));
 		unknowns = new byte[unknownCount];
 		for(int a = 0; a < Math.pow(unknowns.length, 2); a++) {
 			int n = a;

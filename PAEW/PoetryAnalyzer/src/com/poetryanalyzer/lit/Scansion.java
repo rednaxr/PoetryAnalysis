@@ -2,11 +2,13 @@ package com.poetryanalyzer.lit;
 
 import java.util.ArrayList;
 
-public class Scantion {
+public class Scansion {
 	
+	int meterType;
+	int feet;
 	byte[][] stress;
-
-	public Scantion(ArrayList<ArrayList<Byte>> input) {
+	
+	public Scansion(ArrayList<ArrayList<Byte>> input) {
 		stress = new byte[input.size()][];
 		for(int a = 0; a < input.size(); a++) {
 			stress[a] = new byte[input.get(a).size()];
@@ -16,13 +18,21 @@ public class Scantion {
 		}
 	}
 
-	public byte[][] getStress(){
+	public byte[][] getStress() {
 		return stress;
 	}
 	
 	public int getScore() {
 		int score = 0;
 		return score;
+	}
+	
+	public int getMeterType() {
+		return meterType;
+	}
+	
+	public int getFeet() {
+		return feet;
 	}
 	
 }
