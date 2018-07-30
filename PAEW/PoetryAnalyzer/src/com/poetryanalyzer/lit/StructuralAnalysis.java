@@ -27,13 +27,13 @@ public class StructuralAnalysis {
 			for(int b = 0; b < poem.getLines()[a].getWords().length; b++) {
 				if(poem.getLines()[a].getWords()[b].getStress().length > 1) {
 					for(int c = 0; c < poem.getLines()[a].getWords()[b].getStress().length; c++) {
-						base.get(a).add(poem.getLines()[a].getWords()[b].getStress()[c]);
+						base.get(a).add((byte)(poem.getLines()[a].getWords()[b].getStress()[c]/poem.getLines()[a].getWords()[b].getStress()[c]));
 					}
 				}
 				else {
 					base.get(a).add((byte)-1);
 				}
-
+				
 			}
 		}
 		
