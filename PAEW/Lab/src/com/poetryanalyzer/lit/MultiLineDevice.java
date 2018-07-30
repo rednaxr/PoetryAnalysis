@@ -8,26 +8,26 @@ public class MultiLineDevice extends Device {
 		
 	}
 	
-	public static ArrayList<MultiLineDevice> checkAnaphora (Line[] lines) {
+	public static ArrayList<MultiLineDevice> checkAnaphora (Line[] lines) {		//looks for anaphora, or words/phrases repeated at the beginning of each line
+																																//>for poetic effect
+		ArrayList<MultiLineDevice> anaphoraInstances = new ArrayList<MultiLineDevice>(); //stores instances
+		ArrayList<String> anaphoricWords = new ArrayList<String>(); 					 //stores first words of instances
 		
-		ArrayList<MultiLineDevice> anaphoraInstances = new ArrayList<MultiLineDevice>();
-		ArrayList<String> anaphoricWords = new ArrayList<String>();
-		
-		for (int i = 0; i < lines.length; i++) {
-			String firstWord = lines[i].getWords()[0].getText();
+		for (int i = 0; i < lines.length; i++) {					//for each line
+			String firstWord = lines[i].getWords()[0].getText();	//get the first word
 			
-			if (!anaphoricWords.contains(firstWord)) {
-				anaphoricWords.add(firstWord);
-				anaphoraInstances.add(new MultiLineDevice());
-				anaphoraInstances.get(anaphoraInstances.size() - 1).setText(firstWord);
-				anaphoraInstances.get(anaphoraInstances.size() - 1).getIndices().add(i);;
-			} else {
-				anaphoraInstances.get(anaphoricWords.indexOf(firstWord)).getIndices().add(i);
+			if (!anaphoricWords.contains(firstWord)) {				//is the first word unique?
+				anaphoricWords.add(firstWord);						//the word is uniuqe, add it as a potential anaphora
+				anaphoraInstances.add(new MultiLineDevice());								 //create an new anaphora instance
+				anaphoraInstances.get(anaphoraInstances.size() - 1).setText(firstWord);		 //assign it its text
+				anaphoraInstances.get(anaphoraInstances.size() - 1).getIndices().add(i);;	 //assign it its index
+			} else {	//the word isn't unique
+				anaphoraInstances.get(anaphoricWords.indexOf(firstWord)).getIndices().add(i);//add its index to the list of indices for that word
 			}
 		}
 		
-		for (int p = anaphoraInstances.size() - 1; p >= 0; p--) {	//removes anaphora instances with only 
-			if (anaphoraInstances.get(p).getIndices().size() == 1)	//_one index, i.e., non-anaphoras
+		for (int p = anaphoraInstances.size() - 1; p >= 0; p--) {	//removes anaphora instances with only one index, i.e., non-anaphoras
+			if (anaphoraInstances.get(p).getIndices().size() == 1)	
 				anaphoraInstances.remove(p);
 		}
 		
