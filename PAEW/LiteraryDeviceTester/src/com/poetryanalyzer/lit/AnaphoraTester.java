@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class AnaphoraTester {
 
 	public AnaphoraTester (Line[] poemLines) {
-		MultiLineDevice.checkAnaphora(poemLines);
+		display(MultiLineDevice.checkAnaphora(poemLines));
 	}
 
 	public static void main (String[] args) {
@@ -35,5 +35,17 @@ public class AnaphoraTester {
 		System.out.println(); //TESTING
 		
 		AnaphoraTester anaphoraTester = new AnaphoraTester (poemLines);
+	}
+	
+	public void display (ArrayList<MultiLineDevice> anaphoraInstances) {
+		for (MultiLineDevice a : anaphoraInstances) {
+			System.out.println("Text: " + a.getText());
+			System.out.println("Intensity: " + a.getIntensity());
+			System.out.println();
+			for (int i : a.getIndices()) {
+				System.out.println("Index: " + i);
+			}
+			System.out.println();
+		}
 	}
 }
