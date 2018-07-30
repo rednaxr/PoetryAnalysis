@@ -40,13 +40,29 @@ public class StructuralAnalysis {
 				
 			}
 		}
+		
+		//Produces every possible scantion of person:
 		scantion.add(new Scantion(base));
 		unknowns = new byte[unknownCount];
 		for(int a = 0; a < Math.pow(unknowns.length, 2); a++) {
+			int n = a;
 			for(int b = 0; b < unknowns.length; b++) {
-				unknowns[b] = 0;
+				unknowns[b] = (byte)(n%2);
+				n /= 2;
+			}
+			n = 0;
+			scantion.add(scantion.get(0));
+			for(int b = 0; b < scantion.get(a+1).getStress().length; b++) {
+				for(int c = 0; c < scantion.get(a+1).getStress()[b].length; c++) {
+					if(scantion.get(a+1).getStress()[b][c] == -1) {
+						scantion.get(a+1).getStress()[b][c] = unknowns[n];
+						n++;
+					}
+				}
 			}
 		}
+		
+		
 		
 		int score = 10;
 		for(int i = 1; score > 0; i++) {
