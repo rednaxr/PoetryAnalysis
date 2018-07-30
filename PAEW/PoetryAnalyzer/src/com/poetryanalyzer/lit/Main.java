@@ -87,7 +87,9 @@ public class Main implements ActionListener {
 		if(ae.getSource().equals(runBtn)) {											//If run button is pushed
 			statusLbl.setText("Status: Working...");									//report Working, start recording times
 			time = System.currentTimeMillis();
-			poemLines = readFile(inputTF.getText());
+			poemLines = readFile("Poems/A Midsummer Night's Dream.txt");//TODO
+			
+			//poemLines = readFile(inputTF.getText());
 			if(poemLines != null) {
 				StructuralAnalysis structural = new StructuralAnalysis(poemLines);		//initiate structural analysis of poem
 				poem = structural.getPoem();
@@ -107,7 +109,6 @@ public class Main implements ActionListener {
 				writeFile(outputTF.getText(), output);
 				statusLbl.setText("Status: Ready");										//report ready for new inputs
 			}
-			
 		}
 	}
 	
