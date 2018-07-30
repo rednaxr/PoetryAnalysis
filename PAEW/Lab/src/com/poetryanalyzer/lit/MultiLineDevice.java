@@ -39,13 +39,18 @@ public class MultiLineDevice extends Device {
 					minWords = lines[i].getWords().length;
 			
 			for (int w = 1; w < minWords; w++) {
+				boolean escape = false;
 				String nextWord = lines[a.getIndices().get(0)].getWords()[w].getText();
 				for (int i : a.getIndices()) {
 					if (!lines[i].getWords()[w].getText().equals(nextWord)) {
+						escape = true;
 						break;
 					}
 				}
-				a.setText(a.getText() + " " + nextWord);
+				if (escape)
+					break;
+				else
+					a.setText(a.getText() + " " + nextWord);
 			}
 		}
 		
