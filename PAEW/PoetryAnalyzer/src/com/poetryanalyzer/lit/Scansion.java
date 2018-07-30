@@ -18,14 +18,8 @@ public class Scansion {
 	public static final byte LOOSE_TROCHAIC = 5;
 	public static final byte DACTYLIC = 6;
 	
-	public Scansion(ArrayList<ArrayList<Byte>> input) {
-		stress = new byte[input.size()][];
-		for(int a = 0; a < input.size(); a++) {
-			stress[a] = new byte[input.get(a).size()];
-			for(int b = 0; b < input.get(a).size(); b++) {
-				stress[a][b] = input.get(a).get(b);
-			}
-		}
+	public Scansion(byte[][] stress) {
+		this.stress = stress;
 	}
 	
 	public int getScore() {
@@ -42,11 +36,11 @@ public class Scansion {
 		this.stress = stress;
 	}
 
-	public int[] getMeterType() {
+	public byte[] getMeterType() {
 		return meterType;
 	}
 
-	public void setMeterType(int[] meterType) {
+	public void setMeterType(byte[] meterType) {
 		this.meterType = meterType;
 	}
 
