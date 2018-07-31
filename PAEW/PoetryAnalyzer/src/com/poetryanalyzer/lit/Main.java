@@ -87,7 +87,7 @@ public class Main implements ActionListener {
 		if(ae.getSource().equals(runBtn)) {											//If run button is pushed
 			statusLbl.setText("Status: Working...");									//report Working, start recording times
 			time = System.currentTimeMillis();
-			poemLines = readFile("Poems/To a Mouse.txt");//TODO
+			poemLines = readFile("Poems/A Brook in the City.txt");//TODO
 			
 			//poemLines = readFile(inputTF.getText());
 			if(poemLines != null) {

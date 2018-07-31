@@ -32,15 +32,18 @@ public class Queries {
 		ResultSet rs = null;
 		ArrayList<String> matches = new ArrayList<String>();
 		try {
-			//orevent sql injection
-		   var query = "SELECT word, stress FROM pronounce WHERE REGEXP_LIKE (word, '^'?'\\\\(?');";		
+			//prevent sql injection
+		    var query = "SELECT word, stress FROM pronounce WHERE word REGEXP CONCAT('^', ?, '\\\\(?');";
 		    var smnt = conn.prepareStatement(query);
-		    		  smnt.setString(1, word); 
+		    smnt.setString(1, word); 
 		    //get the stress of the word!
 		    rs = smnt.executeQuery();
+
+	    	System.out.println("LLLL");
 		    while ( rs.next() ) { 
+		    	System.out.println("HIIIIII");
                 matches.add(rs.getString("stress"));
-                System.out.println(matches.get(matches.size()-1));
+                System.out.println(rs.getString("stress"));
             }
 		}
 		catch (SQLException ex){
