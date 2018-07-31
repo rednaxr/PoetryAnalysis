@@ -9,13 +9,13 @@ public class AnaphoraTester {
 	}
 
 	public static void main (String[] args) {
-		ArrayList<String> poem = new ArrayList<String>();
+		/*ArrayList<String> poem = new ArrayList<String>();
 		
 		/*poem.add("Two roads diverged in a yellow wood");
 		poem.add("And sorry I could not travel both");
 		poem.add("And be one traveler long I stood");
 		poem.add("And looked down one as far as I could");
-		poem.add("To where it bent in the undergrowth");*/
+		poem.add("To where it bent in the undergrowth");
 		
 		poem.add("For want of a nail the shoe was lost.");
 		poem.add("For want of a shoe the horse was lost.");
@@ -34,7 +34,14 @@ public class AnaphoraTester {
 		for (Line x : poemLines) { System.out.println(x.getText()); } //TESTING
 		System.out.println(); //TESTING
 		
-		AnaphoraTester anaphoraTester = new AnaphoraTester (poemLines);
+		AnaphoraTester anaphoraTester = new AnaphoraTester (poemLines);*/
+		
+		String test = "beat rhyme crime, spree";
+		System.out.println(test);
+		System.out.println(test.substring(18, test.indexOf(" ", 18)));
+		//for (String s : test.split(" ")) {
+		//	System.out.println(s);
+		//}
 	}
 	
 	public void display (ArrayList<MultiLineDevice> anaphoraInstances) {

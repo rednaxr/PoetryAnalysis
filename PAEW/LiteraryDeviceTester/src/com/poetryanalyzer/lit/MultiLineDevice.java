@@ -3,6 +3,7 @@ package com.poetryanalyzer.lit;
 import java.util.ArrayList;
 
 public class MultiLineDevice extends Device {
+	private static String[] conjunc = {"and", "or", "but", "nor"}; //common conjunctions
 	
 	public MultiLineDevice () {
 		
@@ -56,4 +57,42 @@ public class MultiLineDevice extends Device {
 		
 		return anaphoraInstances; //return an ArrayList of MultiLineDevices, where each MultiLineDevice is a unique anaphora or word phrase
 	}																									//with its stored indices
+
+	public static ArrayList<MultiLineDevice> checkPolysyndeton (Line[] lines) {
+		
+		ArrayList<MultiLineDevice> polysyndetonInstances = new ArrayList<MultiLineDevice>();
+		
+		int conjuncNum = 0;
+		
+		for (int i = 0; i < lines.length; i++) {
+			for (String s : lines[i].getText().split(" ")) {
+				
+			}
+		}
+		
+		return polysyndetonInstances;
+	}
+	
+	public static ArrayList<MultiLineDevice> checkAsyndeton (Line[] lines) {
+		
+		ArrayList<MultiLineDevice> asyndetonInstances = new ArrayList<MultiLineDevice>();
+		
+		boolean comma = false;
+		
+		for (int i = 0; i < lines.length; i++) {
+			for (String s : lines[i].getText().split(" ")) {
+				
+				
+				if (s.contains(",")) {
+					
+				} else {
+					for (String c : conjunc)
+						if (s.equals(c))
+							
+				}
+			}
+		}
+		
+		return asyndetonInstances;
+	}
 }
