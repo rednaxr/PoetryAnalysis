@@ -1,5 +1,7 @@
 package com.poetryanalyzer.lit;
 
+import java.util.ArrayList;
+
 public class Word {
 	
 	//Word Attributes
@@ -8,17 +10,18 @@ public class Word {
 	private String[] sound, vowels, consonants;
 	private byte[] stress;
 	
-	//Word Static Variables
+	//Word Static Constants
+	public static final byte UNKNOWN_STRESS = -1;
 	public static final byte NO_STRESS = 0;
 	public static final byte PRIMARY_STRESS = 1;
 	public static final byte SECONDARY_STRESS = 2;
 	
 	Word (String str) {
 		setText(str);
-		var cmuList = Main.getDb().Pronunciation(str);
+		ArrayList<String> cmuList = Main.getDb().Pronunciation(str);
 		if(!cmuList.isEmpty()) {//did we get anything from the DB?
 			//String cmu = "S EH1 K AH0 N D EH2 R IY0";
-			var cmu = cmuList.get(0);
+			String cmu = cmuList.get(0);
 			sound = cmu.split(" ");						//Split string from CMU into vowel and consonant sounds
 			int vowelCount = 0;
 			int consonantCount = 0;
@@ -48,6 +51,9 @@ public class Word {
 				}
 			}
 		
+		}
+		else {
+			sound = null;
 		}
 	}
 

@@ -31,32 +31,29 @@ public class MultiLineDevice extends Device {
 				anaphoraInstances.remove(p);
 		}
 		
-		for (MultiLineDevice a : anaphoraInstances) {
-			int minWords = Integer.MAX_VALUE;
+		for (MultiLineDevice a : anaphoraInstances) { //for each instance of anaphora
+			int minWords = Integer.MAX_VALUE;				//iterates through each line that contains an instance of this anaphora and
+															//-finds the shortest line by words, and stores that number
+			for (int i : a.getIndices())					//
+				if (lines[i].getWords().length < minWords)	//
+					minWords = lines[i].getWords().length;	//
 			
-			for (int i : a.getIndices())
-				if (lines[i].getWords().length < minWords)
-					minWords = lines[i].getWords().length;
-			
-			for (int w = 1; w < minWords; w++) {
-				String nextWord = lines[a.getIndices().get(0)].getWords()[w].getText();
+			for (int w = 1; w < minWords; w++) {			//checks word by word "deeper", or to the right in the poem
+				boolean escape = false;														//-until there is no longer an identical 
+				String nextWord = lines[a.getIndices().get(0)].getWords()[w].getText();		//-anaphora on all indices
 				for (int i : a.getIndices()) {
-					if (!lines[i].getWords()[w].getText().equals(nextWord)) {
+					if (!lines[i].getWords()[w].getText().equals(nextWord)) {	//if the words on the ith word column do not match, break
+						escape = true;
 						break;
 					}
 				}
-				a.setText(a.getText() + " " + nextWord);
-			}
+				if (escape)
+					break;
+				else
+					a.setText(a.getText() + " " + nextWord); //if the words on the ith word column do match, continue checking to the right
+			}																								
 		}
 		
-		for (MultiLineDevice a : anaphoraInstances) {
-			System.out.println("Text: " + a.getText());
-			for (int i : a.getIndices()) {
-				System.out.println("Index: " + i);
-			}
-			System.out.println();
-		}
-		
-		return anaphoraInstances;
-	}
+		return anaphoraInstances; //return an ArrayList of MultiLineDevices, where each MultiLineDevice is a unique anaphora or word phrase
+	}																									//with its stored indices
 }
