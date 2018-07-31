@@ -20,34 +20,43 @@ public class StructuralAnalysis {
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		//Initialize poem, parsing it into lines and words and finding pronunciation of each word
 		poem = new Poem(poemLines);
-		
+		/*
 		//Calculate Scantion
 		ArrayList<Scansion> scansion = new ArrayList<Scansion>();					//(stores possible scansions)
 		ArrayList<ArrayList<Byte>> baseList = new ArrayList<ArrayList<Byte>>();		//(stores known pieces of scansion (from polysyllabic words))
+		ArrayList<int[]> holeList = new ArrayList<int[]>();							//(stores the indecies of syllables with unknown scansion)
+		int[][] holes;																//(stores the indecies of syllables with unknown scansion)
 		byte[][] stress;															//(stores stresses of current scansion being worked with)
 		int unknownCount = 0;														//(stores number of syllables with unknown scansion)
 		byte[] unknowns;															//(stores current stress values to be tested)
 		for(int a = 0; a < poem.getLines().length; a++) {							//go through each word of each line
 			for(int b = 0; b < poem.getLines()[a].getWords().length; b++) {
 				if(poem.getLines()[a].getWords()[b].getStress().length > 1) {		//if it's polysyllabic, add it's scansion to that of the line
-					for(int c = 0; c < poem.getLines()[a].getWords()[b].getStress().length; c++) {		//(0 == stressed, 1 == unstressed)
+					for(int c = 0; c < poem.getLines()[a].getWords()[b].getStress().length; c++) {		//(stressed = 1, unstressed = 0)
 						baseList.get(a).add((byte)(poem.getLines()[a].getWords()[b].getStress()[c]/poem.getLines()[a].getWords()[b].getStress()[c]));
 					}
 				}
 				else {																//if it's monosyllabic, mark syllable as unknown scansion (-1)
 					baseList.get(a).add((byte)-1);
+					holeList.add(new int[2]);										//(including storing in the unknown index list)
+					holeList.get(holeList.size()-1)[0] = a;
+					holeList.get(holeList.size()-1)[1] = baseList.get(a).size() - 1;
 					unknownCount++;
 				}
-				
 			}
 		}
 		
-		stress = new byte[baseList.size()][];										//convert base ArrayList to array
+		stress = new byte[baseList.size()][];										//convert base and hole ArrayLists to arrays
 		for(int a = 0; a < baseList.size(); a++) {
 			stress[a] = new byte[baseList.get(a).size()];
 			for(int b = 0; b < baseList.get(a).size(); b++) {
 				stress[a][b] = baseList.get(a).get(b);
 			}
+		}
+		holes = new int[holeList.size()][2];
+		for(int i = 0; i < holeList.size(); i++) {
+			holes[i][0] = holeList.get(i)[0];
+			holes[i][1] = holeList.get(i)[1];
 		}
 		System.out.println();
 		scansion.add(new Scansion(stress));											//save base as a scansion at the beginning of the list
@@ -65,7 +74,7 @@ public class StructuralAnalysis {
 			scansion.add(new Scansion(stress));											//add the scansion to the scansion list and reset the stress array
 			stress = scansion.get(0).getStress();
 		}
-		
+		*/
 		//TODO: Evaluate and Rank Scansions
 		
 		//find Rhyme Scheme of Poem

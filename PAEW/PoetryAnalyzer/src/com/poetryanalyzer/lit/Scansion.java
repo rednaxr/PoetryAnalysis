@@ -5,12 +5,29 @@ import java.util.ArrayList;
 public class Scansion {
 	
 	//Atributes
-	private byte[][] stress;					//(stores all the stresses in the poem according to this scansion)
-	private byte[] meterType;					//(stores the meter type (ex: loose iambic) of each line)
-	private int[] footCount;					//(stores the number of feet (ex: 4) in each line)
-	private int OverallMeterType;				//(stores type of meter, eg. loose iambic)
-	private int OverallFootCount;				//(stores number of feet per line, eg. tetrameter)
+	private byte[][] stress;						//(stores all the stresses in the poem according to this scansion)
+	private ArrayList<ArrayList<Byte>> feet;		//(stores the feet of the poem);
+	private byte[] meterType;						//(stores the meter type (ex: loose iambic) of each line)
+	private int[] footCount;						//(stores the number of feet (ex: 4) in each line)
+	private int OverallMeterType;					//(stores type of meter, eg. loose iambic)
+	private int OverallFootCount;					//(stores number of feet per line, eg. tetrameter)
 	
+	//Feet
+	public static final byte IAMB = 1;				//   U /
+	public static final byte TROCHEE = 2;			//   / U
+	public static final byte PYRRHUS = 3;			//   U U
+	public static final byte SPONDEE = 4;			//   / /
+	public static final byte ANAPEST = 5;			//   U U /
+	public static final byte DACTYL = 6;			//   / U U
+	public static final byte AMPHIBRACH = 7;		//   U / U
+	public static final byte BACCHIUS = 8;			//   U / / 
+	public static final byte ANTIBACCHIUS = 9;		//   / / U
+	public static final byte CRETIC = 10;			//   / U /
+	public static final byte MOLOSSUS = 11;			//   / / / 
+	
+	//Static Integers
+	public static final byte UNKNOWN = -1;
+	public static final byte OTHER = 0;
 	public static final byte IAMBIC = 1;
 	public static final byte LOOSE_IAMBIC = 2;
 	public static final byte ANAPESTIC = 3;
@@ -18,8 +35,22 @@ public class Scansion {
 	public static final byte LOOSE_TROCHAIC = 5;
 	public static final byte DACTYLIC = 6;
 	
+	//CONSTRUCTOR
 	public Scansion(byte[][] stress) {
 		this.stress = stress;
+		feet = new ArrayList<ArrayList<Byte>>();
+		meterType = new byte[stress.length];
+		footCount = new int[stress.length];
+		int feet;
+		for(int a = 0; a < stress.length; a++) {
+			feet = 0;
+			for(int b = 0; b < stress[a].length; b++) {
+				if(stress[a][b] == 1) {
+					feet++;
+				}
+			}
+			footCount[a] = feet;
+		}
 	}
 	
 	public int getScore() {

@@ -10,7 +10,7 @@ public class Word {
 	private String[] sound, vowels, consonants;
 	private byte[] stress;
 	
-	//Word Static Variables
+	//Word Static Constants
 	public static final byte UNKNOWN_STRESS = -1;
 	public static final byte NO_STRESS = 0;
 	public static final byte PRIMARY_STRESS = 1;
