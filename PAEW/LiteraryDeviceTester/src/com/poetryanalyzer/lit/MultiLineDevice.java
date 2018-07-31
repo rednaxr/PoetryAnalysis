@@ -62,14 +62,20 @@ public class MultiLineDevice extends Device {
 		
 		ArrayList<MultiLineDevice> polysyndetonInstances = new ArrayList<MultiLineDevice>();
 		
-		int conjuncNum = 0;
-		
 		for (int i = 0; i < lines.length; i++) {
 			for (String s : lines[i].getText().split(" ")) {
-				
+				if (!s.contains(",")) {
+					if (s.equals("and") || s.equals("or") || s.equals("but") || s.equals("nor")) {
+						polysyndetonInstances.add(new MultiLineDevice());
+						polysyndetonInstances.get(polysyndetonInstances.size() - 1).setText(s);;
+						polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices().add(i);
+					}
+				} else {
+					
+				}
 			}
 		}
-		
+	
 		return polysyndetonInstances;
 	}
 	
@@ -87,7 +93,9 @@ public class MultiLineDevice extends Device {
 					
 				} else {
 					for (String c : conjunc)
-						if (s.equals(c))
+						if (s.equals(c)) {
+							
+						}
 							
 				}
 			}
