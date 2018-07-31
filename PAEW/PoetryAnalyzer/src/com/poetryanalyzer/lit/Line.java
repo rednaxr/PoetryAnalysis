@@ -9,33 +9,6 @@ public class Line {
 	private String text;
 	private DeviceList devices;
 	
-	/*
-	public Line(String line) {
-		text = line;
-		ArrayList<Word> wordList = new ArrayList<Word>();
-		int startIndex = 0;
-		
-		var startOfWord = true;
-		//look at each character.
-		for (int endIndex = 0; endIndex < line.length(); endIndex++) {
-			char c = line.charAt(endIndex);
-			//If it isn't a-z or '
-		    if ((c < 'A' || c > 'Z') && (c != '\'')) {
-		    	//If it is not the start of a word, then it must be the end of the word!
-			    if(!startOfWord) {
-			    	String currentWord = line.substring(startIndex, endIndex);
-			    	var word = new Word(currentWord);
-			    	wordList.add(word);
-			    	startOfWord = true;
-			    }
-		    	startIndex = endIndex+1;
-		    }
-		}
-		var array = new Word[wordList.size()];
-	    words = wordList.toArray(array);
-	}
-	*/
-	
 	//CONSTRUCTOR
 	public Line (String lineText) {
 		text = lineText;														//Store text of line under Line.text
@@ -114,5 +87,32 @@ public class Line {
 		return endRhyme;
 	}
 
+	/*
+	 * OLD CONSTRUCTOR
+	public Line(String line) {
+		text = line;
+		ArrayList<Word> wordList = new ArrayList<Word>();
+		int startIndex = 0;
+		
+		var startOfWord = true;
+		//look at each character.
+		for (int endIndex = 0; endIndex < line.length(); endIndex++) {
+			char c = line.charAt(endIndex);
+			//If it isn't a-z or '
+		    if ((c < 'A' || c > 'Z') && (c != '\'')) {
+		    	//If it is not the start of a word, then it must be the end of the word!
+			    if(!startOfWord) {
+			    	String currentWord = line.substring(startIndex, endIndex);
+			    	var word = new Word(currentWord);
+			    	wordList.add(word);
+			    	startOfWord = true;
+			    }
+		    	startIndex = endIndex+1;
+		    }
+		}
+		var array = new Word[wordList.size()];
+	    words = wordList.toArray(array);
+	}
+	*/
 	
 }

@@ -22,19 +22,19 @@ public class StructuralAnalysis {
 		poem = new Poem(poemLines);
 		
 		//Calculate Scantion
-		ArrayList<Scansion> scansion = new ArrayList<Scansion>();					//(stores possible scantions)
-		ArrayList<ArrayList<Byte>> baseList = new ArrayList<ArrayList<Byte>>();		//(stores known pieces of scantion (from polysyllabic words)
-		byte[][] stress;															//(stores stresses of current scantion being worked with)
-		int unknownCount = 0;														//(stores number of syllables with unknown scantion)
+		ArrayList<Scansion> scansion = new ArrayList<Scansion>();					//(stores possible scansions)
+		ArrayList<ArrayList<Byte>> baseList = new ArrayList<ArrayList<Byte>>();		//(stores known pieces of scansion (from polysyllabic words))
+		byte[][] stress;															//(stores stresses of current scansion being worked with)
+		int unknownCount = 0;														//(stores number of syllables with unknown scansion)
 		byte[] unknowns;															//(stores current stress values to be tested)
 		for(int a = 0; a < poem.getLines().length; a++) {							//go through each word of each line
 			for(int b = 0; b < poem.getLines()[a].getWords().length; b++) {
-				if(poem.getLines()[a].getWords()[b].getStress().length > 1) {		//if it's polysyllabic, add it's scantion to that of the line
+				if(poem.getLines()[a].getWords()[b].getStress().length > 1) {		//if it's polysyllabic, add it's scansion to that of the line
 					for(int c = 0; c < poem.getLines()[a].getWords()[b].getStress().length; c++) {		//(0 == stressed, 1 == unstressed)
 						baseList.get(a).add((byte)(poem.getLines()[a].getWords()[b].getStress()[c]/poem.getLines()[a].getWords()[b].getStress()[c]));
 					}
 				}
-				else {																//if it's monosyllabic, mark syllable as unknown scantion (-1)
+				else {																//if it's monosyllabic, mark syllable as unknown scansion (-1)
 					baseList.get(a).add((byte)-1);
 					unknownCount++;
 				}
@@ -49,7 +49,7 @@ public class StructuralAnalysis {
 				stress[a][b] = baseList.get(a).get(b);
 			}
 		}
-		
+		System.out.println();
 		scansion.add(new Scansion(stress));											//save base as a scansion at the beginning of the list
 		
 		for(int a = 0; a < (int) Math.pow(2, unknownCount); a++) {					//create a scansion for every possible stress combo on monosyllabic words
@@ -57,7 +57,7 @@ public class StructuralAnalysis {
 			for(int b = 0; b < stress.length; b++) {								//go through syllable
 				for(int c = 0; c < stress[b].length; c++) {
 					if(stress[b][c] == -1) {											//if it's unknown, replace it with a zero or one
-						stress [b][c] = (byte)(n%2);										//(1 digit of binary version of number giving which scansion we're on)
+						stress [b][c] = (byte)(n%2);										//(use 1 digit of binary version of number giving which scansion we're on)
 						n /= 2;
 					}
 				}
