@@ -5,12 +5,29 @@ import java.util.ArrayList;
 public class Scansion {
 	
 	//Atributes
-	private byte[][] stress;					//(stores all the stresses in the poem according to this scansion)
-	private byte[] meterType;					//(stores the meter type (ex: loose iambic) of each line)
-	private int[] footCount;					//(stores the number of feet (ex: 4) in each line)
-	private int OverallMeterType;				//(stores type of meter, eg. loose iambic)
-	private int OverallFootCount;				//(stores number of feet per line, eg. tetrameter)
+	private byte[][] stress;						//(stores all the stresses in the poem according to this scansion)
+	private ArrayList<ArrayList<Byte>> feet;		//(stores the feet of the poem);
+	private byte[] meterType;						//(stores the meter type (ex: loose iambic) of each line)
+	private int[] footCount;						//(stores the number of feet (ex: 4) in each line)
+	private int OverallMeterType;					//(stores type of meter, eg. loose iambic)
+	private int OverallFootCount;					//(stores number of feet per line, eg. tetrameter)
 	
+	//Feet
+	public static final byte IAMB = 1;				//   U /
+	public static final byte TROCHEE = 2;			//   / U
+	public static final byte PYRRHUS = 3;			//   U U
+	public static final byte SPONDEE = 4;			//   / /
+	public static final byte ANAPEST = 5;			//   U U /
+	public static final byte DACTYL = 6;			//   / U U
+	public static final byte AMPHIBRACH = 7;		//   U / U
+	public static final byte BACCHIUS = 8;			//   U / / 
+	public static final byte ANTIBACCHIUS = 9;		//   / / U
+	public static final byte CRETIC = 10;			//   / U /
+	public static final byte MOLOSSUS = 11;			//   / / / 
+	
+	//Static Integers
+	public static final byte UNKNOWN = -1;
+	public static final byte OTHER = 0;
 	public static final byte IAMBIC = 1;
 	public static final byte LOOSE_IAMBIC = 2;
 	public static final byte ANAPESTIC = 3;
@@ -18,12 +35,16 @@ public class Scansion {
 	public static final byte LOOSE_TROCHAIC = 5;
 	public static final byte DACTYLIC = 6;
 	
-	public Scansion(ArrayList<ArrayList<Byte>> input) {
-		stress = new byte[input.size()][];
-		for(int a = 0; a < input.size(); a++) {
-			stress[a] = new byte[input.get(a).size()];
-			for(int b = 0; b < input.get(a).size(); b++) {
-				stress[a][b] = input.get(a).get(b);
+	//CONSTRUCTOR
+	public Scansion(byte[][] stress) {
+		this.stress = stress;
+		setFeet(new ArrayList<ArrayList<Byte>>());
+		meterType = new byte[stress.length];
+		for(int a = 0; a < stress.length; a++) {
+			for(int b = 0; b < stress[a].length; b++) {
+				
+				if(stress[a][b] == 1) {
+				}
 			}
 		}
 	}
@@ -42,11 +63,11 @@ public class Scansion {
 		this.stress = stress;
 	}
 
-	public int[] getMeterType() {
+	public byte[] getMeterType() {
 		return meterType;
 	}
 
-	public void setMeterType(int[] meterType) {
+	public void setMeterType(byte[] meterType) {
 		this.meterType = meterType;
 	}
 
@@ -72,6 +93,14 @@ public class Scansion {
 
 	public void setOverallFootCount(int overallFootCount) {
 		OverallFootCount = overallFootCount;
+	}
+
+	public ArrayList<ArrayList<Byte>> getFeet() {
+		return feet;
+	}
+
+	public void setFeet(ArrayList<ArrayList<Byte>> feet) {
+		this.feet = feet;
 	}
 	
 }
