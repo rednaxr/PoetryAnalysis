@@ -67,23 +67,27 @@ public class Line {
 		String endRhyme = "";											//Stores String of sounds for end rhyme
 		int startIndex = 0;												//Stores the index of the vowel that begins the rhyme-relevant portion of the word
 		Word w = words[words.length-1];									//Stores last word of line
-		for(int i = w.getStress().length - 1; i > -1; i--) {			//find and record the index (in vowels[]) of the last stressed vowel sound
-			if(w.getStress()[i] != Word.NO_STRESS) {						//(it starts the last stressed vowel sound of the word)
-				startIndex = i;
-				i = -1;
+		if(w.getSound() != null) {
+			for(int i = w.getStress().length - 1; i > -1; i--) {			//find and record the index (in vowels[]) of the last stressed vowel sound
+				if(w.getStress()[i] != Word.NO_STRESS) {						//(it starts the last stressed vowel sound of the word)
+					startIndex = i;
+					i = -1;
+				}
 			}
-		}
-		String startVowel = w.getVowels()[startIndex];					//store the stressed vowel sound
-		for(int i = w.getSound().length - 1; i > -1; i--) {				//find its index in the word array
-			if(w.getSound()[i].equals(startVowel)) {
-				startIndex = i;
-				i = -1;
+			String startVowel = w.getVowels()[startIndex];					//store the stressed vowel sound
+			for(int i = w.getSound().length - 1; i > -1; i--) {				//find its index in the word array
+				if(w.getSound()[i].equals(startVowel)) {
+					startIndex = i;
+					i = -1;
+				}
 			}
-		}
 
-		for(int i = startIndex; i < w.getSound().length; i++) {			//add that vowel sound and all following sound to the end rhyme
-			endRhyme += w.getSound()[i];
+			for(int i = startIndex; i < w.getSound().length; i++) {			//add that vowel sound and all following sound to the end rhyme
+				endRhyme += w.getSound()[i];
+			}
 		}
+		else endRhyme = null;
+		
 		return endRhyme;
 	}
 

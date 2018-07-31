@@ -20,8 +20,9 @@ public class StructuralAnalysis {
 	public StructuralAnalysis(ArrayList<String> poemLines) {
 		//Initialize poem, parsing it into lines and words and finding pronunciation of each word
 		poem = new Poem(poemLines);
+		
+		//Calculate Scansion
 		/*
-		//Calculate Scantion
 		ArrayList<Scansion> scansion = new ArrayList<Scansion>();					//(stores possible scansions)
 		ArrayList<ArrayList<Byte>> baseList = new ArrayList<ArrayList<Byte>>();		//(stores known pieces of scansion (from polysyllabic words))
 		ArrayList<int[]> holeList = new ArrayList<int[]>();							//(stores the indecies of syllables with unknown scansion)
@@ -58,23 +59,20 @@ public class StructuralAnalysis {
 			holes[i][0] = holeList.get(i)[0];
 			holes[i][1] = holeList.get(i)[1];
 		}
-		System.out.println();
+		
 		scansion.add(new Scansion(stress));											//save base as a scansion at the beginning of the list
 		
-		for(int a = 0; a < (int) Math.pow(2, unknownCount); a++) {					//create a scansion for every possible stress combo on monosyllabic words
+		for(int a = 0; a < (int) Math.pow(2, holes.length); a++) {					//create a scansion for every possible combo of stresses on monosyllabic words
 			int n = a;
-			for(int b = 0; b < stress.length; b++) {								//go through syllable
-				for(int c = 0; c < stress[b].length; c++) {
-					if(stress[b][c] == -1) {											//if it's unknown, replace it with a zero or one
-						stress [b][c] = (byte)(n%2);										//(use 1 digit of binary version of number giving which scansion we're on)
-						n /= 2;
-					}
-				}
+			for(int b = 0; b < holes.length; b++) {									//go through each hole (monosyllabic word)
+				stress[holes[b][0]][holes[b][1]] = (byte)(n%2);						//assign it a digit of the binary form of the number of the scantion we're on
+				n /= 2;
 			}
-			scansion.add(new Scansion(stress));											//add the scansion to the scansion list and reset the stress array
+			scansion.add(new Scansion(stress));										//add the scansion to the list and reset the stress array
 			stress = scansion.get(0).getStress();
 		}
 		*/
+		
 		//TODO: Evaluate and Rank Scansions
 		
 		//find Rhyme Scheme of Poem
@@ -84,19 +82,22 @@ public class StructuralAnalysis {
 		boolean match;													//stores whether another rhyme of the same kind has been found
 		for(int i = 0; i < poem.getLines().length; i++) {
 			if(poem.getLines()[i].getWords().length > 0) {					//(ignoring blank lines)
-				endRhymes[i] = poem.getLines()[i].getEndRhyme();		//get the rhyme-relevant sound at the end of each line
-				match = false;
-				for(int j = 0; j < i; j++) {								//check if it matches any others
-					if(endRhymes[i].equals(endRhymes[j])) {
-						rhymeScheme[i] = rhymeScheme[j];					//if it does, give it the same rhyme number as the one it matches
-						match = true;
-						j = i;
+				endRhymes[i] = poem.getLines()[i].getEndRhyme();			//get the rhyme-relevant sound at the end of each line
+				if(endRhymes[i] != null) {
+					match = false;
+					for(int j = 0; j < i; j++) {								//check if it matches any others
+						if(endRhymes[i].equals(endRhymes[j])) {
+							rhymeScheme[i] = rhymeScheme[j];					//if it does, give it the same rhyme number as the one it matches
+							match = true;
+							j = i;
+						}
+					}
+					if(match == false) {										//if it doesn't, give it it's own rhyme number
+						rhymeScheme[i] = n;											//(and increase the rhyme number for the next one)
+						n++;
 					}
 				}
-				if(match == false) {										//if it doesn't, give it it's own rhyme number
-					rhymeScheme[i] = n;											//(and increase the rhyme number for the next one)
-					n++;
-				}
+				else rhymeScheme[i] = 0;
 			}
 		}
 		poem.setRhymeScheme(rhymeScheme);								//store the acquired rhymescheme in the poem

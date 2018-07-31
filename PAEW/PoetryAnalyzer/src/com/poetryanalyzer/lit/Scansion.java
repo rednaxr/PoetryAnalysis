@@ -38,18 +38,14 @@ public class Scansion {
 	//CONSTRUCTOR
 	public Scansion(byte[][] stress) {
 		this.stress = stress;
-		feet = new ArrayList<ArrayList<Byte>>();
+		setFeet(new ArrayList<ArrayList<Byte>>());
 		meterType = new byte[stress.length];
-		footCount = new int[stress.length];
-		int feet;
 		for(int a = 0; a < stress.length; a++) {
-			feet = 0;
 			for(int b = 0; b < stress[a].length; b++) {
+				
 				if(stress[a][b] == 1) {
-					feet++;
 				}
 			}
-			footCount[a] = feet;
 		}
 	}
 	
@@ -97,6 +93,14 @@ public class Scansion {
 
 	public void setOverallFootCount(int overallFootCount) {
 		OverallFootCount = overallFootCount;
+	}
+
+	public ArrayList<ArrayList<Byte>> getFeet() {
+		return feet;
+	}
+
+	public void setFeet(ArrayList<ArrayList<Byte>> feet) {
+		this.feet = feet;
 	}
 	
 }
