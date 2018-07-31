@@ -16,7 +16,7 @@ public class MultiLineDevice extends Device {
 		for (int i = 0; i < lines.length; i++) {					//for each line
 			String firstWord = lines[i].getWords()[0].getText();	//get the first word
 
-			if (!anaphoricWords.contains(firstWord)) {				//is the first word unique?
+			if (!anaphoricWords.contains(firstWord)) {		 		//is the first word unique?
 				anaphoricWords.add(firstWord);						//the word is uniuqe, add it as a potential anaphora
 				anaphoraInstances.add(new MultiLineDevice());						      		 //create an new anaphora instance
 				anaphoraInstances.get(anaphoraInstances.size() - 1).setText(firstWord);		 //assign it its text
@@ -26,11 +26,11 @@ public class MultiLineDevice extends Device {
 			}
 		}
 
-		for (int p = anaphoraInstances.size() - 1; p >= 0; p--) {	//removes anaphora instances with only one index, i.e., non-anaphoras
-			if (anaphoraInstances.get(p).getIndices().size() == 1)	
-				anaphoraInstances.remove(p);
+		for (int i = anaphoraInstances.size() - 1; i >= 0; i--) {	//removes anaphora instances with only one index, i.e., non-anaphoras
+			if (anaphoraInstances.get(i).getIndices().size() == 1)	
+				anaphoraInstances.remove(i);
 		}
-
+		
 		for (MultiLineDevice a : anaphoraInstances) { //for each instance of anaphora
 			int minWords = Integer.MAX_VALUE;				//iterates through each line that contains an instance of this anaphora and
 															//-finds the shortest line by words, and stores that number
@@ -54,6 +54,6 @@ public class MultiLineDevice extends Device {
 			}																								
 		}
 		
-		return anaphoraInstances; //return an ArrayList of MultiLineDevices, where each MultiLineDevice is a unique anaphora or word phrase
+		return anaphoraInstances; //return an ArrayList of MultiLineDevices, where each MultiLineDevice is an anaphora 
 	}
 }
