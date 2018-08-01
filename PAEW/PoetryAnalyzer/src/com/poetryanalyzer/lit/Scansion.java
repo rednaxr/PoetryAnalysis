@@ -13,7 +13,9 @@ public class Scansion {
 	private int OverallFootCount;					//(stores number of feet per line, eg. tetrameter)
 	
 	//STATIC CONSTANTS
-	public static final byte UNKNOWN = -1;			//   ?
+	
+	
+	public static final byte UNKNOWN = -1;				//     ?
 	
 	//Foot ID's
 	public static final byte UNSTRESS = 6;				//     U
@@ -72,8 +74,17 @@ public class Scansion {
 		}
 		
 		//Classify meter type of each line
+		for(int a = 0; a < feet.size(); a++) {
+			for(int b = 0; b < feet.get(a).size(); b++) {
+				
+			}
+		}
 		
-		//If poem has overall Trochaic pattern, switch trochaic/iambic amibuous (1 ... 1) lines to iambic pattern
+		//Determine overall meter pattern of poem
+		
+			//(If poem has overall Trochaic pattern, switch trochaic/iambic ambiguous (1 ... 1) lines to iambic pattern)
+			//(If poem has overall Iambic pattern, switch ambiguous lines to iambic) (**is it possible to need this?)
+		
 		
 		
 	}
