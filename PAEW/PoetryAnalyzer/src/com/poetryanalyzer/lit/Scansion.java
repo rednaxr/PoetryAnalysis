@@ -14,10 +14,17 @@ public class Scansion {
 	
 	//STATIC CONSTANTS
 	
-	
-	public static final byte UNKNOWN = -1;				//     ?
+	public static final byte AMBIGUOUS = -2;				//could be iambic or trochaic, base decision on charactarization of other lines
+	public static final byte OTHER = 0;
+	public static final byte STRICT_IAMBIC = 1;
+	public static final byte LOOSE_IAMBIC = 2;
+	public static final byte STRICT_ANAPESTIC = 3;
+	public static final byte STRICT_TROCHAIC = 5;
+	public static final byte LOOSE_TROCHAIC = 6;
+	public static final byte STRICT_DACTYLIC = 7;
 	
 	//Foot ID's															  index
+	public static final byte UNKNOWN = -1;				//     ?
 	public static final byte UNSTRESS = 6;				//     U			0
 	public static final byte STRESS = 8;				//     /			1
 	
@@ -48,9 +55,9 @@ public class Scansion {
 		ArrayList<Boolean> cFoot = new ArrayList<Boolean>();			//(stores the current foot being built/worked with)
 		int cFootID = 0;												//(stores the ID of the current foot being worked with
 		
-		//ID each foot
-		for(int a = 0; a < stress.length; a++) {							//go through each line of stresses
-			for(int b = stress[a].length - 1; b > -1; b--) {				//go through all stresses in the line, back to front
+		//ID each foot and characterize scansion of each line
+		for(int a = 0; a < stress.length; a++) {					//go through each line
+			for(int b = stress[a].length - 1; b > -1; b--) {			//go through all stresses in the line, back to front
 				if(cFoot.size() < 2) {										//if the current foot is under two syllables, add the current syllable to it
 					cFoot.add(stress[a][b]);
 				}
@@ -79,6 +86,10 @@ public class Scansion {
 				feet.get(a).add(cFootID);										//load it in to the feet array and reset current foot
 				cFoot.clear();
 			}
+			
+			
+			//TODO: use int[] feetCount to find the number of each foot in line, characterize line meter type based on dominant foot type/feet
+			
 		}
 		
 		
