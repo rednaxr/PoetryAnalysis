@@ -15,23 +15,23 @@ public class Scansion {
 	//STATIC CONSTANTS
 	public static final byte UNKNOWN = -1;			//   ?
 	
-	//Feet
-	public static final byte UNSTRESS = 6;			//     U
-	public static final byte STRESS = 8;			//     /
+	//Foot ID's
+	public static final byte UNSTRESS = 6;				//     U
+	public static final byte STRESS = 8;				//     /
 	
-	public static final byte PYRRHUS = 12;			//    U U
-	public static final byte IAMB = 14;				//    U /
-	public static final byte TROCHEE = 15;			//    / U
-	public static final byte SPONDEE = 17;			//    / /
+	public static final byte PYRRHUS = 12;				//    U U
+	public static final byte IAMB = 14;					//    U /
+	public static final byte TROCHEE = 15;				//    / U
+	public static final byte SPONDEE = 17;				//    / /
 	
-	public static final byte TRIBRACH = 18;			//   U U U
-	public static final byte ANAPEST = 20;			//   U U /
-	public static final byte AMPHIBRACH = 21;		//   U / U
-	public static final byte DACTYL = 22;			//   / U U
-	public static final byte BACCHIUS = 23;			//   U / /
-	public static final byte CRETIC = 24;			//   / U /
-	public static final byte ANTIBACCHIUS = 25;		//   / / U
-	public static final byte MOLOSSUS = 27;			//   / / /
+	public static final byte TRIBRACH = 18;				//   U U U
+	public static final byte ANAPEST = 20;				//   U U /
+	//public static final byte AMPHIBRACH = 21;			//   U / U
+	public static final byte DACTYL = 22;				//   / U U
+	//public static final byte BACCHIUS = 23;			//   U / /
+	//public static final byte CRETIC = 24;				//   / U /
+	//public static final byte ANTIBACCHIUS = 25;		//   / / U
+	//public static final byte MOLOSSUS = 27;			//   / / /
 	
 	//CONSTRUCTOR
 	public Scansion(boolean[][] stress) {
@@ -43,44 +43,39 @@ public class Scansion {
 	//DYNAMIC METHODS---------------------------------------------------
 	
 	public void buildMeter() {
-		ArrayList<Boolean> cFoot = new ArrayList<Boolean>();		//(stores the current foot being built/worked with)
+		ArrayList<Boolean> cFoot = new ArrayList<Boolean>();			//(stores the current foot being built/worked with)
 		int cFootID = 0;												//(stores the ID of the current foot being worked with
-		for(int a = 0; a < stress.length; a++) {							//go through each line of stresses
+		
+		//ID each foot
+		for(int a = 0; a < stress.length; a++) {							//go through each line of stresses, back to front
 			for(int b = stress[a].length - 1; b > -1; b--) {
-				if(stress[a][b]) {
-					if(cFoot.size() < 3) {
-						if(stress[a][b]) {
-							for (int c = 0; c < cFoot.size(); c++) {
-								cFootID = btn(cFoot.get(c))*(c+2);
-							}
-							if(cFootID == 0) {
-								cFoot.add(stress[a][b]);
-							}
-							else {
-								cFootID += 6*cFoot.size();
-								feet.get(a).add((byte)cFootID);
-							}
-						}
+				if(cFoot.size() < 2) {										//if the current foot is under two syllables, add the current syllable to it
+					cFoot.add(stress[a][b]);
+				}
+				else {														//if the current foot is two or more syllables
+					cFootID = 6*cFoot.size();									//calculate which foot it is
+					for (int c = 0; c < cFoot.size(); c++) {
+						cFootID += bti(cFoot.get(c))*(c+2);
 					}
-					else {
-						cFootID = 6*cFoot.size();
-						for (int c = 0; c < cFoot.size(); c++) {
-							cFootID = btn(cFoot.get(c))*(c+2);
-						}
-						feet.get(a).add((byte)cFootID);
-						cFoot.clear();
+					if((stress[a][b] && cFootID > 12)							//if it's got a stress and we've hit a stressed syllable
+							|| (!stress[a][b] && cFootID > 14)					//...or if it's not an iamb or pyrrhus and we've hit an unstressed syllable
+							|| cFoot.size() == 3) {								//...or if the foot is three syllables long
+						feet.get(a).add((byte)cFootID);								//add the  current foot to the feet ArrayList
+						cFoot.clear();												//and start a new foot with the current syllable
+						cFoot.add(stress[a][b]);
+					}
+					else {														//otherwise, add the current syllable to the foot
+						cFoot.add(stress[a][b]);
 					}
 				}
-				cFoot.add(stress[a][b]);
-				
-				cFootID = 6*cFoot.size();
-				for (int c = 0; c < cFoot.size(); c++) {
-					cFootID = btn(cFoot.get(c))*(c+2);
-				}
-				feet.get(a).add((byte)cFootID);
-				
 			}
 		}
+		
+		//Classify meter type of each line
+		
+		//If poem has overall Trochaic pattern, switch trochaic/iambic amibuous (1 ... 1) lines to iambic pattern
+		
+		
 	}
 	
 	//returns the likelihood that this scansion is the actual scansion of the poem, as raw number
@@ -140,7 +135,7 @@ public class Scansion {
 	
 	//STATIC METHODS---------------------------------------------------
 	
-	public static byte btn(boolean in) {
+	public static byte bti(boolean in) {
 		byte out = 0;
 		if(in == true) out = 1;
 		return out;
