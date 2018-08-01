@@ -38,12 +38,8 @@ public class Queries {
 		    smnt.setString(1, word); 
 		    //get the stress of the word!
 		    rs = smnt.executeQuery();
-
-	    	System.out.println("LLLL");
 		    while ( rs.next() ) { 
-		    	System.out.println("HIIIIII");
                 matches.add(rs.getString("stress"));
-                System.out.println(rs.getString("stress"));
             }
 		}
 		catch (SQLException ex){
