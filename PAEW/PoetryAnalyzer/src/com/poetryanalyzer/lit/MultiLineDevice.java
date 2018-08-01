@@ -58,42 +58,42 @@ public class MultiLineDevice extends Device {
 		return anaphoraInstances; //return an ArrayList of MultiLineDevices, where each MultiLineDevice is an anaphora 
 	}
 	
-public static ArrayList<MultiLineDevice> checkPolysyndeton (Line[] lines) {
-		
+	public static ArrayList<MultiLineDevice> checkPolysyndeton (Line[] lines) { //looks for polysyndeton (many of the same conjunction
+																								//>used in a sentence to create a sense of overwhelming emotion, being overwhelmed, etc.
 		ArrayList<MultiLineDevice> polysyndetonInstances = new ArrayList<MultiLineDevice>();
 		
-		String conjuncBuscar = "";
-		int    conjuncInstances = 0;
+		String conjuncBuscar = ""; 	//the conjunction "to look for" (buscar), the word that might turn out to be an instance of polysyndeton
+		int    conjuncInstances = 0;//a count of how many times this instance appears
 		
-		for (int i = 0; i < lines.length; i++) {
-			for (int w = 0; w < lines[i].getWords().length; w++) {
-				String text = lines[i].getWords()[w].getText().toLowerCase();
-			    if (conjuncBuscar.equals("")) {
-			    	for (String conjunc : conjuncs) {
-			    		if (text.equals(conjunc)) {
+		for (int i = 0; i < lines.length; i++) { 								//for each line...
+			for (int w = 0; w < lines[i].getWords().length; w++) {				//look at each word...
+				String text = lines[i].getWords()[w].getText().toLowerCase();	//stores this word in lowercase...
+			    if (conjuncBuscar.equals("")) {								//if there isn't a canidate for a polysyndeton (the starting case)
+			    	for (String conjunc : conjuncs) {								//look to see if the current word is a select conjunction
+			    		if (text.equals(conjunc)) {									//if so assign it to conjuncBuscar and add one recorded instance
 			    			conjuncBuscar = text;
 			    			conjuncInstances++;
 			    			break;
 			    		}
 			    	}
-			    } else if (text.equals(conjuncBuscar)) {
-			    	conjuncInstances++;
-			    	if (conjuncInstances == 2) {
-			    		polysyndetonInstances.add(new MultiLineDevice());
-			    		polysyndetonInstances.get(polysyndetonInstances.size() - 1).setText(conjuncBuscar);
-			    		ArrayList<Integer> indices = polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices();
+			    } else if (text.equals(conjuncBuscar)) {					//if the current word is another instance of the current candidate
+			    	conjuncInstances++;										//increment the counter
+			    	if (conjuncInstances == 3) {							//3 is the threshold for what is and isn't considered a polysyndeton
+			    		polysyndetonInstances.add(new MultiLineDevice());														//]
+			    		polysyndetonInstances.get(polysyndetonInstances.size() - 1).setText(conjuncBuscar);						//] - create a polysyndeton ins.
+			    		ArrayList<Integer> indices = polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices();	
 			    		for (int x = 0; x <= w; x++) {
 			    			String pastWord = lines[i].getWords()[x].getText();
-			    			if (pastWord.equals(conjuncBuscar)) {
+			    			if (pastWord.equals(conjuncBuscar)) {					//iterate throught the string traversed so far and add indices of the poly.
 			    				indices.add(x);
 			    			}
 			    		}
-			    	} else if (conjuncInstances > 2) {
-			    		polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices().add(w);
+			    	} else if (conjuncInstances > 3) {	
+			    		polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices().add(w); //if another instance of the polysyndeton add to the indices again
 			        }
 			    } else if (!conjuncBuscar.equals("")) {
 			    	for (String conjunc : conjuncs) {
-			    		if (text.equals(conjunc)) {
+			    		if (text.equals(conjunc)) {	//if the word equals a conjunction but not the current conjunction, cancel the current conjunction
 			    			conjuncBuscar = "";
 			    			conjuncInstances = 0;
 			    		}
@@ -102,6 +102,6 @@ public static ArrayList<MultiLineDevice> checkPolysyndeton (Line[] lines) {
 		    } 
 		}
 	
-		return polysyndetonInstances;
+		return polysyndetonInstances; //return an ArrayList of MultiLineDevices, where each MultiLineDevice is a polysyndeton
 	}
 }
