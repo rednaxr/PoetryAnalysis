@@ -1,14 +1,14 @@
- package com.poetryanalyzer.lit;
+package com.poetryanalyzer.lit;
 
 import java.util.ArrayList;
 
 public class PolysyndetonTester {
 
 	public PolysyndetonTester (Line[] poemLines) {
-		
+		display(MultiLineDevice.checkPolysyndeton(poemLines));
 	}
 	
-	public void main (String[] args) {
+	public static void main (String[] args) {
 		ArrayList<String> poem = new ArrayList<String>();
 		
 		poem.add("And God said, \"Let the earth bring forth the living creature after his kind, cattle, and creeping thing, and beast of the earth after his kind.\"");
@@ -25,13 +25,12 @@ public class PolysyndetonTester {
 		for (Line x : poemLines) { System.out.println(x.getText()); } //TESTING
 		System.out.println(); //TESTING
 		
-		//PolysyndetonTester polysyndetonTester = new PolysyndetonTester (poemLines);
+		PolysyndetonTester polysyndetonTester = new PolysyndetonTester (poemLines);
 	}
 	
 	public void display (ArrayList<MultiLineDevice> polysyndetonInstances) {
 		for (MultiLineDevice a : polysyndetonInstances) {
 			System.out.println("Text: " + a.getText());
-			System.out.println("Intensity: " + a.getIntensity());
 			System.out.println();
 			for (int i : a.getIndices()) {
 				System.out.println("Index: " + i);
