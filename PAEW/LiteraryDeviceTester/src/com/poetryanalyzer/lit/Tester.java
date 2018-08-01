@@ -2,21 +2,23 @@ package com.poetryanalyzer.lit;
 
 import java.util.ArrayList;
 
-public class AnaphoraTester {
-
-	public AnaphoraTester (Line[] poemLines) {
-		display(MultiLineDevice.checkAnaphora(poemLines));
+public abstract class Tester {
+	
+	public Tester (Line[] poemLines) {
+		
 	}
-
-	/*public static void main (String[] args) {
+	
+	public static void main (String[] args) {
 		ArrayList<String> poem = new ArrayList<String>();
 		
-		poem.add("Two roads diverged in a yellow wood");
+		//ANAPHORA_1
+		/*poem.add("Two roads diverged in a yellow wood");
 		poem.add("And sorry I could not travel both");
 		poem.add("And be one traveler long I stood");
 		poem.add("And looked down one as far as I could");
-		poem.add("To where it bent in the undergrowth");
+		poem.add("To where it bent in the undergrowth");*/
 		
+		//ANAPHORA_2
 		/*poem.add("Out of the cradle endlessly rocking,");
 		poem.add("Out of the mock-bird's throat, the musical shuttle,");
 		poem.add("Out of the Ninth-month midnight,");
@@ -31,7 +33,13 @@ public class AnaphoraTester {
 		poem.add("From the thousand responses of my heart never to cease,");
 		poem.add("From the myriad thence-arous'd words,");
 		poem.add("From the word stronger and more delicious than any,");
-		poem.add("From such as now they start the scene revisiting,...");
+		poem.add("From such as now they start the scene revisiting,...");*/
+		
+		//POLYSYNDETON
+		poem.add("And God said, \"Let the earth bring forth the living creature after his kind, cattle, and creeping thing, and beast of the earth after his kind.\"");
+		poem.add("And it was so.");
+		poem.add("And God made the beast of the earth after his kind and cattle after their kind, and everything that creeps upon the earth to its kind. ");
+		poem.add("And God saw that it was good.");
 		
 		Line[] poemLines = new Line[poem.size()];
 		
@@ -43,17 +51,8 @@ public class AnaphoraTester {
 		System.out.println(); //TESTING
 		
 		AnaphoraTester anaphoraTester = new AnaphoraTester (poemLines);
-	}*/
-	
-	public void display (ArrayList<MultiLineDevice> anaphoraInstances) {
-		for (MultiLineDevice a : anaphoraInstances) {
-			System.out.println("Text: " + a.getText());
-			System.out.println("Intensity: " + a.getIntensity());
-			System.out.println();
-			for (int i : a.getIndices()) {
-				System.out.println("Index: " + i);
-			}
-			System.out.println(); 
-		}
 	}
+	
+	public abstract void display ();
+		
 }
