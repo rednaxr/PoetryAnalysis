@@ -3,7 +3,7 @@ package com.poetryanalyzer.lit;
 import java.util.ArrayList;
 
 public class MultiLineDevice extends Device {
-	private static String[] conjunc = {"and", "or", "but", "nor"}; //common conjunctions
+	private static final String[] conjuncs = {"and", "or", "but", "nor", "for", "yet", "so"}; //common conjunctions
 	
 	public MultiLineDevice () {
 		
@@ -67,21 +67,18 @@ public class MultiLineDevice extends Device {
 		
 		for (int i = 0; i < lines.length; i++) {
 			for (int w = 0; w < lines[i].getWords().length; w++) {
-				String text = lines[i].getWords()[w].getText();
-			    if (conjuncBuscar.equals("") && (text.equals("and") 
-			    		      				  || text.equals("or") 
-			    		      				  || text.equals("but")) 
-			    							  || text.equals("nor")) {
-			    	conjuncBuscar = text;
-			    }  else if (!conjuncBuscar.equals("") && (text.equals("and") 
-	      				  							 || text.equals("or") 
-	      				  							 || text.equals("but")) 
-						  							 || text.equals("nor")) {
-			    	conjuncBuscar = "";
-			    	conjuncInstances = 0;
+				String text = lines[i].getWords()[w].getText().toLowerCase();
+			    if (conjuncBuscar.equals("")) {
+			    	for (String conjunc : conjuncs) {
+			    		if (text.equals(conjunc)) {
+			    			conjuncBuscar = text;
+			    			conjuncInstances++;
+			    			break;
+			    		}
+			    	}
 			    } else if (text.equals(conjuncBuscar)) {
 			    	conjuncInstances++;
-			    	if (conjuncInstances == 3) {
+			    	if (conjuncInstances == 2) {
 			    		polysyndetonInstances.add(new MultiLineDevice());
 			    		polysyndetonInstances.get(polysyndetonInstances.size() - 1).setText(conjuncBuscar);
 			    		ArrayList<Integer> indices = polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices();
@@ -91,9 +88,16 @@ public class MultiLineDevice extends Device {
 			    				indices.add(x);
 			    			}
 			    		}
-			    	} else if (conjuncInstances > 3) {
+			    	} else if (conjuncInstances > 2) {
 			    		polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices().add(w);
 			        }
+			    } else if (!conjuncBuscar.equals("")) {
+			    	for (String conjunc : conjuncs) {
+			    		if (text.equals(conjunc)) {
+			    			conjuncBuscar = "";
+			    			conjuncInstances = 0;
+			    		}
+			    	}
 			    }
 		    } 
 		}
@@ -114,7 +118,7 @@ public class MultiLineDevice extends Device {
 				if (s.contains(",")) {
 					
 				} else {
-					for (String c : conjunc)
+					for (String c : conjuncs)
 						if (s.equals(c)) {
 							
 						}

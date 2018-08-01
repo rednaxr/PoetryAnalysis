@@ -11,10 +11,12 @@ public class PolysyndetonTester {
 	public static void main (String[] args) {
 		ArrayList<String> poem = new ArrayList<String>();
 		
-		poem.add("And God said, \"Let the earth bring forth the living creature after his kind, cattle, and creeping thing, and beast of the earth after his kind.\"");
+		/*poem.add("And God said, \"Let the earth bring forth the living creature after his kind, cattle, and creeping thing, and beast of the earth after his kind.\"");
 		poem.add("And it was so.");
 		poem.add("And God made the beast of the earth after his kind and cattle after their kind, and everything that creeps upon the earth to its kind. ");
-		poem.add("And God saw that it was good.");
+		poem.add("And God saw that it was good.");*/
+		
+		poem.add("Sam ran and jumped and laughed and clapped in joy");
 		
 		Line[] poemLines = new Line[poem.size()];
 		

@@ -3,6 +3,7 @@ package com.poetryanalyzer.lit;
 import java.util.ArrayList;
 
 public class MultiLineDevice extends Device {
+	private static final String[] conjuncs = {"and", "or", "but", "nor", "for", "yet", "so"}; //common conjunctions
 	
 	public MultiLineDevice () {
 		
@@ -55,5 +56,52 @@ public class MultiLineDevice extends Device {
 		}
 		
 		return anaphoraInstances; //return an ArrayList of MultiLineDevices, where each MultiLineDevice is an anaphora 
+	}
+	
+public static ArrayList<MultiLineDevice> checkPolysyndeton (Line[] lines) {
+		
+		ArrayList<MultiLineDevice> polysyndetonInstances = new ArrayList<MultiLineDevice>();
+		
+		String conjuncBuscar = "";
+		int    conjuncInstances = 0;
+		
+		for (int i = 0; i < lines.length; i++) {
+			for (int w = 0; w < lines[i].getWords().length; w++) {
+				String text = lines[i].getWords()[w].getText().toLowerCase();
+			    if (conjuncBuscar.equals("")) {
+			    	for (String conjunc : conjuncs) {
+			    		if (text.equals(conjunc)) {
+			    			conjuncBuscar = text;
+			    			conjuncInstances++;
+			    			break;
+			    		}
+			    	}
+			    } else if (text.equals(conjuncBuscar)) {
+			    	conjuncInstances++;
+			    	if (conjuncInstances == 2) {
+			    		polysyndetonInstances.add(new MultiLineDevice());
+			    		polysyndetonInstances.get(polysyndetonInstances.size() - 1).setText(conjuncBuscar);
+			    		ArrayList<Integer> indices = polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices();
+			    		for (int x = 0; x <= w; x++) {
+			    			String pastWord = lines[i].getWords()[x].getText();
+			    			if (pastWord.equals(conjuncBuscar)) {
+			    				indices.add(x);
+			    			}
+			    		}
+			    	} else if (conjuncInstances > 2) {
+			    		polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices().add(w);
+			        }
+			    } else if (!conjuncBuscar.equals("")) {
+			    	for (String conjunc : conjuncs) {
+			    		if (text.equals(conjunc)) {
+			    			conjuncBuscar = "";
+			    			conjuncInstances = 0;
+			    		}
+			    	}
+			    }
+		    } 
+		}
+	
+		return polysyndetonInstances;
 	}
 }
