@@ -33,10 +33,16 @@ public class PolysyndetonTester {
 	public void display (ArrayList<MultiLineDevice> polysyndetonInstances) {
 		for (MultiLineDevice a : polysyndetonInstances) {
 			System.out.println("Text: " + a.getText());
+			System.out.println("Intensity: " + a.getIntensity());
 			System.out.println();
 			for (int i : a.getIndices()) {
-				System.out.println("Index: " + i);
+				System.out.println(i);
 			}
+			/*for (int line = 0; line < a.getIndices().size(); line++) {
+				for (int word = 0; line < a.getIndices().get(line).size(); word++) {
+					   
+				}
+			}*/
 			System.out.println(); 
 		}
 	}
