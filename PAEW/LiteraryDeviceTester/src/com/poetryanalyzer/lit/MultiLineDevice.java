@@ -9,7 +9,7 @@ public class MultiLineDevice extends Device {
 		
 	}
 	
-    public static ArrayList<MultiLineDevice> checkAnaphora (Line[] lines) {		//looks for anaphora (words/phrases repeated at the beginning of each line for poetic effect)
+	public static ArrayList<MultiLineDevice> checkAnaphora (Line[] lines) {		//looks for anaphora (words/phrases repeated at the beginning of each line for poetic effect)
 																																//>for poetic effect)
 		ArrayList<MultiLineDevice> anaphoraInstances = new ArrayList<MultiLineDevice>(); //stores instances
 		ArrayList<String> anaphoricWords = new ArrayList<String>(); 					 //stores first words of instances
@@ -18,7 +18,7 @@ public class MultiLineDevice extends Device {
 			String firstWord = lines[i].getWords()[0].getText();	//get the first word
 			
 			if (!anaphoricWords.contains(firstWord)) {				//is the first word unique?
-				anaphoricWords.add(firstWord);						//the word is unique, add it as a potential anaphora
+				anaphoricWords.add(firstWord);						//the word is uniuqe, add it as a potential anaphora
 				anaphoraInstances.add(new MultiLineDevice());						      		 //create an new anaphora instance
 				anaphoraInstances.get(anaphoraInstances.size() - 1).setText(firstWord);		 //assign it its text
 				anaphoraInstances.get(anaphoraInstances.size() - 1).getIndices().add(i);;	 //assign it its index
@@ -56,26 +56,8 @@ public class MultiLineDevice extends Device {
 		}
 		
 		return anaphoraInstances; //return an ArrayList of MultiLineDevices, where each MultiLineDevice is a unique anaphora or word phrase
-	}																								//with its stored indices
+	}																									//with its stored indices
 
-	/*public static ArrayList<MultiLineDevice> checkAnaphora (Line[] lines) {
-			
-		ArrayList<MultiLineDevice> anaphoraInstances = new ArrayList<MultiLineDevice>();
-		ArrayList<String> anaphoricWords = new ArrayList<String>();
-		
-		for (int i = 0; i < lines.length; i++) {
-			String firstWord = lines[i].getWords()[0].getText();
-			
-			if (!anaphoricWords.contains(firstWord)) {	
-				anaphoricWords.add(firstWord);
-			}
-			
-		}
-		
-		
-		return anaphoraInstances; 
-	}*/
-	
 	public static ArrayList<MultiLineDevice> checkPolysyndeton (Line[] lines) {
 		
 		ArrayList<MultiLineDevice> polysyndetonInstances = new ArrayList<MultiLineDevice>();
@@ -99,7 +81,7 @@ public class MultiLineDevice extends Device {
 			    	if (conjuncInstances == 2) {
 			    		polysyndetonInstances.add(new MultiLineDevice());
 			    		polysyndetonInstances.get(polysyndetonInstances.size() - 1).setText(conjuncBuscar);
-			    		ArrayList<Integer> indices = polysyndetonInstances.get;
+			    		ArrayList<Integer> indices = polysyndetonInstances.get(polysyndetonInstances.size() - 1).getIndices();
 			    		for (int x = 0; x <= w; x++) {
 			    			String pastWord = lines[i].getWords()[x].getText();
 			    			if (pastWord.equals(conjuncBuscar)) {

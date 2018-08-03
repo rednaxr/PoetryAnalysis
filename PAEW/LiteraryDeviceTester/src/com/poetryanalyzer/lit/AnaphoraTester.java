@@ -8,14 +8,14 @@ public class AnaphoraTester {
 		display(MultiLineDevice.checkAnaphora(poemLines));
 	}
 
-	public static void main (String[] args) {
+	/*public static void main (String[] args) {
 		ArrayList<String> poem = new ArrayList<String>();
 		
-		/*poem.add("Two roads diverged in a yellow wood");
+		poem.add("Two roads diverged in a yellow wood");
 		poem.add("And sorry I could not travel both");
 		poem.add("And be one traveler long I stood");
 		poem.add("And looked down one as far as I could");
-		poem.add("To where it bent in the undergrowth");*/
+		poem.add("To where it bent in the undergrowth");
 		
 		/*poem.add("Out of the cradle endlessly rocking,");
 		poem.add("Out of the mock-bird's throat, the musical shuttle,");
@@ -31,8 +31,7 @@ public class AnaphoraTester {
 		poem.add("From the thousand responses of my heart never to cease,");
 		poem.add("From the myriad thence-arous'd words,");
 		poem.add("From the word stronger and more delicious than any,");
-		poem.add("From such as now they start the scene revisiting,...");*/
-
+		poem.add("From such as now they start the scene revisiting,...");
 		
 		Line[] poemLines = new Line[poem.size()];
 		
@@ -44,14 +43,16 @@ public class AnaphoraTester {
 		System.out.println(); //TESTING
 		
 		AnaphoraTester anaphoraTester = new AnaphoraTester (poemLines);
-	}
+	}*/
 	
 	public void display (ArrayList<MultiLineDevice> anaphoraInstances) {
 		for (MultiLineDevice a : anaphoraInstances) {
 			System.out.println("Text: " + a.getText());
-			//System.out.println("Intensity: " + a.getIntensity());
+			System.out.println("Intensity: " + a.getIntensity());
 			System.out.println();
-			
+			for (int i : a.getIndices()) {
+				System.out.println("Index: " + i);
+			}
 			System.out.println(); 
 		}
 	}
